@@ -8,6 +8,7 @@ public class InteraccionBrazo : MonoBehaviour
 //elementos de la ui a prender y apagar
     public GameObject panelCables;
     public GameObject Img_InteractionBG;
+    public GameObject Img_InteractionBGF;
     public GameObject mensajeError;
     public GameObject pantallaMonitor1;
     public GameObject pantallaMonitor2;
@@ -25,9 +26,13 @@ public class InteraccionBrazo : MonoBehaviour
     private bool dentroDelTriggerMonitor3 = false;
     private bool dentroDelTriggerPuerta = false;
     private bool dentroDelTriggerMep = false;
-
     
-     private void OnTriggerEnter(Collider other){
+    
+    //mouses
+    private bool dentroDelTriggerMouseRojo1 = false;
+
+
+    private void OnTriggerEnter(Collider other){
         Debug.Log(other.gameObject.name);
         if(other.gameObject.name == "CubeTask1"){
             Img_InteractionBG.SetActive(true);
@@ -57,6 +62,11 @@ public class InteraccionBrazo : MonoBehaviour
             Img_InteractionBG.SetActive(true);
             dentroDelTriggerMep = true;
         }
+        if(other.gameObject.name == "MouseRojo1")
+        {
+            Img_InteractionBGF.SetActive(true);
+            dentroDelTriggerMouseRojo1 = true;
+        }
 
      }
          private void OnTriggerExit(Collider other){
@@ -68,10 +78,12 @@ public class InteraccionBrazo : MonoBehaviour
       dentroDelTriggerMonitor3 = false;
       dentroDelTriggerPuerta = false;
       dentroDelTriggerMep = false;
+      dentroDelTriggerMouseRojo1 = false;
 
     }
 
-    
+
+
     void Start()
     {
         mensajeError.SetActive(false);
@@ -79,6 +91,8 @@ public class InteraccionBrazo : MonoBehaviour
         pantallaMonitor2.SetActive(false);
         pantallaMonitor3.SetActive(false);
         conversacion.SetActive(false);
+        Img_InteractionBGF.SetActive(false);
+    
     }
 
     // Update is called once per frame
@@ -86,13 +100,13 @@ public class InteraccionBrazo : MonoBehaviour
     {
 
         if(Input.GetKeyDown(KeyCode.E)){
-                if(dentroDelTriggerCubeTask1 == true){
+            if(dentroDelTriggerCubeTask1 == true){
                 panelCables.SetActive(true);
                 tablero.colorI = null;
                 tablero.colorD = null;
             }
 
-                if(dentroDelTriggerMonitorTask1 == true){
+            if(dentroDelTriggerMonitorTask1 == true){
                 mensajeError.SetActive(true);
             }
             if(dentroDelTriggerMonitor1 == true){
@@ -110,17 +124,26 @@ public class InteraccionBrazo : MonoBehaviour
             if(dentroDelTriggerMep == true){
                 conversacion.SetActive(true);
             }
-
+            
         }
-    
+        if (Input.GetKeyDown(KeyCode.F))
+        {
 
-          if (Input.GetKeyDown(KeyCode.Q)){
+            if(dentroDelTriggerMouseRojo1 == true)
+            {
+
+            }
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Q)){
                 panelCables.SetActive(false);
                 mensajeError.SetActive(false);
                 pantallaMonitor1.SetActive(false);
                 pantallaMonitor2.SetActive(false);
                 pantallaMonitor3.SetActive(false);
                 conversacion.SetActive(false);
+            Img_InteractionBGF.SetActive(false);
             }
         
     }
