@@ -28,9 +28,6 @@ public class InteraccionBrazo : MonoBehaviour
     private bool dentroDelTriggerMep = false;
     
     
-    //mouses
-    private bool dentroDelTriggerMouseRojo1 = false;
-
 
     private void OnTriggerEnter(Collider other){
         Debug.Log(other.gameObject.name);
@@ -62,10 +59,13 @@ public class InteraccionBrazo : MonoBehaviour
             Img_InteractionBG.SetActive(true);
             dentroDelTriggerMep = true;
         }
-        if(other.gameObject.name == "MouseRojo1")
+        if(other.gameObject.name == "MouseRojo1" || other.gameObject.name == "MouseRojo2" || other.gameObject.name == "MouseRojo3" || other.gameObject.name == "MouseRojo4")
         {
             Img_InteractionBGF.SetActive(true);
-            dentroDelTriggerMouseRojo1 = true;
+        }
+        if(other.gameObject.name == "MouseAzul1" || other.gameObject.name == "MouseAzul2" || other.gameObject.name == "MouseAzul3" || other.gameObject.name == "MouseAzul4")
+        {
+            Img_InteractionBGF.SetActive(true);
         }
 
      }
@@ -79,7 +79,6 @@ public class InteraccionBrazo : MonoBehaviour
       dentroDelTriggerMonitor3 = false;
       dentroDelTriggerPuerta = false;
       dentroDelTriggerMep = false;
-      dentroDelTriggerMouseRojo1 = false;
 
 
     }

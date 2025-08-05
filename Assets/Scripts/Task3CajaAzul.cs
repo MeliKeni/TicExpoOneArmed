@@ -2,24 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Task3CajaRoja : MonoBehaviour
+public class Task3CajaAzul : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    public int CantidadTotalMouseRojos = 4;
-    public GameObject TextoFinalRojo;
+    public int CantidadTotalMouseAzules = 4;
+    public GameObject TextoFinalAzul;
     public List<GameObject> ObjetosGuardados = new List<GameObject>();
 
     void Start()
     {
-        TextoFinalRojo.SetActive(false);
+        TextoFinalAzul.SetActive(false);
     }
 
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.name.StartsWith("MouseRojo") && !ObjetosGuardados.Contains(other.gameObject)) //si hay contacto con un mouse y ese mouse no esta en la lista ya
+        if (other.gameObject.name.StartsWith("MouseAzul") && !ObjetosGuardados.Contains(other.gameObject)) //si hay contacto con un mouse y ese mouse no esta en la lista ya
         {
             ObjetosGuardados.Add(other.gameObject); //agrega a la lista
 
@@ -33,26 +31,22 @@ public class Task3CajaRoja : MonoBehaviour
             ObjetosGuardados.Remove(other.gameObject); //sacamos al coso de la lista
             ActualizarConteo();
         }
-    } 
+    }
     private void ActualizarConteo()
     {
-        int CantidadMouseRojosGuardados = ObjetosGuardados.Count;
-        Debug.Log("Objetos en lista: " + CantidadMouseRojosGuardados);
+        int CantidadMouseAzulesGuardados = ObjetosGuardados.Count;
+        Debug.Log("Objetos en lista: " + CantidadMouseAzulesGuardados);
 
-        if (CantidadMouseRojosGuardados == 4)
+        if (CantidadMouseAzulesGuardados == 4)
         {
-            TextoFinalRojo.SetActive(true);
+            TextoFinalAzul.SetActive(true);
             Debug.Log("¡Todos los objetos están dentro! Mostrando texto.");
 
         }
         else
         {
-            TextoFinalRojo.SetActive(false);
+            TextoFinalAzul.SetActive(false);
         }
 
-    }
-    void Update()
-    {
-      
     }
 }
