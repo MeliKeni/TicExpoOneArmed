@@ -71,6 +71,7 @@ public class InteraccionBrazo : MonoBehaviour
      }
          private void OnTriggerExit(Collider other){
         Img_InteractionBG.SetActive(false);
+        Img_InteractionBGF.SetActive(false);
       dentroDelTriggerCubeTask1 = false;
       dentroDelTriggerMonitorTask1 = false;
       dentroDelTriggerMonitor1 = false;
@@ -79,6 +80,7 @@ public class InteraccionBrazo : MonoBehaviour
       dentroDelTriggerPuerta = false;
       dentroDelTriggerMep = false;
       dentroDelTriggerMouseRojo1 = false;
+
 
     }
 
@@ -126,14 +128,7 @@ public class InteraccionBrazo : MonoBehaviour
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-
-            if(dentroDelTriggerMouseRojo1 == true)
-            {
-
-            }
-        }
+       
 
 
         if (Input.GetKeyDown(KeyCode.Q)){
