@@ -21,7 +21,7 @@ public class InteraccionBrazo : MonoBehaviour
 
     //bools para ver q abrir
     public bool dentroDelTriggerCubeTask1 = false;
-    private bool dentroDelTriggerMonitorTask1 = false;
+    public bool dentroDelTriggerMonitorTask1 = false;
     private bool dentroDelTriggerMonitor1 = false;
     private bool dentroDelTriggerMonitor2 = false;
     private bool dentroDelTriggerMonitor3 = false;
