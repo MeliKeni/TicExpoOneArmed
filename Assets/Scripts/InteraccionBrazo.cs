@@ -9,17 +9,18 @@ public class InteraccionBrazo : MonoBehaviour
     public GameObject panelCables;
     public GameObject Img_InteractionBG;
     public GameObject Img_InteractionBGF;
-    public GameObject mensajeError;
     public GameObject pantallaMonitor1;
     public GameObject pantallaMonitor2;
     public GameObject pantallaMonitor3;
+   
     
     public bool puertaAbierta = false;
     public GameObject conversacion;
-    
+
+    public bool Task1Hecha = false;
 
     //bools para ver q abrir
-    private bool dentroDelTriggerCubeTask1 = false;
+    public bool dentroDelTriggerCubeTask1 = false;
     private bool dentroDelTriggerMonitorTask1 = false;
     private bool dentroDelTriggerMonitor1 = false;
     private bool dentroDelTriggerMonitor2 = false;
@@ -87,7 +88,7 @@ public class InteraccionBrazo : MonoBehaviour
 
     void Start()
     {
-        mensajeError.SetActive(false);
+        
         pantallaMonitor1.SetActive(false);
         pantallaMonitor2.SetActive(false);
         pantallaMonitor3.SetActive(false);
@@ -100,6 +101,7 @@ public class InteraccionBrazo : MonoBehaviour
     void Update()
     {
 
+
         if(Input.GetKeyDown(KeyCode.E)){
             if(dentroDelTriggerCubeTask1 == true){
                 panelCables.SetActive(true);
@@ -107,9 +109,16 @@ public class InteraccionBrazo : MonoBehaviour
                 tablero.colorD = null;
             }
 
-            if(dentroDelTriggerMonitorTask1 == true){
-                mensajeError.SetActive(true);
-            }
+            /*if(dentroDelTriggerMonitorTask1 == true){
+                if (Task1Hecha == true)
+                {
+                    pantallaMonitort1.SetActive(true);
+                }
+                else
+                {
+                    mensajeError.SetActive(true);
+                }
+            }*/
             if(dentroDelTriggerMonitor1 == true){
                 pantallaMonitor1.SetActive(true);
             }
@@ -132,10 +141,11 @@ public class InteraccionBrazo : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q)){
                 panelCables.SetActive(false);
-                mensajeError.SetActive(false);
+               tablero.mensajeError.SetActive(false);
                 pantallaMonitor1.SetActive(false);
                 pantallaMonitor2.SetActive(false);
                 pantallaMonitor3.SetActive(false);
+               tablero.pantallaMonitort1.SetActive(false);
                 conversacion.SetActive(false);
             Img_InteractionBGF.SetActive(false);
             }
