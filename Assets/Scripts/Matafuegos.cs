@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class Matafuegos : MonoBehaviour
     {
         if (dentroDelTriggerMano)
         {
-            if (Input.GetKey(KeyCode.G))
+            if (Input.GetKey(KeyCode.E))
             {
                 if (!particulas.isPlaying)
                     particulas.Play();
