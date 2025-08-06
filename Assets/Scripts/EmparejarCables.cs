@@ -96,24 +96,25 @@ public class EmparejarCables : MonoBehaviour
                 Debug.Log("¡Task1Hecha completada!");
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (brazo.dentroDelTriggerMonitorTask1 == true)
-                {
-                    if (brazo.Task1Hecha == true)
-                    {
-                        pantallaMonitort1.SetActive(true);
-                    }
-                    else
-                    {
-                        mensajeError.SetActive(true);
-                    }
-                }
-            }
+          
 
             // Evaluar siempre si las tres están activas
 
         }
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+         if (brazo.dentroDelTriggerMonitorTask1 == true)
+            {
+                if (brazo.Task1Hecha == true)
+                {
+                    pantallaMonitort1.SetActive(true);
+                }
+                else
+                {
+                    mensajeError.SetActive(true);
+                }
+            }
+            Debug.Log("Apretaste la E bot");
+        }
     }
 }

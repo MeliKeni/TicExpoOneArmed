@@ -16537,6 +16537,8 @@ MonoBehaviour:
   fuego: {fileID: 19359925}
   colorI: 
   colorD: 
+  pantallaMonitort1: {fileID: 75819162}
+  mensajeError: {fileID: 1717242822}
 --- !u!4 &583918582
 Transform:
   m_ObjectHideFlags: 0
@@ -32532,13 +32534,14 @@ MonoBehaviour:
   panelCables: {fileID: 982919316}
   Img_InteractionBG: {fileID: 1982980039}
   Img_InteractionBGF: {fileID: 586516245}
-  mensajeError: {fileID: 1717242822}
   pantallaMonitor1: {fileID: 1398346449}
   pantallaMonitor2: {fileID: 2145305096}
   pantallaMonitor3: {fileID: 1779305525}
   puertaAbierta: 0
   conversacion: {fileID: 757707641}
   Task1Hecha: 0
+  dentroDelTriggerCubeTask1: 0
+  dentroDelTriggerMonitorTask1: 0
 --- !u!114 &1870176750
 MonoBehaviour:
   m_ObjectHideFlags: 0
