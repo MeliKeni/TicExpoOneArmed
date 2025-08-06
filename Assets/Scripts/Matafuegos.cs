@@ -7,10 +7,13 @@ public class Matafuegos : MonoBehaviour
 {
     public ParticleSystem particulas;
     private bool dentroDelTriggerMano = false;
+    private Vector3 posicionOriginalMatafuegos;
 
     void Start()
     {
         particulas.Stop();
+        posicionOriginalMatafuegos = transform.position;
+
     }
 
     void Update()
@@ -49,5 +52,7 @@ public class Matafuegos : MonoBehaviour
         {
             dentroDelTriggerMano = false;
         }
+
+        if()
     }
 }
