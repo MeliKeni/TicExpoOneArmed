@@ -53,6 +53,5 @@ public class Matafuegos : MonoBehaviour
             dentroDelTriggerMano = false;
         }
 
-        if()
-    }
+            }
 }

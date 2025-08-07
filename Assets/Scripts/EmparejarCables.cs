@@ -103,7 +103,7 @@ public class EmparejarCables : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-         if (brazo.dentroDelTriggerMonitorTask1 == true)
+         if (brazo.dentroDelTriggerMonitorT1 == true)
             {
                 if (brazo.Task1Hecha == true)
                 {

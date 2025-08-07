@@ -17,8 +17,9 @@ public class ApagarFuego : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.StartsWith("CubeTask1") && Input.GetKey(KeyCode.E))
+        if (other.gameObject.name.StartsWith("PcT1") && Input.GetKey(KeyCode.E))
         {
+            Debug.Log("fuego chay");
             ParticleSystem[] allParticles = other.GetComponentsInChildren<ParticleSystem>();
             foreach (ParticleSystem ps in allParticles)
             {

@@ -20,8 +20,8 @@ public class InteraccionBrazo : MonoBehaviour
     public bool Task1Hecha = false;
 
     //bools para ver q abrir
-    public bool dentroDelTriggerCubeTask1 = false;
-    public bool dentroDelTriggerMonitorTask1 = false;
+    public bool dentroDelTriggerPcT1 = false;
+    public bool dentroDelTriggerMonitorT1 = false;
     private bool dentroDelTriggerMonitor1 = false;
     private bool dentroDelTriggerMonitor2 = false;
     private bool dentroDelTriggerMonitor3 = false;
@@ -32,13 +32,13 @@ public class InteraccionBrazo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other){
         Debug.Log(other.gameObject.name);
-        if(other.gameObject.name == "CubeTask1"){
+        if(other.gameObject.name == "PcT1"){
             Img_InteractionBG.SetActive(true);
-            dentroDelTriggerCubeTask1 = true;
+            dentroDelTriggerPcT1 = true;
         }
-        if(other.gameObject.name == "MonitorTask1"){
+        if(other.gameObject.name == "MonitorT1"){
             Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitorTask1 = true;
+            dentroDelTriggerMonitorT1 = true;
         }
         if(other.gameObject.name == "Monitor (1)"){
             Img_InteractionBG.SetActive(true);
@@ -73,8 +73,8 @@ public class InteraccionBrazo : MonoBehaviour
          private void OnTriggerExit(Collider other){
         Img_InteractionBG.SetActive(false);
         Img_InteractionBGF.SetActive(false);
-      dentroDelTriggerCubeTask1 = false;
-      dentroDelTriggerMonitorTask1 = false;
+      dentroDelTriggerPcT1 = false;
+      dentroDelTriggerMonitorT1 = false;
       dentroDelTriggerMonitor1 = false;
       dentroDelTriggerMonitor2 = false;
       dentroDelTriggerMonitor3 = false;
@@ -103,7 +103,7 @@ public class InteraccionBrazo : MonoBehaviour
 
 
         if(Input.GetKeyDown(KeyCode.E)){
-            if(dentroDelTriggerCubeTask1 == true){
+            if(dentroDelTriggerPcT1 == true){
                 panelCables.SetActive(true);
                 tablero.colorI = null;
                 tablero.colorD = null;
