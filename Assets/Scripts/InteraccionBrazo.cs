@@ -20,7 +20,7 @@ public class InteraccionBrazo : MonoBehaviour
     public bool Task1Hecha = false;
 
     //bools para ver q abrir
-    public bool dentroDelTriggerPcT1 = false;
+    public bool dentroDelTriggerPc3 = false;
     public bool dentroDelTriggerMonitorT1 = false;
     private bool dentroDelTriggerMonitor1 = false;
     private bool dentroDelTriggerMonitor2 = false;
@@ -32,9 +32,9 @@ public class InteraccionBrazo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other){
         Debug.Log(other.gameObject.name);
-        if(other.gameObject.name == "PcT1"){
+        if(other.gameObject.name == "pc 3 TASK 1"){
             Img_InteractionBG.SetActive(true);
-            dentroDelTriggerPcT1 = true;
+            dentroDelTriggerPc3 = true;
         }
         if(other.gameObject.name == "MonitorT1"){
             Img_InteractionBG.SetActive(true);
@@ -73,7 +73,7 @@ public class InteraccionBrazo : MonoBehaviour
          private void OnTriggerExit(Collider other){
         Img_InteractionBG.SetActive(false);
         Img_InteractionBGF.SetActive(false);
-      dentroDelTriggerPcT1 = false;
+      dentroDelTriggerPc3 = false;
       dentroDelTriggerMonitorT1 = false;
       dentroDelTriggerMonitor1 = false;
       dentroDelTriggerMonitor2 = false;
@@ -101,9 +101,15 @@ public class InteraccionBrazo : MonoBehaviour
     void Update()
     {
 
-
+        if(Input.GetMouseButtonDown(0)){
+            if(dentroDelTriggerPc3 == true){
+                panelCables.SetActive(true);
+                tablero.colorI = null;
+                tablero.colorD = null;
+        } 
+        }
         if(Input.GetKeyDown(KeyCode.E)){
-            if(dentroDelTriggerPcT1 == true){
+            if(dentroDelTriggerPc3 == true){
                 panelCables.SetActive(true);
                 tablero.colorI = null;
                 tablero.colorD = null;
