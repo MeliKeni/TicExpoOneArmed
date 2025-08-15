@@ -33,11 +33,14 @@ public class HandGrab : MonoBehaviour
                 {
                     Rigidbody rb = objetoAgarrado.GetComponent<Rigidbody>();
 
-                    // Configuración al soltar para evitar atravesar el piso
+                    // Soltar y que la física actúe correctamente
                     objetoAgarrado.transform.SetParent(null);
                     rb.isKinematic = false;
                     rb.useGravity = true;
                     rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+                    // Opcional: asegurar que no atraviese cosas al soltar
+                    StartCoroutine(ActivarFisicaDespues(rb));
 
                     objetoAgarrado = null;
                 }
@@ -62,5 +65,12 @@ public class HandGrab : MonoBehaviour
                 objetoAgarrable = null;
             }
         }
+    }
+
+    // Corutina para reactivar la física de manera segura y evitar atravesar objetos
+    private IEnumerator ActivarFisicaDespues(Rigidbody rb)
+    {
+        yield return null; // Espera un frame
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 }

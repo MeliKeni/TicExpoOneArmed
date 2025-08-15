@@ -4,30 +4,23 @@ using UnityEngine;
 
 public class ApagarFuego : MonoBehaviour
 {
-
-    void Start()
+    private void OnTriggerStay(Collider other)
     {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name.StartsWith("PcT1") && Input.GetKey(KeyCode.E))
+        // Verifica que el nombre comience con "pc 3 TASK 1"
+        if (other.gameObject.name.StartsWith("pc 3 TASK 1"))
         {
-            Debug.Log("fuego chay");
-            ParticleSystem[] allParticles = other.GetComponentsInChildren<ParticleSystem>();
-            foreach (ParticleSystem ps in allParticles)
+            // Si se está presionando E
+            if (Input.GetKey(KeyCode.E))
             {
-                ps.Stop();
+                Debug.Log("Fuego apagado");
+
+                // Buscar todos los ParticleSystem en hijos y detenerlos
+                ParticleSystem[] allParticles = other.gameObject.GetComponentsInChildren<ParticleSystem>();
+                foreach (ParticleSystem ps in allParticles)
+                {
+                    ps.Stop();
+                }
             }
         }
     }
-
-
-
 }
