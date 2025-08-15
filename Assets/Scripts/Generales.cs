@@ -6,28 +6,22 @@ using UnityEngine.UI;
 public class Generales : MonoBehaviour
 {
     [Header("Configuración del timer")]
-    public float tiempoMaximo = 60f; 
+    public float tiempoMaximo = 60f; // Segundos, se asigna desde Inspector
     private float tiempoActual;
 
     [Header("UI")]
-    public Text textoTimer; 
-    public GameObject panelFinTiempo; 
-    public GameObject panelInicio; 
-
-    [Header("Referencias de tareas")]
-    public InteraccionBrazo brazo; // Script que tiene Task1Hecha
-    public GameObject T1; // Elemento del canvas
-    public Material materialNuevo; // Material que se asignará al completar la tarea
+    public Text textoTimer; // Arrastrar el Text de la UI desde el Inspector
+    public GameObject panelFinTiempo; // Panel que se muestra cuando el tiempo termina
+    public GameObject panelInicio; // Panel que se muestra al iniciar la escena
 
     private bool timerTerminado = false;
     private bool juegoIniciado = false;
-    private bool tareaAplicada = false; // Para no aplicar el material varias veces
 
     void Start()
     {
         tiempoActual = tiempoMaximo;
-        panelFinTiempo.SetActive(false);
-        panelInicio.SetActive(true);
+        panelFinTiempo.SetActive(false); // Panel de fin de tiempo oculto al inicio
+        panelInicio.SetActive(true); // Panel de inicio visible al iniciar
         ActualizarUI();
     }
 
@@ -36,12 +30,12 @@ public class Generales : MonoBehaviour
         // Reinicio manual con R
         if (Input.GetKeyDown(KeyCode.R))
         {
+            // Reinicia panel de inicio y detiene juego
             panelInicio.SetActive(true);
             panelFinTiempo.SetActive(false);
             tiempoActual = tiempoMaximo;
             timerTerminado = false;
             juegoIniciado = false;
-            tareaAplicada = false; // Reinicia estado del material
         }
 
         // Comenzar juego con Enter
@@ -64,13 +58,6 @@ public class Generales : MonoBehaviour
 
             ActualizarUI();
         }
-
-        // Cambiar material si se completó la tarea
-        if (brazo != null && brazo.Task1Hecha && !tareaAplicada)
-        {
-            CambiarMaterialT1();
-            tareaAplicada = true;
-        }
     }
 
     void MostrarPanelFinTiempo()
@@ -86,18 +73,6 @@ public class Generales : MonoBehaviour
         if (textoTimer != null)
         {
             textoTimer.text = Mathf.CeilToInt(tiempoActual).ToString();
-        }
-    }
-
-    void CambiarMaterialT1()
-    {
-        if (T1 != null && materialNuevo != null)
-        {
-            Renderer rend = T1.GetComponent<Renderer>();
-            if (rend != null)
-            {
-                rend.material = materialNuevo;
-            }
         }
     }
 }
