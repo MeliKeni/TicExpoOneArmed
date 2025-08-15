@@ -1,0 +1,595 @@
+fileFormatVersion: 2
+guid: 4c601c027786616419f23ec0c5bb1b55
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: botella agua 2
+    100002: botella de agua 1
+    100004: botella de agua 3
+    100006: cajon mouse
+    100008: carrito azul 1
+    100010: carrito azul 2
+    100012: carrito azul 3
+    100014: carrito croto 1
+    100016: carrito croto 1.001
+    100018: carrito croto 2
+    100020: compu god 1
+    100022: compu god 2
+    100024: compu god 3
+    100026: compu god 4
+    100028: compu god 5
+    100030: computadora crota 1
+    100032: computadora crota 2
+    100034: computadora crota 3
+    100036: computadora crota 4
+    100038: computadora crota 5
+    100040: estructura.131
+    100042: estructura.133
+    100044: estructura.135
+    100046: estructura.139
+    100048: estructura.140
+    100050: extintor
+    100052: helado de occo 1
+    100054: helado de occo 2
+    100056: helado de occo 3
+    100058: //RootNode
+    100060: mesas 1
+    100062: mesas 2
+    100064: mesas 3
+    100066: mesas 4
+    100068: mesas 5
+    100070: monitor 1
+    100072: monitor 10
+    100074: monitor 11
+    100076: monitor 12
+    100078: monitor 13
+    100080: monitor 14
+    100082: monitor 15
+    100084: monitor 2
+    100086: monitor 3
+    100088: monitor 4
+    100090: monitor 5
+    100092: monitor 6
+    100094: monitor 7
+    100096: monitor 8
+    100098: monitor 9
+    100100: monitores jero
+    100102: monitores pecera
+    100104: mouse 1
+    100106: mouse 10
+    100108: mouse 2
+    100110: mouse 3
+    100112: mouse 4
+    100114: mouse 5
+    100116: mouse 6
+    100118: mouse 7
+    100120: mouse 8
+    100122: mouse 9
+    100124: pared 2
+    100126: pared 2.001
+    100128: pared 3
+    100130: pared 4
+    100132: pc 1
+    100134: pc 10
+    100136: pc 11
+    100138: pc 12
+    100140: pc 13
+    100142: pc 14
+    100144: pc 15
+    100146: pc 2
+    100148: pc 3
+    100150: pc 4
+    100152: pc 5
+    100154: pc 6
+    100156: pc 7
+    100158: pc 8
+    100160: pc 9
+    100162: pecera
+    100164: piso
+    100166: puertas
+    100168: 'tacho basura '
+    100170: tacho basura interactivo
+    100172: techo
+    100174: tissue 1
+    100176: tissue 2
+    100178: tissue 3
+    100180: tissue 4
+    100182: ventanas
+    100184: viewport
+    400000: botella agua 2
+    400002: botella de agua 1
+    400004: botella de agua 3
+    400006: cajon mouse
+    400008: carrito azul 1
+    400010: carrito azul 2
+    400012: carrito azul 3
+    400014: carrito croto 1
+    400016: carrito croto 1.001
+    400018: carrito croto 2
+    400020: compu god 1
+    400022: compu god 2
+    400024: compu god 3
+    400026: compu god 4
+    400028: compu god 5
+    400030: computadora crota 1
+    400032: computadora crota 2
+    400034: computadora crota 3
+    400036: computadora crota 4
+    400038: computadora crota 5
+    400040: estructura.131
+    400042: estructura.133
+    400044: estructura.135
+    400046: estructura.139
+    400048: estructura.140
+    400050: extintor
+    400052: helado de occo 1
+    400054: helado de occo 2
+    400056: helado de occo 3
+    400058: //RootNode
+    400060: mesas 1
+    400062: mesas 2
+    400064: mesas 3
+    400066: mesas 4
+    400068: mesas 5
+    400070: monitor 1
+    400072: monitor 10
+    400074: monitor 11
+    400076: monitor 12
+    400078: monitor 13
+    400080: monitor 14
+    400082: monitor 15
+    400084: monitor 2
+    400086: monitor 3
+    400088: monitor 4
+    400090: monitor 5
+    400092: monitor 6
+    400094: monitor 7
+    400096: monitor 8
+    400098: monitor 9
+    400100: monitores jero
+    400102: monitores pecera
+    400104: mouse 1
+    400106: mouse 10
+    400108: mouse 2
+    400110: mouse 3
+    400112: mouse 4
+    400114: mouse 5
+    400116: mouse 6
+    400118: mouse 7
+    400120: mouse 8
+    400122: mouse 9
+    400124: pared 2
+    400126: pared 2.001
+    400128: pared 3
+    400130: pared 4
+    400132: pc 1
+    400134: pc 10
+    400136: pc 11
+    400138: pc 12
+    400140: pc 13
+    400142: pc 14
+    400144: pc 15
+    400146: pc 2
+    400148: pc 3
+    400150: pc 4
+    400152: pc 5
+    400154: pc 6
+    400156: pc 7
+    400158: pc 8
+    400160: pc 9
+    400162: pecera
+    400164: piso
+    400166: puertas
+    400168: 'tacho basura '
+    400170: tacho basura interactivo
+    400172: techo
+    400174: tissue 1
+    400176: tissue 2
+    400178: tissue 3
+    400180: tissue 4
+    400182: ventanas
+    400184: viewport
+    2100000: celeste carrito
+    2100002: blanco
+    2100004: gris metal pecers
+    2100006: gris puerta
+    2100008: carrito
+    2100010: gris pared
+    2100012: verde agua tic
+    2100014: gris pizarron
+    2100016: palo mesa
+    2100018: Material.022
+    2100020: Material.003
+    2100022: Material.005
+    2100024: chocolate occo
+    2100026: frutila occo
+    2100028: Material.002
+    2100030: ddl occo
+    2100032: Material.020
+    2100034: Material.021
+    2100036: Material.015
+    2100038: Material.012
+    2100040: Material.008
+    2100042: Material.007
+    2100044: Material.006
+    2100046: Material.010
+    2100048: Material.011
+    2100050: Material.026
+    2100052: Material.027
+    2100054: Material.031
+    2100056: Material.028
+    2100058: Material.029
+    2100060: Material.014
+    2100062: gris tacho
+    2100064: vidrio
+    2100066: pilar color_
+    2100068: gris
+    2100070: Material.035
+    2100072: Material.033
+    2100074: piso
+    2100076: puertatas
+    2100078: Material.037
+    2100080: rojo viewport
+    2300000: botella agua 2
+    2300002: botella de agua 1
+    2300004: botella de agua 3
+    2300006: cajon mouse
+    2300008: carrito azul 1
+    2300010: carrito azul 2
+    2300012: carrito azul 3
+    2300014: carrito croto 1
+    2300016: carrito croto 1.001
+    2300018: carrito croto 2
+    2300020: compu god 1
+    2300022: compu god 2
+    2300024: compu god 3
+    2300026: compu god 4
+    2300028: compu god 5
+    2300030: computadora crota 1
+    2300032: computadora crota 2
+    2300034: computadora crota 3
+    2300036: computadora crota 4
+    2300038: computadora crota 5
+    2300040: estructura.131
+    2300042: estructura.133
+    2300044: estructura.135
+    2300046: estructura.139
+    2300048: estructura.140
+    2300050: extintor
+    2300052: helado de occo 1
+    2300054: helado de occo 2
+    2300056: helado de occo 3
+    2300058: mesas 1
+    2300060: mesas 2
+    2300062: mesas 3
+    2300064: mesas 4
+    2300066: mesas 5
+    2300068: monitor 1
+    2300070: monitor 10
+    2300072: monitor 11
+    2300074: monitor 12
+    2300076: monitor 13
+    2300078: monitor 14
+    2300080: monitor 15
+    2300082: monitor 2
+    2300084: monitor 3
+    2300086: monitor 4
+    2300088: monitor 5
+    2300090: monitor 6
+    2300092: monitor 7
+    2300094: monitor 8
+    2300096: monitor 9
+    2300098: monitores jero
+    2300100: monitores pecera
+    2300102: mouse 1
+    2300104: mouse 10
+    2300106: mouse 2
+    2300108: mouse 3
+    2300110: mouse 4
+    2300112: mouse 5
+    2300114: mouse 6
+    2300116: mouse 7
+    2300118: mouse 8
+    2300120: mouse 9
+    2300122: pared 2
+    2300124: pared 2.001
+    2300126: pared 3
+    2300128: pared 4
+    2300130: pc 1
+    2300132: pc 10
+    2300134: pc 11
+    2300136: pc 12
+    2300138: pc 13
+    2300140: pc 14
+    2300142: pc 15
+    2300144: pc 2
+    2300146: pc 3
+    2300148: pc 4
+    2300150: pc 5
+    2300152: pc 6
+    2300154: pc 7
+    2300156: pc 8
+    2300158: pc 9
+    2300160: pecera
+    2300162: piso
+    2300164: puertas
+    2300166: 'tacho basura '
+    2300168: tacho basura interactivo
+    2300170: techo
+    2300172: tissue 1
+    2300174: tissue 2
+    2300176: tissue 3
+    2300178: tissue 4
+    2300180: ventanas
+    2300182: viewport
+    3300000: botella agua 2
+    3300002: botella de agua 1
+    3300004: botella de agua 3
+    3300006: cajon mouse
+    3300008: carrito azul 1
+    3300010: carrito azul 2
+    3300012: carrito azul 3
+    3300014: carrito croto 1
+    3300016: carrito croto 1.001
+    3300018: carrito croto 2
+    3300020: compu god 1
+    3300022: compu god 2
+    3300024: compu god 3
+    3300026: compu god 4
+    3300028: compu god 5
+    3300030: computadora crota 1
+    3300032: computadora crota 2
+    3300034: computadora crota 3
+    3300036: computadora crota 4
+    3300038: computadora crota 5
+    3300040: estructura.131
+    3300042: estructura.133
+    3300044: estructura.135
+    3300046: estructura.139
+    3300048: estructura.140
+    3300050: extintor
+    3300052: helado de occo 1
+    3300054: helado de occo 2
+    3300056: helado de occo 3
+    3300058: mesas 1
+    3300060: mesas 2
+    3300062: mesas 3
+    3300064: mesas 4
+    3300066: mesas 5
+    3300068: monitor 1
+    3300070: monitor 10
+    3300072: monitor 11
+    3300074: monitor 12
+    3300076: monitor 13
+    3300078: monitor 14
+    3300080: monitor 15
+    3300082: monitor 2
+    3300084: monitor 3
+    3300086: monitor 4
+    3300088: monitor 5
+    3300090: monitor 6
+    3300092: monitor 7
+    3300094: monitor 8
+    3300096: monitor 9
+    3300098: monitores jero
+    3300100: monitores pecera
+    3300102: mouse 1
+    3300104: mouse 10
+    3300106: mouse 2
+    3300108: mouse 3
+    3300110: mouse 4
+    3300112: mouse 5
+    3300114: mouse 6
+    3300116: mouse 7
+    3300118: mouse 8
+    3300120: mouse 9
+    3300122: pared 2
+    3300124: pared 2.001
+    3300126: pared 3
+    3300128: pared 4
+    3300130: pc 1
+    3300132: pc 10
+    3300134: pc 11
+    3300136: pc 12
+    3300138: pc 13
+    3300140: pc 14
+    3300142: pc 15
+    3300144: pc 2
+    3300146: pc 3
+    3300148: pc 4
+    3300150: pc 5
+    3300152: pc 6
+    3300154: pc 7
+    3300156: pc 8
+    3300158: pc 9
+    3300160: pecera
+    3300162: piso
+    3300164: puertas
+    3300166: 'tacho basura '
+    3300168: tacho basura interactivo
+    3300170: techo
+    3300172: tissue 1
+    3300174: tissue 2
+    3300176: tissue 3
+    3300178: tissue 4
+    3300180: ventanas
+    3300182: viewport
+    4300000: botella agua 2
+    4300002: botella de agua 1
+    4300004: botella de agua 3
+    4300006: cajon mouse
+    4300008: carrito azul 1
+    4300010: carrito azul 2
+    4300012: carrito azul 3
+    4300014: carrito croto 1
+    4300016: carrito croto 1.001
+    4300018: carrito croto 2
+    4300020: compu god 1
+    4300022: compu god 2
+    4300024: compu god 3
+    4300026: compu god 4
+    4300028: compu god 5
+    4300030: computadora crota 1
+    4300032: computadora crota 2
+    4300034: computadora crota 3
+    4300036: computadora crota 4
+    4300038: computadora crota 5
+    4300040: estructura.131
+    4300042: estructura.133
+    4300044: estructura.135
+    4300046: estructura.139
+    4300048: estructura.140
+    4300050: extintor
+    4300052: helado de occo 1
+    4300054: helado de occo 2
+    4300056: helado de occo 3
+    4300058: mesas 1
+    4300060: mesas 2
+    4300062: mesas 3
+    4300064: mesas 4
+    4300066: mesas 5
+    4300068: monitor 1
+    4300070: monitor 10
+    4300072: monitor 11
+    4300074: monitor 12
+    4300076: monitor 13
+    4300078: monitor 14
+    4300080: monitor 15
+    4300082: monitor 2
+    4300084: monitor 3
+    4300086: monitor 4
+    4300088: monitor 5
+    4300090: monitor 6
+    4300092: monitor 7
+    4300094: monitor 8
+    4300096: monitor 9
+    4300098: monitores jero
+    4300100: monitores pecera
+    4300102: mouse 1
+    4300104: mouse 10
+    4300106: mouse 2
+    4300108: mouse 3
+    4300110: mouse 4
+    4300112: mouse 5
+    4300114: mouse 6
+    4300116: mouse 7
+    4300118: mouse 8
+    4300120: mouse 9
+    4300122: pared 2
+    4300124: pared 2.001
+    4300126: pared 3
+    4300128: pared 4
+    4300130: pc 1
+    4300132: pc 10
+    4300134: pc 11
+    4300136: pc 12
+    4300138: pc 13
+    4300140: pc 14
+    4300142: pc 15
+    4300144: pc 2
+    4300146: pc 3
+    4300148: pc 4
+    4300150: pc 5
+    4300152: pc 6
+    4300154: pc 7
+    4300156: pc 8
+    4300158: pc 9
+    4300160: pecera
+    4300162: piso
+    4300164: puertas
+    4300166: 'tacho basura '
+    4300168: tacho basura interactivo
+    4300170: techo
+    4300172: tissue 1
+    4300174: tissue 2
+    4300176: tissue 3
+    4300178: tissue 4
+    4300180: ventanas
+    4300182: viewport
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

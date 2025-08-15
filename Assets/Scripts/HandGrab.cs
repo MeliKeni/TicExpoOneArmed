@@ -13,19 +13,32 @@ public class HandGrab : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.F))
             {
+                // Agarrar
                 if (objetoAgarrado == null)
                 {
                     objetoAgarrado = objetoAgarrable;
+                    Rigidbody rb = objetoAgarrado.GetComponent<Rigidbody>();
+
+                    // Configuración al agarrar
+                    rb.isKinematic = true;
+                    rb.useGravity = false;
+
                     objetoAgarrado.transform.SetParent(transform);
-                    objetoAgarrado.GetComponent<Rigidbody>().isKinematic = true; 
                 }
             }
             else
             {
+                // Soltar
                 if (objetoAgarrado != null)
                 {
+                    Rigidbody rb = objetoAgarrado.GetComponent<Rigidbody>();
+
+                    // Configuración al soltar para evitar atravesar el piso
                     objetoAgarrado.transform.SetParent(null);
-                    objetoAgarrado.GetComponent<Rigidbody>().isKinematic = false;
+                    rb.isKinematic = false;
+                    rb.useGravity = true;
+                    rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
                     objetoAgarrado = null;
                 }
             }
@@ -44,11 +57,10 @@ public class HandGrab : MonoBehaviour
     {
         if (other.CompareTag("Agarrable"))
         {
-            if (objetoAgarrado == null) 
+            if (objetoAgarrado == null)
             {
                 objetoAgarrable = null;
             }
         }
     }
 }
-
