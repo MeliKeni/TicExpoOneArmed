@@ -54,113 +54,37 @@ public class InteraccionBrazo : MonoBehaviour
     {
         Debug.Log(other.gameObject.name);
 
-        if (other.gameObject.name == "pc 3 TASK 1")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerPc3 = true;
-        }
-        if (other.gameObject.name == "monitor 3 TASK 1")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitorT1 = true;
-        }
-        if (other.gameObject.name == "monitor 1")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor1 = true;
-        }
-        if (other.gameObject.name == "monitor 2")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor2 = true;
-        }
-        if (other.gameObject.name == "monitor 4")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor3 = true;
-        }
-        if (other.gameObject.name == "monitor 5")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor5 = true;
-        }
-        if (other.gameObject.name == "monitor 6")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor6 = true;
-        }
-        if (other.gameObject.name == "monitor 7")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor7 = true;
-        }
-        if (other.gameObject.name == "monitor 8")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor8 = true;
-        }
-        if (other.gameObject.name == "monitor 9")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor9 = true;
-        }
-        if (other.gameObject.name == "monitor 10")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor10 = true;
-        }
-        if (other.gameObject.name == "monitor 11")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor11 = true;
-        }
-        if (other.gameObject.name == "monitor 12")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor12 = true;
-        }
-        if (other.gameObject.name == "monitor 13")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor13 = true;
-        }
-        if (other.gameObject.name == "monitor 14")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor14 = true;
-        }
-        if (other.gameObject.name == "monitor 15")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMonitor15 = true;
-        }
-        if (other.gameObject.name == "Puerta")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerPuerta = true;
-        }
-        if (other.gameObject.name == "Mep")
-        {
-            Img_InteractionBG.SetActive(true);
-            dentroDelTriggerMep = true;
-        }
-        if (other.gameObject.name == "MouseRojo1" || other.gameObject.name == "MouseRojo2" ||
-            other.gameObject.name == "MouseRojo3" || other.gameObject.name == "MouseRojo4")
+        if (other.gameObject.name == "pc 3 TASK 1") dentroDelTriggerPc3 = true;
+        if (other.gameObject.name == "monitor 3 TASK 1") dentroDelTriggerMonitorT1 = true;
+        if (other.gameObject.name == "monitor 1") dentroDelTriggerMonitor1 = true;
+        if (other.gameObject.name == "monitor 2") dentroDelTriggerMonitor2 = true;
+        if (other.gameObject.name == "monitor 4") dentroDelTriggerMonitor3 = true;
+        if (other.gameObject.name == "monitor 5") dentroDelTriggerMonitor5 = true;
+        if (other.gameObject.name == "monitor 6") dentroDelTriggerMonitor6 = true;
+        if (other.gameObject.name == "monitor 7") dentroDelTriggerMonitor7 = true;
+        if (other.gameObject.name == "monitor 8") dentroDelTriggerMonitor8 = true;
+        if (other.gameObject.name == "monitor 9") dentroDelTriggerMonitor9 = true;
+        if (other.gameObject.name == "monitor 10") dentroDelTriggerMonitor10 = true;
+        if (other.gameObject.name == "monitor 11") dentroDelTriggerMonitor11 = true;
+        if (other.gameObject.name == "monitor 12") dentroDelTriggerMonitor12 = true;
+        if (other.gameObject.name == "monitor 13") dentroDelTriggerMonitor13 = true;
+        if (other.gameObject.name == "monitor 14") dentroDelTriggerMonitor14 = true;
+        if (other.gameObject.name == "monitor 15") dentroDelTriggerMonitor15 = true;
+        if (other.gameObject.name == "Puerta") dentroDelTriggerPuerta = true;
+        if (other.gameObject.name == "Mep") dentroDelTriggerMep = true;
+
+        // Para mostrar interacción visual al entrar
+        if (other.gameObject.name.StartsWith("MouseRojo") || other.gameObject.name.StartsWith("MouseAzul"))
         {
             Img_InteractionBGF.SetActive(true);
         }
-        if (other.gameObject.name == "MouseAzul1" || other.gameObject.name == "MouseAzul2" ||
-            other.gameObject.name == "MouseAzul3" || other.gameObject.name == "MouseAzul4")
-        {
-            Img_InteractionBGF.SetActive(true);
-        }
+
+        Img_InteractionBG.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Img_InteractionBG.SetActive(false);
-        Img_InteractionBGF.SetActive(false);
-
+        // Limpiamos todos los estados
         dentroDelTriggerPc3 = false;
         dentroDelTriggerMonitorT1 = false;
         dentroDelTriggerMonitor1 = false;
@@ -177,13 +101,16 @@ public class InteraccionBrazo : MonoBehaviour
         dentroDelTriggerMonitor13 = false;
         dentroDelTriggerMonitor14 = false;
         dentroDelTriggerMonitor15 = false;
-        
         dentroDelTriggerPuerta = false;
         dentroDelTriggerMep = false;
+
+        Img_InteractionBG.SetActive(false);
+        Img_InteractionBGF.SetActive(false);
     }
 
     void Start()
     {
+        // Apagamos todo al inicio
         pantallaMonitor1.SetActive(false);
         pantallaMonitor2.SetActive(false);
         pantallaMonitor3.SetActive(false);
@@ -198,83 +125,52 @@ public class InteraccionBrazo : MonoBehaviour
         pantallaMonitor13.SetActive(false);
         pantallaMonitor14.SetActive(false);
         pantallaMonitor15.SetActive(false);
-        
+
         conversacion.SetActive(false);
         Img_InteractionBGF.SetActive(false);
+        panelCables.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) // Click izquierdo
         {
+            // PC3
             if (dentroDelTriggerPc3)
             {
-                panelCables.SetActive(true);
-                tablero.colorI = null;
-                tablero.colorD = null;
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (dentroDelTriggerPc3)
-            {
-                panelCables.SetActive(true);
-                tablero.colorI = null;
-                tablero.colorD = null;
-            }
-
-            /*if(dentroDelTriggerMonitorTask1 == true){
-                if (Task1Hecha == true)
+                panelCables.SetActive(!panelCables.activeSelf);
+                if (panelCables.activeSelf)
                 {
-                    pantallaMonitort1.SetActive(true);
+                    tablero.colorI = null;
+                    tablero.colorD = null;
                 }
                 else
                 {
-                    mensajeError.SetActive(true);
+                    tablero.mensajeError.SetActive(false);
                 }
-            }*/
+            }
 
-            if (dentroDelTriggerMonitor1) pantallaMonitor1.SetActive(true);
-            if (dentroDelTriggerMonitor2) pantallaMonitor2.SetActive(true);
-            if (dentroDelTriggerMonitor3) pantallaMonitor3.SetActive(true);
-            if (dentroDelTriggerMonitor5) pantallaMonitor5.SetActive(true);
-            if (dentroDelTriggerMonitor6) pantallaMonitor6.SetActive(true);
-            if (dentroDelTriggerMonitor7) pantallaMonitor7.SetActive(true);
-            if (dentroDelTriggerMonitor8) pantallaMonitor8.SetActive(true);
-            if (dentroDelTriggerMonitor9) pantallaMonitor9.SetActive(true);
-            if (dentroDelTriggerMonitor10) pantallaMonitor10.SetActive(true);
-            if (dentroDelTriggerMonitor11) pantallaMonitor11.SetActive(true);
-            if (dentroDelTriggerMonitor12) pantallaMonitor12.SetActive(true);
-            if (dentroDelTriggerMonitor13) pantallaMonitor13.SetActive(true);
-            if (dentroDelTriggerMonitor14) pantallaMonitor14.SetActive(true);
-            if (dentroDelTriggerMonitor15) pantallaMonitor15.SetActive(true);
-            
+            // Monitores
+            if (dentroDelTriggerMonitor1) pantallaMonitor1.SetActive(!pantallaMonitor1.activeSelf);
+            if (dentroDelTriggerMonitor2) pantallaMonitor2.SetActive(!pantallaMonitor2.activeSelf);
+            if (dentroDelTriggerMonitor3) pantallaMonitor3.SetActive(!pantallaMonitor3.activeSelf);
+            if (dentroDelTriggerMonitor5) pantallaMonitor5.SetActive(!pantallaMonitor5.activeSelf);
+            if (dentroDelTriggerMonitor6) pantallaMonitor6.SetActive(!pantallaMonitor6.activeSelf);
+            if (dentroDelTriggerMonitor7) pantallaMonitor7.SetActive(!pantallaMonitor7.activeSelf);
+            if (dentroDelTriggerMonitor8) pantallaMonitor8.SetActive(!pantallaMonitor8.activeSelf);
+            if (dentroDelTriggerMonitor9) pantallaMonitor9.SetActive(!pantallaMonitor9.activeSelf);
+            if (dentroDelTriggerMonitor10) pantallaMonitor10.SetActive(!pantallaMonitor10.activeSelf);
+            if (dentroDelTriggerMonitor11) pantallaMonitor11.SetActive(!pantallaMonitor11.activeSelf);
+            if (dentroDelTriggerMonitor12) pantallaMonitor12.SetActive(!pantallaMonitor12.activeSelf);
+            if (dentroDelTriggerMonitor13) pantallaMonitor13.SetActive(!pantallaMonitor13.activeSelf);
+            if (dentroDelTriggerMonitor14) pantallaMonitor14.SetActive(!pantallaMonitor14.activeSelf);
+            if (dentroDelTriggerMonitor15) pantallaMonitor15.SetActive(!pantallaMonitor15.activeSelf);
+
+            // Puerta
             if (dentroDelTriggerPuerta) puertaAbierta = !puertaAbierta;
-            if (dentroDelTriggerMep) conversacion.SetActive(true);
-        }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            panelCables.SetActive(false);
-            tablero.mensajeError.SetActive(false);
-            if (dentroDelTriggerMonitor1) pantallaMonitor1.SetActive(false);
-            if (dentroDelTriggerMonitor2) pantallaMonitor2.SetActive(false);
-            if (dentroDelTriggerMonitor3) pantallaMonitor3.SetActive(false);
-            if (dentroDelTriggerMonitor5) pantallaMonitor5.SetActive(false);
-            if (dentroDelTriggerMonitor6) pantallaMonitor6.SetActive(false);
-            if (dentroDelTriggerMonitor7) pantallaMonitor7.SetActive(false);
-            if (dentroDelTriggerMonitor8) pantallaMonitor8.SetActive(false);
-            if (dentroDelTriggerMonitor9) pantallaMonitor9.SetActive(false);
-            if (dentroDelTriggerMonitor10) pantallaMonitor10.SetActive(false);
-            if (dentroDelTriggerMonitor11) pantallaMonitor11.SetActive(false);
-            if (dentroDelTriggerMonitor12) pantallaMonitor12.SetActive(false);
-            if (dentroDelTriggerMonitor13) pantallaMonitor13.SetActive(false);
-            if (dentroDelTriggerMonitor14) pantallaMonitor14.SetActive(false);
-            if (dentroDelTriggerMonitor15) pantallaMonitor15.SetActive(false);
-            tablero.pantallaMonitort1.SetActive(false);
-            conversacion.SetActive(false);
-            Img_InteractionBGF.SetActive(false);
+            // Conversación
+            if (dentroDelTriggerMep) conversacion.SetActive(!conversacion.activeSelf);
         }
     }
 }

@@ -101,20 +101,20 @@ public class EmparejarCables : MonoBehaviour
             // Evaluar siempre si las tres están activas
 
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0)) // click izquierdo
         {
-         if (brazo.dentroDelTriggerMonitorT1 == true)
+            if (brazo.dentroDelTriggerMonitorT1)
             {
-                if (brazo.Task1Hecha == true)
+                if (brazo.Task1Hecha)
                 {
-                    pantallaMonitort1.SetActive(true);
+                    pantallaMonitort1.SetActive(!pantallaMonitort1.activeSelf); // toggle
+                    mensajeError.SetActive(false);
                 }
                 else
                 {
-                    mensajeError.SetActive(true);
+                    mensajeError.SetActive(!mensajeError.activeSelf); // toggle
                 }
             }
-            Debug.Log("Apretaste la E bot");
         }
     }
 }

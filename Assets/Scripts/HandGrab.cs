@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ public class HandGrab : MonoBehaviour
     {
         if (objetoAgarrable != null)
         {
-            if (Input.GetKey(KeyCode.F))
+            // Mientras mantengas el click izquierdo
+            if (Input.GetMouseButton(0))
             {
                 // Agarrar
                 if (objetoAgarrado == null)
@@ -19,7 +21,6 @@ public class HandGrab : MonoBehaviour
                     objetoAgarrado = objetoAgarrable;
                     Rigidbody rb = objetoAgarrado.GetComponent<Rigidbody>();
 
-                    // Configuración al agarrar
                     rb.isKinematic = true;
                     rb.useGravity = false;
 
@@ -33,13 +34,11 @@ public class HandGrab : MonoBehaviour
                 {
                     Rigidbody rb = objetoAgarrado.GetComponent<Rigidbody>();
 
-                    // Soltar y que la física actúe correctamente
                     objetoAgarrado.transform.SetParent(null);
                     rb.isKinematic = false;
                     rb.useGravity = true;
                     rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
 
-                    // Opcional: asegurar que no atraviese cosas al soltar
                     StartCoroutine(ActivarFisicaDespues(rb));
 
                     objetoAgarrado = null;
@@ -67,7 +66,6 @@ public class HandGrab : MonoBehaviour
         }
     }
 
-    // Corutina para reactivar la física de manera segura y evitar atravesar objetos
     private IEnumerator ActivarFisicaDespues(Rigidbody rb)
     {
         yield return null; // Espera un frame
