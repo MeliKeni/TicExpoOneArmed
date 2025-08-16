@@ -98,21 +98,20 @@ public class EmparejarCables : MonoBehaviour
 
           
 
-            // Evaluar siempre si las tres están activas
 
         }
-        if (Input.GetMouseButtonDown(0)) // click izquierdo
+        if (Input.GetMouseButtonDown(0)) 
         {
             if (brazo.dentroDelTriggerMonitorT1)
             {
                 if (brazo.Task1Hecha)
                 {
-                    pantallaMonitort1.SetActive(!pantallaMonitort1.activeSelf); // toggle
+                    pantallaMonitort1.SetActive(!pantallaMonitort1.activeSelf); 
                     mensajeError.SetActive(false);
                 }
                 else
                 {
-                    mensajeError.SetActive(!mensajeError.activeSelf); // toggle
+                    mensajeError.SetActive(!mensajeError.activeSelf); 
                 }
             }
         }

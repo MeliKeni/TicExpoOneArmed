@@ -9984,7 +9984,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62281371}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.861866, y: 0.6888647, z: -3.7059078}
+  m_LocalPosition: {x: -16.936, y: 0.6888647, z: -3.7059078}
   m_LocalScale: {x: 0.22546649, y: 0.22546649, z: 0.18574545}
   m_Children: []
   m_Father: {fileID: 141187998}
@@ -10648,7 +10648,7 @@ Transform:
   m_LocalScale: {x: 0.28598726, y: 0.28598738, z: 0.28598726}
   m_Children: []
   m_Father: {fileID: 141187998}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &61983577
 Transform:
@@ -10734,7 +10734,7 @@ Transform:
   - {fileID: 1679650985}
   - {fileID: 1293857602}
   m_Father: {fileID: 141187998}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &61983589
 Transform:
@@ -11227,6 +11227,7 @@ GameObject:
   - component: {fileID: 61983483}
   - component: {fileID: 59083417}
   - component: {fileID: 60082393}
+  - component: {fileID: 62281374}
   - component: {fileID: 62281372}
   m_Layer: 0
   m_Name: tacho basura interactivo
@@ -11267,6 +11268,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &62281374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62281371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5e37f1774137e4f85bb3bb7000560c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CantidadTotalBasura: 10
+  BasuraTirada: []
 --- !u!1 &62281375
 GameObject:
   m_ObjectHideFlags: 0
@@ -13101,7 +13116,7 @@ GameObject:
   - component: {fileID: 62281592}
   - component: {fileID: 62281590}
   m_Layer: 0
-  m_Name: botella de agua 3
+  m_Name: Basura botella de agua 3
   m_TagString: Agarrable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13467,6 +13482,112 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75819162}
   m_CullTransparentMesh: 0
+--- !u!1 &81025840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 81025841}
+  - component: {fileID: 81025844}
+  - component: {fileID: 81025843}
+  - component: {fileID: 81025842}
+  - component: {fileID: 81025845}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &81025841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81025840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.2025, y: 0, z: -3.666}
+  m_LocalScale: {x: 1.0205425, y: 1, z: 0.59116304}
+  m_Children: []
+  m_Father: {fileID: 141187998}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &81025842
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81025840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &81025843
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81025840}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &81025844
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81025840}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &81025845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81025840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5e37f1774137e4f85bb3bb7000560c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CantidadTotalBasura: 10
+  BasuraTirada: []
 --- !u!1 &81526358 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100094, guid: 4c601c027786616419f23ec0c5bb1b55,
@@ -18958,6 +19079,7 @@ Transform:
   m_Children:
   - {fileID: 61983481}
   - {fileID: 61983483}
+  - {fileID: 81025841}
   - {fileID: 61983575}
   - {fileID: 61983587}
   - {fileID: 1066902895}
@@ -36560,7 +36682,7 @@ Transform:
   - {fileID: 61983507}
   - {fileID: 61983509}
   m_Father: {fileID: 141187998}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1067241141
 GameObject:

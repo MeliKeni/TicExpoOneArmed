@@ -12,7 +12,6 @@ public class HandGrab : MonoBehaviour
     {
         if (objetoAgarrable != null)
         {
-            // Mientras mantengas el click izquierdo
             if (Input.GetMouseButton(0))
             {
                 // Agarrar

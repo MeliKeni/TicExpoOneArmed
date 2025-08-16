@@ -18,7 +18,6 @@ public class Matafuegos : MonoBehaviour
     {
         if (dentroDelTriggerMano)
         {
-            // Toggle con click derecho
             if (Input.GetMouseButtonDown(1))
             {
                 if (particulas.isPlaying)
@@ -29,7 +28,6 @@ public class Matafuegos : MonoBehaviour
         }
         else
         {
-            // Opcional: detener partículas si salís del trigger
             if (particulas.isPlaying)
                 particulas.Stop();
         }

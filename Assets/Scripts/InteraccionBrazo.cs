@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteraccionBrazo : MonoBehaviour
 {
-    public EmparejarCables tablero; // elementos de la UI a prender y apagar
+    public EmparejarCables tablero; 
     public GameObject panelCables;
     public GameObject Img_InteractionBG;
     public GameObject Img_InteractionBGF;
