@@ -4,11 +4,25 @@ using UnityEngine;
 
 public class JuntarComputadorasCrotas : MonoBehaviour
 {
-    
     public int CantidadTotalComputadoras = 5;
     public List<GameObject> ComputadorasGuardadas = new List<GameObject>();
 
-    // Este método lo llaman los carritos
+    // Diccionario para guardar la posición original de cada computadora
+    private Dictionary<GameObject, Vector3> posicionesOriginales = new Dictionary<GameObject, Vector3>();
+
+    private void Start()
+    {
+        // Guardar la posición inicial de todas las computadoras que empiecen con "computadora crota"
+        GameObject[] todas = FindObjectsOfType<GameObject>();
+        foreach (var obj in todas)
+        {
+            if (obj.name.StartsWith("computadora crota"))
+            {
+                posicionesOriginales[obj] = obj.transform.position;
+            }
+        }
+    }
+
     public void AgregarComputadora(GameObject computadora)
     {
         if (!ComputadorasGuardadas.Contains(computadora))
@@ -35,6 +49,24 @@ public class JuntarComputadorasCrotas : MonoBehaviour
 
             ActualizarConteo();
         }
+    }
+
+    // Devuelve todas las computadoras a su posición original
+    public void DevolverTodas()
+    {
+        foreach (var compu in ComputadorasGuardadas)
+        {
+            if (compu != null && posicionesOriginales.ContainsKey(compu))
+            {
+                compu.transform.position = posicionesOriginales[compu];
+                compu.transform.rotation = Quaternion.identity; // opcional: resetear rotación
+
+                Renderer rend = compu.GetComponent<Renderer>();
+                if (rend != null) rend.enabled = true;
+            }
+        }
+
+        ComputadorasGuardadas.Clear();
     }
 
     private void ActualizarConteo()

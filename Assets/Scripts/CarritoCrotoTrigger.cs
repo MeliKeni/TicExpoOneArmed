@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class CarritoCrotoTrigger : MonoBehaviour
 {
-   public JuntarComputadorasCrotas manager; // arrastrás el GameObject con el script JuntarComputadora
+    public JuntarComputadorasCrotas manager;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.StartsWith("computadora crota"))
+        string nombre = other.gameObject.name;
+
+        if (nombre.StartsWith("computadora crota"))
         {
             manager.AgregarComputadora(other.gameObject);
+        }
+        else if (nombre.StartsWith("compu god"))
+        {
+            
+            manager.DevolverTodas();
+
+            
+
+            Destroy(gameObject);
         }
     }
 
