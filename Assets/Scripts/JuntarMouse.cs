@@ -5,13 +5,13 @@ using UnityEngine;
 public class JuntarMouse : MonoBehaviour
 {
     public int CantidadTotalMouses = 10;
-    public List<GameObject> BasuraTirada = new List<GameObject>();
+    public List<GameObject> MousesTiradas = new List<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.StartsWith("Basura") && !BasuraTirada.Contains(other.gameObject))
+        if (other.gameObject.name.StartsWith("mouse") && !MousesTiradas.Contains(other.gameObject))
         {
-            BasuraTirada.Add(other.gameObject);
+            MousesTiradas.Add(other.gameObject);
 
             // Apagar el renderer al entrar
             Renderer rend = other.gameObject.GetComponent<Renderer>();
@@ -23,9 +23,9 @@ public class JuntarMouse : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (BasuraTirada.Contains(other.gameObject))
+        if (MousesTiradas.Contains(other.gameObject))
         {
-            BasuraTirada.Remove(other.gameObject);
+            MousesTiradas.Remove(other.gameObject);
 
             // Encender el renderer al salir
             Renderer rend = other.gameObject.GetComponent<Renderer>();
@@ -37,10 +37,10 @@ public class JuntarMouse : MonoBehaviour
 
     private void ActualizarConteo()
     {
-        int CantidadBasuraTirada = BasuraTirada.Count;
-        Debug.Log("Objetos en lista: " + CantidadBasuraTirada);
+        int CantidadMousesTirada = MousesTiradas.Count;
+        Debug.Log("Objetos en lista: " + CantidadMousesTirada);
 
-        if (CantidadBasuraTirada == CantidadTotalMouses)
+        if (CantidadMousesTirada == CantidadTotalMouses)
         {
             Debug.Log("¡Todos los objetos están dentro! Mostrando texto.");
         }

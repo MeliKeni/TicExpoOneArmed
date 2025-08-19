@@ -24,7 +24,7 @@ public class EmparejarCables : MonoBehaviour
         mensajeError.SetActive(false);
 
         brazo.panelCables.SetActive(false);
-       // brazo.Img_InteractionBG.SetActive(false);
+       brazo.Img_InteractionBG.SetActive(false);
 
         unionRoja.SetActive(false);
         unionAzul.SetActive(false);

@@ -6,8 +6,8 @@ public class InteraccionBrazo : MonoBehaviour
 {
     public EmparejarCables tablero; 
     public GameObject panelCables;
-   /* public GameObject Img_InteractionBG;
-    public GameObject Img_InteractionBGF; */
+   public GameObject Img_InteractionBG;
+    public GameObject Img_InteractionBGF; 
 
     [Header("Pantallas")]
     public GameObject pantallaMonitor1;
@@ -73,13 +73,13 @@ public class InteraccionBrazo : MonoBehaviour
         if (other.gameObject.name == "Puerta") dentroDelTriggerPuerta = true;
         if (other.gameObject.name == "Mep") dentroDelTriggerMep = true;
 
-       /* // Para mostrar interacción visual al entrar
+        // Para mostrar interacción visual al entrar
         if (other.gameObject.name.StartsWith("MouseRojo") || other.gameObject.name.StartsWith("MouseAzul"))
         {
             Img_InteractionBGF.SetActive(true);
         }
 
-        Img_InteractionBG.SetActive(true); */
+        Img_InteractionBG.SetActive(true); 
     }
 
     private void OnTriggerExit(Collider other)
@@ -104,8 +104,8 @@ public class InteraccionBrazo : MonoBehaviour
         dentroDelTriggerPuerta = false;
         dentroDelTriggerMep = false;
 
-      /*  Img_InteractionBG.SetActive(false);
-        Img_InteractionBGF.SetActive(false); */
+        Img_InteractionBG.SetActive(false);
+        Img_InteractionBGF.SetActive(false); 
     }
 
     void Start()
@@ -127,8 +127,8 @@ public class InteraccionBrazo : MonoBehaviour
         pantallaMonitor15.SetActive(false);
 
         conversacion.SetActive(false);
-/*        Img_InteractionBGF.SetActive(false);
-        panelCables.SetActive(false); */
+        Img_InteractionBGF.SetActive(false);
+        panelCables.SetActive(false); 
     }
 
     void Update()
