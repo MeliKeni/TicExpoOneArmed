@@ -4,6 +4,8 @@
 
 public class EmparejarCables : MonoBehaviour
 {
+    public Tasks tareas; // Referencia al script Tasks
+
     // Start is called before the first frame update
     public InteraccionBrazo brazo;
     public GameObject unionRoja;
@@ -94,9 +96,12 @@ public class EmparejarCables : MonoBehaviour
             {
                 brazo.Task1Hecha = true;
                 Debug.Log("¡Task1Hecha completada!");
+                tareas.AvanzarPaso();
+
+
             }
 
-          
+
 
 
         }

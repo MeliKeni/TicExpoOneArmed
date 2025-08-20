@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
-using UnityEngine.UI;  // Necesario para Image
+using UnityEngine.UI;  // Para Image
 using System.Collections;
 
 public class Tasks : MonoBehaviour
@@ -16,15 +16,14 @@ public class Tasks : MonoBehaviour
 
     public PasoTask pasoActual = PasoTask.task1TirarBasura;
 
-    public TextMeshProUGUI textoUI;        // Texto para mostrar la tarea
-    public GameObject objetoParaDesaparecer;  // Objeto padre con imágenes (padre e hijos)
+    public TextMeshProUGUI textoUI;           // Texto para mostrar la tarea
+    public GameObject objetoParaDesaparecer; // Objeto padre con imágenes (padre e hijos)
 
-    private Image[] imagenes; // Array de todas las Images que estén en el objeto para desaparecer
+    private Image[] imagenes;
     private Coroutine fadeCoroutine;
 
     void Start()
     {
-        objetoParaDesaparecer.SetActive(false);
         if (objetoParaDesaparecer == null)
         {
             Debug.LogError("No asignaste el objeto para desaparecer!");
@@ -33,17 +32,11 @@ public class Tasks : MonoBehaviour
 
         imagenes = objetoParaDesaparecer.GetComponentsInChildren<Image>();
 
-        ActualizarTextoUI();
-
-        // Aseguramos que todas las imágenes estén visibles al inicio
-        SetAlphaDeImagenes(1f);
-
-        if (fadeCoroutine != null)
-            StopCoroutine(fadeCoroutine);
-
-        fadeCoroutine = StartCoroutine(MostrarYDesvanecer(5f, 5f));
+        // Empieza oculto
+        objetoParaDesaparecer.SetActive(false);
     }
 
+    // Este método podés llamarlo desde otro script para avanzar de paso
     public void AvanzarPaso()
     {
         if (pasoActual == PasoTask.completado)
@@ -54,15 +47,21 @@ public class Tasks : MonoBehaviour
 
         pasoActual++;
         Debug.Log("Avanzando al paso: " + pasoActual.ToString());
+    }
+
+    void OnMouseDown()
+    {
+        MostrarTextoYFade();
+    }
+
+    // Método que muestra el texto y arranca el fade
+    void MostrarTextoYFade()
+    {
+        if (textoUI == null || objetoParaDesaparecer == null) return;
+
         ActualizarTextoUI();
 
-        if (objetoParaDesaparecer == null)
-        {
-            Debug.LogError("No asignaste el objeto para desaparecer!");
-            return;
-        }
-
-        // Reiniciamos las imágenes visibles
+        // Reiniciamos imágenes visibles y mostramos el cartel
         SetAlphaDeImagenes(1f);
         objetoParaDesaparecer.SetActive(true);
 
@@ -70,12 +69,6 @@ public class Tasks : MonoBehaviour
             StopCoroutine(fadeCoroutine);
 
         fadeCoroutine = StartCoroutine(MostrarYDesvanecer(5f, 5f));
-    }
-
-    void OnMouseDown()
-    {
-        Debug.Log("hola");
-        AvanzarPaso();
     }
 
     void ActualizarTextoUI()
