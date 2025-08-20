@@ -52,7 +52,7 @@ public class InteraccionBrazo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+      //  Debug.Log(other.gameObject.name);
 
         if (other.gameObject.name == "pc 3 TASK 1") dentroDelTriggerPc3 = true;
         if (other.gameObject.name == "monitor 3 TASK 1") dentroDelTriggerMonitorT1 = true;

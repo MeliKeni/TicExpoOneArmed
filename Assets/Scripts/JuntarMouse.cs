@@ -6,6 +6,8 @@ public class JuntarMouse : MonoBehaviour
 {
     public int CantidadTotalMouses = 10;
     public List<GameObject> MousesTiradas = new List<GameObject>();
+    public Tasks tareas;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -43,6 +45,7 @@ public class JuntarMouse : MonoBehaviour
         if (CantidadMousesTirada == CantidadTotalMouses)
         {
             Debug.Log("¡Todos los objetos están dentro! Mostrando texto.");
+            tareas.AvanzarPaso();
         }
     }
 }

@@ -6,6 +6,8 @@ public class JuntarBasura : MonoBehaviour
 {
     public int CantidadTotalBasura = 10;
     public List<GameObject> BasuraTirada = new List<GameObject>();
+    public Tasks tareas; // Referencia al script Tasks
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -43,6 +45,8 @@ public class JuntarBasura : MonoBehaviour
         if (CantidadBasuraTirada == CantidadTotalBasura)
         {
             Debug.Log("¡Todos los objetos están dentro! Mostrando texto.");
+            tareas.AvanzarPaso();
+
         }
     }
 }

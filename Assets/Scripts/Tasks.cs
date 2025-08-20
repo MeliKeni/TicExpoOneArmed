@@ -10,7 +10,7 @@ public class Tasks : MonoBehaviour
         task1TirarBasura,
         task2ArreglarCompu,
         task3GuardarCompus,
-        task4GuardarMouses,
+      //  task4GuardarMouses,
         completado
     }
 
@@ -89,9 +89,9 @@ public class Tasks : MonoBehaviour
                 textoUI.text = "Guarda las computadoras";
                 break;
 
-            case PasoTask.task4GuardarMouses:
+        /*    case PasoTask.task4GuardarMouses:
                 textoUI.text = "Guarda los mouses";
-                break;
+                break;*/
 
             case PasoTask.completado:
                 textoUI.text = "¡Tareas completadas!";

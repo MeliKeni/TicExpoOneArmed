@@ -7,6 +7,9 @@ public class JuntarComputadorasCrotas : MonoBehaviour
     public int CantidadTotalComputadoras = 5;
     public List<GameObject> ComputadorasGuardadas = new List<GameObject>();
 
+    public JuntarComputadoras pros;
+    public Tasks tareas;
+
     // Diccionario para guardar la posición original de cada computadora
     private Dictionary<GameObject, Vector3> posicionesOriginales = new Dictionary<GameObject, Vector3>();
 
@@ -76,6 +79,8 @@ public class JuntarComputadorasCrotas : MonoBehaviour
         if (ComputadorasGuardadas.Count == CantidadTotalComputadoras)
         {
             Debug.Log("¡Todas las computadoras guardadas!");
+            if (pros.TareaListaPro == true)
+                tareas.AvanzarPaso();
         }
     }
 }
