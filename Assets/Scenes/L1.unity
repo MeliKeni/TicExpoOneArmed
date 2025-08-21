@@ -9844,7 +9844,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62281345}
   m_LocalRotation: {x: -0, y: -0.17649323, z: -0, w: 0.98430187}
-  m_LocalPosition: {x: -24.170822, y: 0.177, z: -4.6243114}
+  m_LocalPosition: {x: -23.892, y: 0.877, z: -4.419}
   m_LocalScale: {x: 0.41091725, y: 0.41091725, z: 0.41091725}
   m_Children: []
   m_Father: {fileID: 751197192}
@@ -20969,6 +20969,7 @@ MonoBehaviour:
   CantidadTotalComputadoras: 5
   ComputadorasGuardadas: []
   TareaListaPro: 0
+  tareas: {fileID: 118340616}
   nombresComputadoras:
   - compu god
   - computadora crota
@@ -48845,7 +48846,7 @@ MonoBehaviour:
   CantidadTotalComputadoras: 5
   ComputadorasGuardadas: []
   pros: {fileID: 204942163}
-  tareas: {fileID: 0}
+  tareas: {fileID: 118340616}
 --- !u!1 &1576784932
 GameObject:
   m_ObjectHideFlags: 0
