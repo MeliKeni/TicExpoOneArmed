@@ -14,16 +14,18 @@ public class Tasks : MonoBehaviour
 
     public PasoTask pasoActual = PasoTask.task1TirarBasura;
 
-    public TextMeshPro texto2D;         // Texto principal de instrucciones
-    public TextMeshPro progresoTexto2D; // Texto que muestra el progreso (ej: 3/10)
+    public TextMeshPro texto2D;         
+    public TextMeshPro progresoTexto2D; 
 
     [Header("Configuración de tareas")]
-    public int totalTask1 = 10;  // Por ejemplo tirar basura tiene 5 cosas
-    public int totalTask2 = 1;  // Arreglar computadora tiene 8 cosas
-    public int totalTask3 = 10; // Guardar computadoras tiene 10 cosas
+    public int totalTask1 = 10;  
+    public int totalTask2 = 1;   
+    public int totalTask3 = 10;  
 
-    private int totalPorTask;    // Total dinámico según task
-    private int guardadosActual; // Cantidad guardada actualmente
+    // Contadores independientes
+    private int guardadosTask1 = 0;
+    private int guardadosTask2 = 0;
+    private int guardadosTask3 = 0;
 
     private Coroutine fadeCoroutineTexto;
     private Coroutine fadeCoroutineProgreso;
@@ -36,11 +38,6 @@ public class Tasks : MonoBehaviour
             return;
         }
 
-        // Inicializa valores según el primer paso
-        ActualizarTotalPorTask();
-        guardadosActual = 0;
-
-        // Empieza oculto
         SetAlphaTexto(texto2D, 0f);
         SetAlphaTexto(progresoTexto2D, 0f);
         texto2D.gameObject.SetActive(false);
@@ -56,40 +53,48 @@ public class Tasks : MonoBehaviour
         }
 
         pasoActual++;
-        ActualizarTotalPorTask();
-        guardadosActual = 0; // Reset al cambiar de task
         Debug.Log("Avanzando al paso: " + pasoActual.ToString());
+
+        // Cada vez que cambio de paso actualizo pizarrón
+        ActualizarProgresoTexto();
     }
 
-    void ActualizarTotalPorTask()
+    // 🔹 Funciones independientes para cada tarea
+    public void SumarBasura(int cantidad = 1)
     {
-        switch (pasoActual)
-        {
-            case PasoTask.task1TirarBasura:
-                totalPorTask = totalTask1;
-                break;
-            case PasoTask.task2ArreglarCompu:
-                totalPorTask = totalTask2;
-                break;
-            case PasoTask.task3GuardarCompus:
-                totalPorTask = totalTask3;
-                break;
-            case PasoTask.completado:
-                totalPorTask = 0;
-                break;
-        }
+        guardadosTask1 += cantidad;
+        if (guardadosTask1 > totalTask1) guardadosTask1 = totalTask1;
+
+        if (pasoActual == PasoTask.task1TirarBasura)
+            ActualizarProgresoTexto();
     }
 
-    public void AumentarGuardados(int cantidad = 1)
+    public void SumarComputadoraArreglada(int cantidad = 1)
     {
-        guardadosActual += cantidad;
-        if (guardadosActual > totalPorTask) guardadosActual = totalPorTask;
+        guardadosTask2 += cantidad;
+        if (guardadosTask2 > totalTask2) guardadosTask2 = totalTask2;
+
+        if (pasoActual == PasoTask.task2ArreglarCompu)
+            ActualizarProgresoTexto();
     }
 
-    void OnMouseDown()
+    public void SumarComputadoraGuardada(int cantidad = 1)
     {
+        guardadosTask3 += cantidad;
+        if (guardadosTask3 > totalTask3) guardadosTask3 = totalTask3;
+
+        if (pasoActual == PasoTask.task3GuardarCompus)
+            ActualizarProgresoTexto();
+    }
+
+    void OnCollisionEnter(Collision collision)
+{
+    // Opcional: podés filtrar por tag para que solo responda a ciertos objetos
+
         MostrarTextoYProgreso();
-    }
+    
+}
+
 
     void MostrarTextoYProgreso()
     {
@@ -130,7 +135,21 @@ public class Tasks : MonoBehaviour
 
     void ActualizarProgresoTexto()
     {
-        progresoTexto2D.text = guardadosActual + " / " + totalPorTask;
+        switch (pasoActual)
+        {
+            case PasoTask.task1TirarBasura:
+                progresoTexto2D.text = guardadosTask1 + " / " + totalTask1;
+                break;
+            case PasoTask.task2ArreglarCompu:
+                progresoTexto2D.text = guardadosTask2 + " / " + totalTask2;
+                break;
+            case PasoTask.task3GuardarCompus:
+                progresoTexto2D.text = guardadosTask3 + " / " + totalTask3;
+                break;
+            case PasoTask.completado:
+                progresoTexto2D.text = "";
+                break;
+        }
     }
 
     IEnumerator MostrarYDesvanecer(TextMeshPro texto, float tiempoVisible, float tiempoFade)

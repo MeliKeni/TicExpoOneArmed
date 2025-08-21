@@ -21,13 +21,15 @@ public class JuntarBasura : MonoBehaviour
             // **Sumar 1 a la cantidad guardada en la task**
             if (tareas != null)
             {
-                tareas.AumentarGuardados(1);
+        tareas.SumarBasura(1);
             }
 
             ActualizarConteo();
         }
     }
 
+/*************  ✨ Windsurf Command ⭐  *************/
+/*******  50973e8a-524f-4ad8-8a32-854b0e68777c  *******/
     private void OnTriggerExit(Collider other)
     {
         if (BasuraTirada.Contains(other.gameObject))
@@ -41,7 +43,7 @@ public class JuntarBasura : MonoBehaviour
             // **Restar 1 a la cantidad guardada si sacan la basura**
             if (tareas != null)
             {
-                tareas.AumentarGuardados(-1);
+                tareas.SumarBasura(-1);
             }
 
             ActualizarConteo();

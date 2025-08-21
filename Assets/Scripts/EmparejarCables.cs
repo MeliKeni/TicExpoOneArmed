@@ -11,6 +11,7 @@ public class EmparejarCables : MonoBehaviour
     public GameObject unionAzul;
     public GameObject unionVerde;
     public GameObject fuego;
+    private bool pasocorrecto = false;
 
     public string colorI = null;
     public string colorD = null;
@@ -62,6 +63,15 @@ public class EmparejarCables : MonoBehaviour
 
     void Update()
     {
+        if (tareas.pasoActual == Tasks.PasoTask.task2ArreglarCompu)
+        {
+    pasocorrecto = true;
+        }
+            
+        if(unionRoja.activeInHierarchy && unionAzul.activeInHierarchy && unionVerde.activeInHierarchy && pasocorrecto){
+                                            tareas.AvanzarPaso();
+
+        }
         Conecciones();
 
         if (colorD != null && colorI != null)
@@ -89,15 +99,15 @@ public class EmparejarCables : MonoBehaviour
             {
                 brazo.Task1Hecha = true;
                 Debug.Log("¡Task1Hecha completada!");
+                brazo.panelCables.SetActive(false);
 
                 // **Sumar 1 al progreso de la task de la computadora**
                 if (tareas != null)
                 {
-                    tareas.AumentarGuardados(1);
+tareas.SumarComputadoraArreglada(1);
                 }
 
                 // Avanzar al siguiente paso
-                tareas.AvanzarPaso();
             }
         }
 

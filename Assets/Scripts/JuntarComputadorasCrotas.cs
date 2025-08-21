@@ -38,7 +38,7 @@ public class JuntarComputadorasCrotas : MonoBehaviour
             if (rend != null) rend.enabled = false;
 
             ActualizarConteo();
-            tareas.AumentarGuardados(1);
+tareas.SumarComputadoraGuardada(1);
 
         }
     }

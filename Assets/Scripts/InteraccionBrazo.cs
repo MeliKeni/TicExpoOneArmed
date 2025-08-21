@@ -6,8 +6,7 @@ public class InteraccionBrazo : MonoBehaviour
 {
     public EmparejarCables tablero; 
     public GameObject panelCables;
-   public GameObject Img_InteractionBG;
-    public GameObject Img_InteractionBGF; 
+    public GameObject Img_InteractionBG; 
 
     [Header("Pantallas")]
     public GameObject pantallaMonitor1;
@@ -28,6 +27,11 @@ public class InteraccionBrazo : MonoBehaviour
     public bool puertaAbierta = false;
     public GameObject conversacion;
     public bool Task1Hecha = false;
+
+    // 🔹 Referencia al cilindro y a Tasks
+    [Header("Tasks")]
+    public GameObject cilindroObjetivo;   // asignar por inspector
+    public Tasks tasksScript;             // asignar por inspector
 
     // Bools para ver qué abrir
     public bool dentroDelTriggerPc3 = false;
@@ -52,8 +56,7 @@ public class InteraccionBrazo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-      //  Debug.Log(other.gameObject.name);
-
+        // Marcar triggers según nombre
         if (other.gameObject.name == "pc 3 TASK 1") dentroDelTriggerPc3 = true;
         if (other.gameObject.name == "monitor 3 TASK 1") dentroDelTriggerMonitorT1 = true;
         if (other.gameObject.name == "monitor 1") dentroDelTriggerMonitor1 = true;
@@ -73,18 +76,19 @@ public class InteraccionBrazo : MonoBehaviour
         if (other.gameObject.name == "Puerta") dentroDelTriggerPuerta = true;
         if (other.gameObject.name == "Mep") dentroDelTriggerMep = true;
 
-        // Para mostrar interacción visual al entrar
-        if (other.gameObject.name.StartsWith("MouseRojo") || other.gameObject.name.StartsWith("MouseAzul"))
+        // 🔹 Si entra al cilindro, mostramos los textos de Tasks
+        if (tasksScript != null && cilindroObjetivo != null && other.gameObject == cilindroObjetivo)
         {
-            Img_InteractionBGF.SetActive(true);
+            tasksScript.SendMessage("MostrarTextoYProgreso");
         }
 
+        // 🔹 Mostrar fondo general
         Img_InteractionBG.SetActive(true); 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Limpiamos todos los estados
+        // Limpiar todos los triggers
         dentroDelTriggerPc3 = false;
         dentroDelTriggerMonitorT1 = false;
         dentroDelTriggerMonitor1 = false;
@@ -104,8 +108,8 @@ public class InteraccionBrazo : MonoBehaviour
         dentroDelTriggerPuerta = false;
         dentroDelTriggerMep = false;
 
-        Img_InteractionBG.SetActive(false);
-        Img_InteractionBGF.SetActive(false); 
+        // 🔹 Apagar fondo general
+        Img_InteractionBG.SetActive(false); 
     }
 
     void Start()
@@ -127,7 +131,7 @@ public class InteraccionBrazo : MonoBehaviour
         pantallaMonitor15.SetActive(false);
 
         conversacion.SetActive(false);
-        Img_InteractionBGF.SetActive(false);
+        Img_InteractionBG.SetActive(false);
         panelCables.SetActive(false); 
     }
 
@@ -135,18 +139,17 @@ public class InteraccionBrazo : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // Click izquierdo
         {
-                // PC3
-                if (dentroDelTriggerPc3)
+            // PC3
+            if (dentroDelTriggerPc3)
+            {
+                panelCables.SetActive(!panelCables.activeSelf);
+                if (panelCables.activeSelf)
                 {
-                    panelCables.SetActive(!panelCables.activeSelf);
-                    if (panelCables.activeSelf)
-                    {
-                        tablero.colorI = null;
-                        tablero.colorD = null;
-                    }
-                    else
-
-                    {
+                    tablero.colorI = null;
+                    tablero.colorD = null;
+                }
+                else
+                {
                     tablero.mensajeError.SetActive(false);
                 }
             }
@@ -175,4 +178,3 @@ public class InteraccionBrazo : MonoBehaviour
         }
     }
 }
-
