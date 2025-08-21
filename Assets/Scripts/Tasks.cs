@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using TMPro;
-using UnityEngine.UI;  // Para Image
 using System.Collections;
 
 public class Tasks : MonoBehaviour
@@ -10,33 +9,44 @@ public class Tasks : MonoBehaviour
         task1TirarBasura,
         task2ArreglarCompu,
         task3GuardarCompus,
-      //  task4GuardarMouses,
         completado
     }
 
     public PasoTask pasoActual = PasoTask.task1TirarBasura;
 
-    public TextMeshProUGUI textoUI;           // Texto para mostrar la tarea
-    public GameObject objetoParaDesaparecer; // Objeto padre con imágenes (padre e hijos)
+    public TextMeshPro texto2D;         // Texto principal de instrucciones
+    public TextMeshPro progresoTexto2D; // Texto que muestra el progreso (ej: 3/10)
 
-    private Image[] imagenes;
-    private Coroutine fadeCoroutine;
+    [Header("Configuración de tareas")]
+    public int totalTask1 = 10;  // Por ejemplo tirar basura tiene 5 cosas
+    public int totalTask2 = 1;  // Arreglar computadora tiene 8 cosas
+    public int totalTask3 = 10; // Guardar computadoras tiene 10 cosas
+
+    private int totalPorTask;    // Total dinámico según task
+    private int guardadosActual; // Cantidad guardada actualmente
+
+    private Coroutine fadeCoroutineTexto;
+    private Coroutine fadeCoroutineProgreso;
 
     void Start()
     {
-        if (objetoParaDesaparecer == null)
+        if (texto2D == null || progresoTexto2D == null)
         {
-            Debug.LogError("No asignaste el objeto para desaparecer!");
+            Debug.LogError("No asignaste los textos 2D!");
             return;
         }
 
-        imagenes = objetoParaDesaparecer.GetComponentsInChildren<Image>();
+        // Inicializa valores según el primer paso
+        ActualizarTotalPorTask();
+        guardadosActual = 0;
 
         // Empieza oculto
-        objetoParaDesaparecer.SetActive(false);
+        SetAlphaTexto(texto2D, 0f);
+        SetAlphaTexto(progresoTexto2D, 0f);
+        texto2D.gameObject.SetActive(false);
+        progresoTexto2D.gameObject.SetActive(false);
     }
 
-    // Este método podés llamarlo desde otro script para avanzar de paso
     public void AvanzarPaso()
     {
         if (pasoActual == PasoTask.completado)
@@ -46,87 +56,107 @@ public class Tasks : MonoBehaviour
         }
 
         pasoActual++;
+        ActualizarTotalPorTask();
+        guardadosActual = 0; // Reset al cambiar de task
         Debug.Log("Avanzando al paso: " + pasoActual.ToString());
+    }
+
+    void ActualizarTotalPorTask()
+    {
+        switch (pasoActual)
+        {
+            case PasoTask.task1TirarBasura:
+                totalPorTask = totalTask1;
+                break;
+            case PasoTask.task2ArreglarCompu:
+                totalPorTask = totalTask2;
+                break;
+            case PasoTask.task3GuardarCompus:
+                totalPorTask = totalTask3;
+                break;
+            case PasoTask.completado:
+                totalPorTask = 0;
+                break;
+        }
+    }
+
+    public void AumentarGuardados(int cantidad = 1)
+    {
+        guardadosActual += cantidad;
+        if (guardadosActual > totalPorTask) guardadosActual = totalPorTask;
     }
 
     void OnMouseDown()
     {
-        MostrarTextoYFade();
+        MostrarTextoYProgreso();
     }
 
-    // Método que muestra el texto y arranca el fade
-    void MostrarTextoYFade()
+    void MostrarTextoYProgreso()
     {
-        if (textoUI == null || objetoParaDesaparecer == null) return;
+        ActualizarTexto2D();
+        ActualizarProgresoTexto();
 
-        ActualizarTextoUI();
+        texto2D.gameObject.SetActive(true);
+        progresoTexto2D.gameObject.SetActive(true);
 
-        // Reiniciamos imágenes visibles y mostramos el cartel
-        SetAlphaDeImagenes(1f);
-        objetoParaDesaparecer.SetActive(true);
+        SetAlphaTexto(texto2D, 1f);
+        SetAlphaTexto(progresoTexto2D, 1f);
 
-        if (fadeCoroutine != null)
-            StopCoroutine(fadeCoroutine);
+        if (fadeCoroutineTexto != null) StopCoroutine(fadeCoroutineTexto);
+        if (fadeCoroutineProgreso != null) StopCoroutine(fadeCoroutineProgreso);
 
-        fadeCoroutine = StartCoroutine(MostrarYDesvanecer(5f, 5f));
+        fadeCoroutineTexto = StartCoroutine(MostrarYDesvanecer(texto2D, 5f, 5f));
+        fadeCoroutineProgreso = StartCoroutine(MostrarYDesvanecer(progresoTexto2D, 5f, 5f));
     }
 
-    void ActualizarTextoUI()
+    void ActualizarTexto2D()
     {
-        if (textoUI == null) return;
-
         switch (pasoActual)
         {
             case PasoTask.task1TirarBasura:
-                textoUI.text = "Tira la basura";
+                texto2D.text = "Tira la basura";
                 break;
-
             case PasoTask.task2ArreglarCompu:
-                textoUI.text = "Arregla la computadora";
+                texto2D.text = "Arregla la computadora";
                 break;
-
             case PasoTask.task3GuardarCompus:
-                textoUI.text = "Guarda las computadoras";
+                texto2D.text = "Guarda las computadoras";
                 break;
-
-        /*    case PasoTask.task4GuardarMouses:
-                textoUI.text = "Guarda los mouses";
-                break;*/
-
             case PasoTask.completado:
-                textoUI.text = "¡Tareas completadas!";
+                texto2D.text = "¡Tareas completadas!";
                 break;
         }
     }
 
-    IEnumerator MostrarYDesvanecer(float tiempoVisible, float tiempoFade)
+    void ActualizarProgresoTexto()
+    {
+        progresoTexto2D.text = guardadosActual + " / " + totalPorTask;
+    }
+
+    IEnumerator MostrarYDesvanecer(TextMeshPro texto, float tiempoVisible, float tiempoFade)
     {
         yield return new WaitForSeconds(tiempoVisible);
 
         float tiempo = 0f;
-
         while (tiempo < tiempoFade)
         {
             tiempo += Time.deltaTime;
             float alpha = Mathf.Lerp(1f, 0f, tiempo / tiempoFade);
-            SetAlphaDeImagenes(alpha);
+            SetAlphaTexto(texto, alpha);
             yield return null;
         }
 
-        SetAlphaDeImagenes(0f);
-        objetoParaDesaparecer.SetActive(false);
+        SetAlphaTexto(texto, 0f);
+        texto.gameObject.SetActive(false);
     }
 
-    void SetAlphaDeImagenes(float alpha)
+    void SetAlphaTexto(TextMeshPro texto, float alpha)
     {
-        foreach (var img in imagenes)
+        if (texto != null)
         {
-            if (img != null)
-            {
-                Color c = img.color;
-                c.a = alpha;
-                img.color = c;
-            }
+            Color c = texto.color;
+            c.a = alpha;
+            texto.color = c;
         }
     }
 }

@@ -32,11 +32,14 @@ public class JuntarComputadorasCrotas : MonoBehaviour
         {
             ComputadorasGuardadas.Add(computadora);
 
+
             // Apagar render
             Renderer rend = computadora.GetComponent<Renderer>();
             if (rend != null) rend.enabled = false;
 
             ActualizarConteo();
+            tareas.AumentarGuardados(1);
+
         }
     }
 

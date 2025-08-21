@@ -6,7 +6,8 @@ public class JuntarComputadoras : MonoBehaviour
 {
     public int CantidadTotalComputadoras = 5;
     public List<GameObject> ComputadorasGuardadas = new List<GameObject>();
-    public bool TareaListaPro= false;
+    public bool TareaListaPro = false;
+    public Tasks tareas;
 
     // Diccionario para guardar la posición original de cada computadora
     private Dictionary<GameObject, Vector3> posicionesOriginales = new Dictionary<GameObject, Vector3>();
@@ -41,6 +42,8 @@ public class JuntarComputadoras : MonoBehaviour
             if (rend != null) rend.enabled = false;
 
             ActualizarConteo();
+            tareas.AumentarGuardados(1);
+
         }
     }
 

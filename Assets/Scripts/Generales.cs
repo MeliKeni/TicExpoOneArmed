@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Generales : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class Generales : MonoBehaviour
             tiempoActual = tiempoMaximo;
             timerTerminado = false;
             juegoIniciado = false;
+            SceneManager.LoadScene("L1");
         }
 
         // Comenzar juego con Enter

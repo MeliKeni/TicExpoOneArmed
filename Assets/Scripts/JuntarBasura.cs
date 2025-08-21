@@ -8,7 +8,6 @@ public class JuntarBasura : MonoBehaviour
     public List<GameObject> BasuraTirada = new List<GameObject>();
     public Tasks tareas; // Referencia al script Tasks
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.StartsWith("Basura") && !BasuraTirada.Contains(other.gameObject))
@@ -18,6 +17,12 @@ public class JuntarBasura : MonoBehaviour
             // Apagar el renderer al entrar
             Renderer rend = other.gameObject.GetComponent<Renderer>();
             if (rend != null) rend.enabled = false;
+
+            // **Sumar 1 a la cantidad guardada en la task**
+            if (tareas != null)
+            {
+                tareas.AumentarGuardados(1);
+            }
 
             ActualizarConteo();
         }
@@ -33,6 +38,12 @@ public class JuntarBasura : MonoBehaviour
             Renderer rend = other.gameObject.GetComponent<Renderer>();
             if (rend != null) rend.enabled = true;
 
+            // **Restar 1 a la cantidad guardada si sacan la basura**
+            if (tareas != null)
+            {
+                tareas.AumentarGuardados(-1);
+            }
+
             ActualizarConteo();
         }
     }
@@ -46,7 +57,6 @@ public class JuntarBasura : MonoBehaviour
         {
             Debug.Log("¡Todos los objetos están dentro! Mostrando texto.");
             tareas.AvanzarPaso();
-
         }
     }
 }
