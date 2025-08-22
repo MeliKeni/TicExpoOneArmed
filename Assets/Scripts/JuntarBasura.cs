@@ -7,6 +7,7 @@ public class JuntarBasura : MonoBehaviour
     public int CantidadTotalBasura = 10;
     public List<GameObject> BasuraTirada = new List<GameObject>();
     public Tasks tareas; // Referencia al script Tasks
+    public PuntajeScript puntajeScript;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,6 +26,7 @@ public class JuntarBasura : MonoBehaviour
             }
 
             ActualizarConteo();
+            puntajeScript.SumarPuntaje(10);
         }
     }
 
@@ -40,13 +42,14 @@ public class JuntarBasura : MonoBehaviour
             Renderer rend = other.gameObject.GetComponent<Renderer>();
             if (rend != null) rend.enabled = true;
 
-            // **Restar 1 a la cantidad guardada si sacan la basura**
-            if (tareas != null)
+             if (tareas != null)
             {
-                tareas.SumarBasura(-1);
+        tareas.SumarBasura(-1);
             }
 
             ActualizarConteo();
+            puntajeScript.SumarPuntaje(-10); // **Restar 1 a la cantidad guardada si sacan la basura**
+          
         }
     }
 

@@ -1,78 +1,173 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Generales : MonoBehaviour
 {
     [Header("Configuración del timer")]
-    public float tiempoMaximo = 60f; // Segundos, se asigna desde Inspector
+    public float tiempoMaximo = 60f;
     private float tiempoActual;
 
     [Header("UI")]
-    public Text textoTimer; // Arrastrar el Text de la UI desde el Inspector
-    public GameObject panelFinTiempo; // Panel que se muestra cuando el tiempo termina
-    public GameObject panelInicio; // Panel que se muestra al iniciar la escena
+    public Text textoTimer;            // TextMeshPro del contador
+    public GameObject panelInicio1;        // Pantalla 1
+    public GameObject panelInicio2;        // Pantalla 2
+    public GameObject panelFinJuego;       // Pantalla final
 
+    private enum UIState { Inicio1, Inicio2, Jugando, Fin }
+    private UIState estado = UIState.Inicio1;
+
+    private bool modoSinTiempo = false;
     private bool timerTerminado = false;
-    private bool juegoIniciado = false;
 
     void Start()
     {
         tiempoActual = tiempoMaximo;
-        panelFinTiempo.SetActive(false); // Panel de fin de tiempo oculto al inicio
-        panelInicio.SetActive(true); // Panel de inicio visible al iniciar
-        ActualizarUI();
+        CambiarAInicio1();
     }
 
     void Update()
     {
-        // Reinicio manual con R
-        if (Input.GetKeyDown(KeyCode.R))
+          
+        // ----- ATAJO GLOBAL: VOLVER AL INICIO -----
+        if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9))
         {
-            // Reinicia panel de inicio y detiene juego
-            panelInicio.SetActive(true);
-            panelFinTiempo.SetActive(false);
-            tiempoActual = tiempoMaximo;
-            timerTerminado = false;
-            juegoIniciado = false;
-            SceneManager.LoadScene("L1");
+            CambiarAInicio1();
+            return;
         }
 
-        // Comenzar juego con Enter
-        if (!juegoIniciado && Input.GetKeyDown(KeyCode.Return))
+        // ----- ENTER: avanzar según el estado -----
+        if (Input.GetKeyDown(KeyCode.Return)) // Enter
         {
-            panelInicio.SetActive(false);
-            juegoIniciado = true;
+            switch (estado)
+            {
+                case UIState.Inicio1:
+                    CambiarAInicio2();
+                    break;
+
+                case UIState.Inicio2:
+                    IniciarJuegoConTiempo();
+                    break;
+
+                case UIState.Fin:
+                     SceneManager.LoadScene("L1");
+                     break;
+            }
         }
 
-        if (juegoIniciado && !timerTerminado)
+        // ----- TECLA 0: modo sin tiempo -----
+        if (estado == UIState.Inicio2 && (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0)))
         {
-            // Countdown
+            IniciarJuegoSinTiempo();
+        }
+        else if (estado == UIState.Jugando && modoSinTiempo &&
+                 (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0)))
+        {
+            TerminarJuego();
+        }
+
+        // ----- TIMER (modo con tiempo) -----
+        if (estado == UIState.Jugando && !modoSinTiempo && !timerTerminado)
+        {
             tiempoActual -= Time.deltaTime;
             if (tiempoActual <= 0f)
             {
                 tiempoActual = 0f;
                 timerTerminado = true;
-                MostrarPanelFinTiempo();
+                TerminarJuego();
             }
-
             ActualizarUI();
         }
     }
 
-    void MostrarPanelFinTiempo()
+    // ==================== ESTADOS / PANTALLAS ====================
+
+    void CambiarAInicio1()
     {
-        if (panelFinTiempo != null)
+        estado = UIState.Inicio1;
+        panelInicio1.SetActive(true);
+        panelInicio2.SetActive(false);
+        panelFinJuego.SetActive(false);
+
+        // Resetear variables
+        modoSinTiempo = false;
+        timerTerminado = false;
+        tiempoActual = tiempoMaximo;
+
+        // Mostrar/ocultar timer (opcional: oculto en menús)
+        if (textoTimer) textoTimer.gameObject.SetActive(false);
+
+        // Por si algún menú puso el tiempo en 0
+        Time.timeScale = 1f;
+
+        ActualizarUI();
+    }
+
+    void CambiarAInicio2()
+    {
+        estado = UIState.Inicio2;
+        panelInicio1.SetActive(false);
+        panelInicio2.SetActive(true);
+        panelFinJuego.SetActive(false);
+
+        if (textoTimer) textoTimer.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        
+    }
+
+    void IniciarJuegoConTiempo()
+    {
+        estado = UIState.Jugando;
+        panelInicio2.SetActive(false);
+        panelInicio1.SetActive(false);
+        panelFinJuego.SetActive(false);
+
+        modoSinTiempo = false;
+        timerTerminado = false;
+        tiempoActual = tiempoMaximo;
+
+        // Asegura que el tiempo corra
+        Time.timeScale = 1f;
+
+        if (textoTimer) textoTimer.gameObject.SetActive(true);
+        ActualizarUI();
+    }
+
+    void IniciarJuegoSinTiempo()
+    {
+        estado = UIState.Jugando;
+        panelInicio2.SetActive(false);
+        panelInicio1.SetActive(false);
+        panelFinJuego.SetActive(false);
+
+        modoSinTiempo = true;
+        timerTerminado = false;
+
+        Time.timeScale = 1f;
+
+        if (textoTimer)
         {
-            panelFinTiempo.SetActive(true);
+            textoTimer.gameObject.SetActive(true);
+            textoTimer.text = "∞";
         }
     }
 
+    void TerminarJuego()
+    {
+        estado = UIState.Fin;
+        panelFinJuego.SetActive(true);
+        panelInicio1.SetActive(false);
+        panelInicio2.SetActive(false);
+
+        if (textoTimer) textoTimer.gameObject.SetActive(false);
+        // Podrías pausar acá si querés: Time.timeScale = 0f;
+    }
+
+    // ==================== UI ====================
+
     void ActualizarUI()
     {
-        if (textoTimer != null)
+        if (textoTimer && !modoSinTiempo)
         {
             textoTimer.text = Mathf.CeilToInt(tiempoActual).ToString();
         }
