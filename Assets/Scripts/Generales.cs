@@ -32,6 +32,7 @@ public class Generales : MonoBehaviour
         // ----- ATAJO GLOBAL: VOLVER AL INICIO -----
         if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9))
         {
+            SceneManager.LoadScene("L1");
             CambiarAInicio1();
             return;
         }

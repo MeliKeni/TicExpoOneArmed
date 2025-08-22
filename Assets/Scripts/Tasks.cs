@@ -27,8 +27,9 @@ public class Tasks : MonoBehaviour
     private int guardadosTask2 = 0;
     private int guardadosTask3 = 0;
 
-    private Coroutine fadeCoroutineTexto;
-    private Coroutine fadeCoroutineProgreso;
+    // Coroutines de fade (ya no se usan)
+    //private Coroutine fadeCoroutineTexto;
+    //private Coroutine fadeCoroutineProgreso;
 
     void Start()
     {
@@ -38,10 +39,20 @@ public class Tasks : MonoBehaviour
             return;
         }
 
-        SetAlphaTexto(texto2D, 0f);
-        SetAlphaTexto(progresoTexto2D, 0f);
-        texto2D.gameObject.SetActive(false);
-        progresoTexto2D.gameObject.SetActive(false);
+        // Mostramos los textos siempre desde el inicio
+        texto2D.gameObject.SetActive(true);
+        progresoTexto2D.gameObject.SetActive(true);
+
+        // Inicializamos el texto
+        ActualizarTexto2D();
+        ActualizarProgresoTexto();
+    }
+
+    void Update()
+    {
+        // Actualizamos los textos cada frame para reflejar los cambios en tiempo real
+        ActualizarTexto2D();
+        ActualizarProgresoTexto();
     }
 
     public void AvanzarPaso()
@@ -87,14 +98,12 @@ public class Tasks : MonoBehaviour
             ActualizarProgresoTexto();
     }
 
+    /*
+    // Comentamos todo lo de la colisión y fade
     void OnCollisionEnter(Collision collision)
-{
-    // Opcional: podés filtrar por tag para que solo responda a ciertos objetos
-
-        MostrarTextoYProgreso();
-    
-}
-
+    {
+        // MostrarTextoYProgreso();
+    }
 
     void MostrarTextoYProgreso()
     {
@@ -113,6 +122,24 @@ public class Tasks : MonoBehaviour
         fadeCoroutineTexto = StartCoroutine(MostrarYDesvanecer(texto2D, 5f, 5f));
         fadeCoroutineProgreso = StartCoroutine(MostrarYDesvanecer(progresoTexto2D, 5f, 5f));
     }
+
+    IEnumerator MostrarYDesvanecer(TextMeshPro texto, float tiempoVisible, float tiempoFade)
+    {
+        yield return new WaitForSeconds(tiempoVisible);
+
+        float tiempo = 0f;
+        while (tiempo < tiempoFade)
+        {
+            tiempo += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, tiempo / tiempoFade);
+            SetAlphaTexto(texto, alpha);
+            yield return null;
+        }
+
+        SetAlphaTexto(texto, 0f);
+        texto.gameObject.SetActive(false);
+    }
+    */
 
     void ActualizarTexto2D()
     {
@@ -150,23 +177,6 @@ public class Tasks : MonoBehaviour
                 progresoTexto2D.text = "";
                 break;
         }
-    }
-
-    IEnumerator MostrarYDesvanecer(TextMeshPro texto, float tiempoVisible, float tiempoFade)
-    {
-        yield return new WaitForSeconds(tiempoVisible);
-
-        float tiempo = 0f;
-        while (tiempo < tiempoFade)
-        {
-            tiempo += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, tiempo / tiempoFade);
-            SetAlphaTexto(texto, alpha);
-            yield return null;
-        }
-
-        SetAlphaTexto(texto, 0f);
-        texto.gameObject.SetActive(false);
     }
 
     void SetAlphaTexto(TextMeshPro texto, float alpha)
