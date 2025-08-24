@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Agarrable
   - ParticulasFuego
+  - interactuable
   layers:
   - Default
   - TransparentFX

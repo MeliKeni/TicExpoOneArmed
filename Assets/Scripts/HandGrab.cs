@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,9 @@ public class HandGrab : MonoBehaviour
 {
     private GameObject objetoAgarrable = null;
     private GameObject objetoAgarrado = null;
+
+    [Header("Rotación para Extintor")]
+    public float rotacionYExtintor = 90f; // Ajusta en el Inspector
 
     void Update()
     {
@@ -24,6 +26,12 @@ public class HandGrab : MonoBehaviour
                     rb.useGravity = false;
 
                     objetoAgarrado.transform.SetParent(transform);
+
+                    // ✅ Si el objeto es "extintor", rotarlo
+                    if (objetoAgarrado.name == "extintor")
+                    {
+                        objetoAgarrado.transform.localRotation = Quaternion.Euler(0f, rotacionYExtintor, 0f);
+                    }
                 }
             }
             else

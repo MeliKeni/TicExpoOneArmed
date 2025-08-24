@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class JuntarComputadorasCrotas : MonoBehaviour
-{
+{    public PuntajeScript puntajeScript;
+
     public int CantidadTotalComputadoras = 5;
     public List<GameObject> ComputadorasGuardadas = new List<GameObject>();
 
@@ -39,6 +40,8 @@ public class JuntarComputadorasCrotas : MonoBehaviour
 
             ActualizarConteo();
 tareas.SumarComputadoraGuardada(1);
+            puntajeScript.SumarPuntaje(5);
+
 
         }
     }
@@ -54,6 +57,8 @@ tareas.SumarComputadoraGuardada(1);
             if (rend != null) rend.enabled = true;
 
             ActualizarConteo();
+                        puntajeScript.SumarPuntaje(-5);
+
         }
     }
 

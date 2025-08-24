@@ -5,6 +5,7 @@ using UnityEngine;
 public class EmparejarCables : MonoBehaviour
 {
     public Tasks tareas; // Referencia al script Tasks
+    public PuntajeScript puntajeScript;
 
     public InteraccionBrazo brazo;
     public GameObject unionRoja;
@@ -88,6 +89,8 @@ public class EmparejarCables : MonoBehaviour
             else
             {
                 fuego.SetActive(true);
+                puntajeScript.SumarPuntaje(-30);
+
                 brazo.panelCables.SetActive(false);
             }
 
@@ -100,6 +103,7 @@ public class EmparejarCables : MonoBehaviour
                 brazo.Task1Hecha = true;
                 Debug.Log("¡Task1Hecha completada!");
                 brazo.panelCables.SetActive(false);
+                puntajeScript.SumarPuntaje(50);
 
                 // **Sumar 1 al progreso de la task de la computadora**
                 if (tareas != null)

@@ -9,12 +9,13 @@ public class Generales : MonoBehaviour
     private float tiempoActual;
 
     [Header("UI")]
-    public Text textoTimer;            // TextMeshPro del contador
-    public GameObject panelInicio1;        // Pantalla 1
-    public GameObject panelInicio2;        // Pantalla 2
-    public GameObject panelFinJuego;       // Pantalla final
+    public Text textoTimer;            
+    public GameObject panelInicio1;    
+    public GameObject panelInicio2;    
+    public GameObject panelInicio3;    // NUEVO PANEL
+    public GameObject panelFinJuego;   
 
-    private enum UIState { Inicio1, Inicio2, Jugando, Fin }
+    private enum UIState { Inicio1, Inicio2, Inicio3, Jugando, Fin }
     private UIState estado = UIState.Inicio1;
 
     private bool modoSinTiempo = false;
@@ -28,8 +29,7 @@ public class Generales : MonoBehaviour
 
     void Update()
     {
-          
-        // ----- ATAJO GLOBAL: VOLVER AL INICIO -----
+        // Atajo global para reiniciar
         if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9))
         {
             SceneManager.LoadScene("L1");
@@ -37,27 +37,28 @@ public class Generales : MonoBehaviour
             return;
         }
 
-        // ----- ENTER: avanzar según el estado -----
-        if (Input.GetKeyDown(KeyCode.Return)) // Enter
+        // Enter: avanzar por pantallas
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             switch (estado)
             {
                 case UIState.Inicio1:
                     CambiarAInicio2();
                     break;
-
                 case UIState.Inicio2:
+                    CambiarAInicio3();
+                    break;
+                case UIState.Inicio3:
                     IniciarJuegoConTiempo();
                     break;
-
                 case UIState.Fin:
-                     SceneManager.LoadScene("L1");
-                     break;
+                    SceneManager.LoadScene("L1");
+                    break;
             }
         }
 
-        // ----- TECLA 0: modo sin tiempo -----
-        if (estado == UIState.Inicio2 && (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0)))
+        // Tecla 0: modo sin tiempo
+        if (estado == UIState.Inicio3 && (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0)))
         {
             IniciarJuegoSinTiempo();
         }
@@ -67,7 +68,7 @@ public class Generales : MonoBehaviour
             TerminarJuego();
         }
 
-        // ----- TIMER (modo con tiempo) -----
+        // Timer con tiempo
         if (estado == UIState.Jugando && !modoSinTiempo && !timerTerminado)
         {
             tiempoActual -= Time.deltaTime;
@@ -81,24 +82,21 @@ public class Generales : MonoBehaviour
         }
     }
 
-    // ==================== ESTADOS / PANTALLAS ====================
+    // ===== ESTADOS =====
 
     void CambiarAInicio1()
     {
         estado = UIState.Inicio1;
         panelInicio1.SetActive(true);
         panelInicio2.SetActive(false);
+        panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
 
-        // Resetear variables
         modoSinTiempo = false;
         timerTerminado = false;
         tiempoActual = tiempoMaximo;
 
-        // Mostrar/ocultar timer (opcional: oculto en menús)
         if (textoTimer) textoTimer.gameObject.SetActive(false);
-
-        // Por si algún menú puso el tiempo en 0
         Time.timeScale = 1f;
 
         ActualizarUI();
@@ -109,25 +107,37 @@ public class Generales : MonoBehaviour
         estado = UIState.Inicio2;
         panelInicio1.SetActive(false);
         panelInicio2.SetActive(true);
+        panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
 
         if (textoTimer) textoTimer.gameObject.SetActive(false);
         Time.timeScale = 1f;
-        
+    }
+
+    void CambiarAInicio3()
+    {
+        estado = UIState.Inicio3;
+        panelInicio1.SetActive(false);
+        panelInicio2.SetActive(false);
+        panelInicio3.SetActive(true);
+        panelFinJuego.SetActive(false);
+
+        if (textoTimer) textoTimer.gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     void IniciarJuegoConTiempo()
     {
         estado = UIState.Jugando;
-        panelInicio2.SetActive(false);
         panelInicio1.SetActive(false);
+        panelInicio2.SetActive(false);
+        panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
 
         modoSinTiempo = false;
         timerTerminado = false;
         tiempoActual = tiempoMaximo;
 
-        // Asegura que el tiempo corra
         Time.timeScale = 1f;
 
         if (textoTimer) textoTimer.gameObject.SetActive(true);
@@ -137,8 +147,9 @@ public class Generales : MonoBehaviour
     void IniciarJuegoSinTiempo()
     {
         estado = UIState.Jugando;
-        panelInicio2.SetActive(false);
         panelInicio1.SetActive(false);
+        panelInicio2.SetActive(false);
+        panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
 
         modoSinTiempo = true;
@@ -159,13 +170,12 @@ public class Generales : MonoBehaviour
         panelFinJuego.SetActive(true);
         panelInicio1.SetActive(false);
         panelInicio2.SetActive(false);
+        panelInicio3.SetActive(false);
 
         if (textoTimer) textoTimer.gameObject.SetActive(false);
-        // Podrías pausar acá si querés: Time.timeScale = 0f;
     }
 
-    // ==================== UI ====================
-
+    // ===== UI =====
     void ActualizarUI()
     {
         if (textoTimer && !modoSinTiempo)
