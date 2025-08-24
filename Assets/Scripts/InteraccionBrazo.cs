@@ -41,7 +41,7 @@ public class InteraccionBrazo : MonoBehaviour
     private bool dentroDelTriggerMonitor5 = false;
     private bool dentroDelTriggerMonitor6 = false;
     private bool dentroDelTriggerMonitor7 = false;
-    private bool dentroDelTriggerMonitor8 = false;
+    public bool dentroDelTriggerMonitor8 = false;
     private bool dentroDelTriggerMonitor9 = false;
     private bool dentroDelTriggerMonitor10 = false;
     private bool dentroDelTriggerMonitor11 = false;
@@ -178,4 +178,3 @@ public class InteraccionBrazo : MonoBehaviour
         }
     }
 }
-    

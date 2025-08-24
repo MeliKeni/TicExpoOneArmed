@@ -1,85 +1,104 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class FormularioMonitor : MonoBehaviour
+public class Formulario : MonoBehaviour
 {
-    public GameObject canvasFormulario; // Asignar el Canvas del formulario
-    public Image[] imagenes; // Array de las imágenes que se van mostrando en orden
-    public Button botonA;
-    public Button botonB;
-    public Button botonC;
+    public GameObject canvasFormulario;
+    public GameObject canvasPregunta1;
+    public GameObject canvasPregunta2;
+    public GameObject canvasPregunta3;
+    public int cantidadRespondidasCorrectamente = 0;
+    private bool preguntasRespondidas = false;
+    public Tasks tareas;
+    public InteraccionBrazo brazo;
+    public PuntajeScript puntajeScript;
 
-    private int preguntaActual = 0;
-    private int aciertosConsecutivos = 0;
-    private bool[] respondido; // Para que cada pregunta solo sume una vez
-
-    // Definir respuestas correctas: 0 = A, 1 = B, 2 = C
-    private int[] respuestasCorrectas = { 1, 2, 0 }; // Pregunta1=B, Pregunta2=C, Pregunta3=A
-
-    private void Start()
-    {
+    void Start(){
         canvasFormulario.SetActive(false);
-        respondido = new bool[imagenes.Length];
-
-        botonA.onClick.AddListener(() => Responder(0));
-        botonB.onClick.AddListener(() => Responder(1));
-        botonC.onClick.AddListener(() => Responder(2));
+        canvasPregunta1.SetActive(false);
+        canvasPregunta2.SetActive(false);
+        canvasPregunta3.SetActive(false);
+        cantidadRespondidasCorrectamente = 0;
     }
+  
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // Verifica que sea la mano o la esfera que interactúa
-        if (other.CompareTag("PlayerHand")) // Asignar el tag correcto a la mano
-        {
-            IniciarFormulario();
-        }
-    }
+  
 
-    private void IniciarFormulario()
+
+   void Update()
+{
+    tareas.guardadosTask4 = cantidadRespondidasCorrectamente;
+    // Abrir formulario solo si el jugador está dentro del trigger del monitor 8
+    if (Input.GetMouseButtonDown(0) && brazo != null && brazo.dentroDelTriggerMonitor8)
     {
         canvasFormulario.SetActive(true);
-        preguntaActual = 0;
-        aciertosConsecutivos = 0;
-        MostrarPregunta(preguntaActual);
+        canvasPregunta1.SetActive(true);
     }
 
-    private void MostrarPregunta(int index)
+    // Avanzar tarea si ya respondieron las preguntas
+    if (preguntasRespondidas && tareas.pasoActual == Tasks.PasoTask.task4Forms)
     {
-        for (int i = 0; i < imagenes.Length; i++)
-            imagenes[i].gameObject.SetActive(i == index);
+        tareas.AvanzarPaso();
     }
 
-    private void Responder(int opcion)
+    // Control de respuestas por teclado
+// Pregunta 1
+if (canvasPregunta1.activeSelf)
+{
+    if (Input.GetKeyDown(KeyCode.B))
     {
-        if (preguntaActual >= imagenes.Length) return;
-
-        // Verifica si la respuesta es correcta
-        if (opcion == respuestasCorrectas[preguntaActual])
-        {
-            aciertosConsecutivos++;
-            if (!respondido[preguntaActual])
-            {
-                respondido[preguntaActual] = true;
-            }
-        }
-        else
-        {
-            // Si falla, se apaga el canvas
-            canvasFormulario.SetActive(false);
-            Debug.Log("Error en la pregunta. Formulario reiniciado.");
-            return;
-        }
-
-        preguntaActual++;
-
-        if (preguntaActual < imagenes.Length)
-        {
-            MostrarPregunta(preguntaActual);
-        }
-        else
-        {
-            canvasFormulario.SetActive(false);
-            Debug.Log("Formulario completado correctamente!");
-        }
+        canvasPregunta1.SetActive(false);
+        canvasPregunta2.SetActive(true);
+        cantidadRespondidasCorrectamente = 1;
+        puntajeScript.SumarPuntaje(15);
+        return;
     }
+    else if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.A))
+    {
+        canvasPregunta1.SetActive(false);
+        canvasFormulario.SetActive(false);
+    }
+}
+
+// Pregunta 2
+if (canvasPregunta2.activeSelf)
+{
+    if (Input.GetKeyDown(KeyCode.C))
+    {
+        canvasPregunta2.SetActive(false);
+        canvasPregunta3.SetActive(true);
+        cantidadRespondidasCorrectamente = 2;
+        puntajeScript.SumarPuntaje(15);
+                return;
+
+    }
+    else if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.A))
+    {
+        canvasPregunta2.SetActive(false);
+        canvasFormulario.SetActive(false);
+    }
+}
+
+// Pregunta 3
+if (canvasPregunta3.activeSelf)
+{
+    if (Input.GetKeyDown(KeyCode.A))
+    {
+        canvasPregunta3.SetActive(false);
+        cantidadRespondidasCorrectamente = 3;
+        puntajeScript.SumarPuntaje(15);
+                preguntasRespondidas = true;
+
+                return;
+
+    }
+    else if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.C))
+    {
+        canvasPregunta3.SetActive(false);
+        canvasFormulario.SetActive(false);
+    }
+}
+
+}
+
 }

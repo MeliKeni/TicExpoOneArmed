@@ -28,7 +28,7 @@ public class Tasks : MonoBehaviour
     private int guardadosTask1 = 0;
     private int guardadosTask2 = 0;
     private int guardadosTask3 = 0;
-    private int guardadosTask4 = 0; // ← Contador forms
+    public int guardadosTask4 = 0; // ← Contador forms
 
     void Start()
     {
