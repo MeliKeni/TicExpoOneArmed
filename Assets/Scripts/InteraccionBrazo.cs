@@ -145,12 +145,12 @@ public class InteraccionBrazo : MonoBehaviour
                 panelCables.SetActive(!panelCables.activeSelf);
                 if (panelCables.activeSelf)
                 {
-                    tablero.colorI = null;
-                    tablero.colorD = null;
+                  /*  tablero.colorI = null;
+                    tablero.colorD = null;*/
                 }
                 else
                 {
-                    tablero.mensajeError.SetActive(false);
+                  /*  tablero.mensajeError.SetActive(false);*/
                 }
             }
 
