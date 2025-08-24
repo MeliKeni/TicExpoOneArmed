@@ -28,7 +28,6 @@ public class InteraccionBrazo : MonoBehaviour
     public GameObject conversacion;
     public bool Task1Hecha = false;
 
-    // 🔹 Referencia al cilindro y a Tasks
     [Header("Tasks")]
     public GameObject cilindroObjetivo;   // asignar por inspector
     public Tasks tasksScript;             // asignar por inspector
@@ -56,7 +55,6 @@ public class InteraccionBrazo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Marcar triggers según nombre
         if (other.gameObject.name == "pc 3 TASK 1") dentroDelTriggerPc3 = true;
         if (other.gameObject.name == "monitor 3 TASK 1") dentroDelTriggerMonitorT1 = true;
         if (other.gameObject.name == "monitor 1") dentroDelTriggerMonitor1 = true;
@@ -76,19 +74,16 @@ public class InteraccionBrazo : MonoBehaviour
         if (other.gameObject.name == "Puerta") dentroDelTriggerPuerta = true;
         if (other.gameObject.name == "Mep") dentroDelTriggerMep = true;
 
-        // 🔹 Si entra al cilindro, mostramos los textos de Tasks
         if (tasksScript != null && cilindroObjetivo != null && other.gameObject == cilindroObjetivo)
         {
             tasksScript.SendMessage("MostrarTextoYProgreso");
         }
 
-        // 🔹 Mostrar fondo general
         Img_InteractionBG.SetActive(true); 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Limpiar todos los triggers
         dentroDelTriggerPc3 = false;
         dentroDelTriggerMonitorT1 = false;
         dentroDelTriggerMonitor1 = false;
@@ -108,13 +103,11 @@ public class InteraccionBrazo : MonoBehaviour
         dentroDelTriggerPuerta = false;
         dentroDelTriggerMep = false;
 
-        // 🔹 Apagar fondo general
         Img_InteractionBG.SetActive(false); 
     }
 
     void Start()
     {
-        // Apagamos todo al inicio
         pantallaMonitor1.SetActive(false);
         pantallaMonitor2.SetActive(false);
         pantallaMonitor3.SetActive(false);
@@ -139,18 +132,25 @@ public class InteraccionBrazo : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // Click izquierdo
         {
-            // PC3
+            // 🔹 PC3: abrir panel solo si estamos en el paso correcto
             if (dentroDelTriggerPc3)
             {
-                panelCables.SetActive(!panelCables.activeSelf);
-                if (panelCables.activeSelf)
+                if(tablero.tareas != null && tablero.tareas.pasoActual == Tasks.PasoTask.task2ArreglarCompu)
                 {
-                  /*  tablero.colorI = null;
-                    tablero.colorD = null;*/
+                    panelCables.SetActive(!panelCables.activeSelf);
+                    if (panelCables.activeSelf)
+                    {
+                        tablero.colorI = null;
+                        tablero.colorD = null;
+                    }
+                    else
+                    {
+                        tablero.mensajeError.SetActive(false);
+                    }
                 }
                 else
                 {
-                  /*  tablero.mensajeError.SetActive(false);*/
+                    tablero.mensajeError.SetActive(!tablero.mensajeError.activeSelf);
                 }
             }
 
@@ -178,3 +178,4 @@ public class InteraccionBrazo : MonoBehaviour
         }
     }
 }
+    

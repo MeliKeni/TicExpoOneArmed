@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EmparejarCables : MonoBehaviour
 {
-    public Tasks tareas; // Referencia al script Tasks
+    public Tasks tareas; 
     public PuntajeScript puntajeScript;
 
     public InteraccionBrazo brazo;
@@ -12,7 +12,6 @@ public class EmparejarCables : MonoBehaviour
     public GameObject unionAzul;
     public GameObject unionVerde;
     public GameObject fuego;
-    private bool pasocorrecto = false;
 
     public string colorI = null;
     public string colorD = null;
@@ -20,13 +19,19 @@ public class EmparejarCables : MonoBehaviour
     public GameObject pantallaMonitort1;
     public GameObject mensajeError;
 
+    // Nuevo bool para marcar si la tarea ya fue completada
+    private bool tareaListo = false;
+
     void Start()
     {
         pantallaMonitort1.SetActive(false);
         mensajeError.SetActive(false);
 
-        brazo.panelCables.SetActive(false);
-        brazo.Img_InteractionBG.SetActive(false);
+        if (brazo != null)
+            brazo.panelCables.SetActive(false);
+
+        if (brazo != null && brazo.Img_InteractionBG != null)
+            brazo.Img_InteractionBG.SetActive(false);
 
         unionRoja.SetActive(false);
         unionAzul.SetActive(false);
@@ -36,99 +41,90 @@ public class EmparejarCables : MonoBehaviour
 
     private void Conecciones()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            colorI = "azul";
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            colorI = "rojo";
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            colorI = "verde";
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            colorD = "verde";
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            colorD = "rojo";
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            colorD = "azul";
-        }
+        // Teclas del lado izquierdo
+        if (Input.GetKeyDown(KeyCode.A)) colorI = "azul";
+        if (Input.GetKeyDown(KeyCode.B)) colorI = "rojo";
+        if (Input.GetKeyDown(KeyCode.C)) colorI = "verde";
+
+        // Teclas del lado derecho
+        if (Input.GetKeyDown(KeyCode.Alpha1)) colorD = "verde";
+        if (Input.GetKeyDown(KeyCode.Alpha2)) colorD = "rojo";
+        if (Input.GetKeyDown(KeyCode.Alpha3)) colorD = "azul";
     }
 
     void Update()
     {
-        if (tareas.pasoActual == Tasks.PasoTask.task2ArreglarCompu)
-        {
-    pasocorrecto = true;
-        }
-            
-        if(unionRoja.activeInHierarchy && unionAzul.activeInHierarchy && unionVerde.activeInHierarchy && pasocorrecto){
-                                            tareas.AvanzarPaso();
+        bool pasocorrecto = tareas.pasoActual == Tasks.PasoTask.task2ArreglarCompu;
 
-        }
-        Conecciones();
-
-        if (colorD != null && colorI != null)
+        // 🔹 Abrir o cerrar panel siempre que estés en el trigger
+        if (Input.GetMouseButtonDown(0) && brazo.dentroDelTriggerPc3)
         {
-            if (colorD == colorI)
+            brazo.panelCables.SetActive(!brazo.panelCables.activeSelf);
+            if (brazo.panelCables.activeSelf)
             {
-                if (colorD == "rojo")
-                    unionRoja.SetActive(true);
-                else if (colorD == "azul")
-                    unionAzul.SetActive(true);
-                else if (colorD == "verde")
-                    unionVerde.SetActive(true);
+                colorI = null;
+                colorD = null;
             }
             else
             {
-                fuego.SetActive(true);
-                puntajeScript.SumarPuntaje(-30);
-
-                brazo.panelCables.SetActive(false);
-            }
-
-            colorD = null;
-            colorI = null;
-
-            // **Cuando se completan los 3 cables**
-            if (unionRoja.activeInHierarchy && unionAzul.activeInHierarchy && unionVerde.activeInHierarchy)
-            {
-                brazo.Task1Hecha = true;
-                Debug.Log("¡Task1Hecha completada!");
-                brazo.panelCables.SetActive(false);
-                puntajeScript.SumarPuntaje(50);
-
-                // **Sumar 1 al progreso de la task de la computadora**
-                if (tareas != null)
-                {
-tareas.SumarComputadoraArreglada(1);
-                }
-
-                // Avanzar al siguiente paso
+                mensajeError.SetActive(false);
             }
         }
 
-        // Mostrar pantalla o mensaje de error al clickear
-        if (Input.GetMouseButtonDown(0))
+        // 🔹 Procesar conexiones por teclas solo si el panel está abierto
+        if (brazo.panelCables.activeInHierarchy)
         {
-            if (brazo.dentroDelTriggerMonitorT1)
+            Conecciones();
+
+            if (colorI != null && colorD != null)
             {
-                if (brazo.Task1Hecha)
+                if (colorI == colorD)
                 {
-                    pantallaMonitort1.SetActive(!pantallaMonitort1.activeSelf);
-                    mensajeError.SetActive(false);
+                    if (colorD == "rojo") unionRoja.SetActive(true);
+                    else if (colorD == "azul") unionAzul.SetActive(true);
+                    else if (colorD == "verde") unionVerde.SetActive(true);
                 }
                 else
                 {
-                    mensajeError.SetActive(!mensajeError.activeSelf);
+                    fuego.SetActive(true);
+                    puntajeScript.SumarPuntaje(-30);
+                    brazo.panelCables.SetActive(false);
                 }
+
+                colorI = null;
+                colorD = null;
+
+                // 🔹 Marcar tarea completada si se conectaron los tres cables
+                if (unionRoja.activeInHierarchy && unionAzul.activeInHierarchy && unionVerde.activeInHierarchy && !tareaListo)
+                {
+                    tareaListo = true;
+                    Debug.Log("¡Tarea lista para avanzar!");
+                    brazo.Task1Hecha = true;
+                    puntajeScript.SumarPuntaje(50);
+                    tareas.SumarComputadoraArreglada(1);
+                    brazo.panelCables.SetActive(false);
+                }
+            }
+        }
+
+        // 🔹 Avanzar de paso automáticamente si estás en el paso correcto y la tarea ya se completó
+        if (pasocorrecto && tareaListo)
+        {
+            tareas.AvanzarPaso();
+            tareaListo = false; // Reseteamos para que no avance varias veces
+        }
+
+        // 🔹 Mostrar pantalla del monitor
+        if (Input.GetMouseButtonDown(0) && brazo.dentroDelTriggerMonitorT1)
+        {
+            if (brazo.Task1Hecha)
+            {
+                pantallaMonitort1.SetActive(!pantallaMonitort1.activeSelf);
+                mensajeError.SetActive(false);
+            }
+            else
+            {
+                mensajeError.SetActive(!mensajeError.activeSelf);
             }
         }
     }

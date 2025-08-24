@@ -9,6 +9,7 @@ public class Tasks : MonoBehaviour
         task1TirarBasura,
         task2ArreglarCompu,
         task3GuardarCompus,
+        task4Forms,       // ← Nuevo paso agregado
         completado
     }
 
@@ -21,15 +22,13 @@ public class Tasks : MonoBehaviour
     public int totalTask1 = 10;  
     public int totalTask2 = 1;   
     public int totalTask3 = 10;  
+    public int totalTask4 = 3;   // ← Total de forms
 
     // Contadores independientes
     private int guardadosTask1 = 0;
     private int guardadosTask2 = 0;
     private int guardadosTask3 = 0;
-
-    // Coroutines de fade (ya no se usan)
-    //private Coroutine fadeCoroutineTexto;
-    //private Coroutine fadeCoroutineProgreso;
+    private int guardadosTask4 = 0; // ← Contador forms
 
     void Start()
     {
@@ -39,18 +38,15 @@ public class Tasks : MonoBehaviour
             return;
         }
 
-        // Mostramos los textos siempre desde el inicio
         texto2D.gameObject.SetActive(true);
         progresoTexto2D.gameObject.SetActive(true);
 
-        // Inicializamos el texto
         ActualizarTexto2D();
         ActualizarProgresoTexto();
     }
 
     void Update()
     {
-        // Actualizamos los textos cada frame para reflejar los cambios en tiempo real
         ActualizarTexto2D();
         ActualizarProgresoTexto();
     }
@@ -66,7 +62,6 @@ public class Tasks : MonoBehaviour
         pasoActual++;
         Debug.Log("Avanzando al paso: " + pasoActual.ToString());
 
-        // Cada vez que cambio de paso actualizo pizarrón
         ActualizarProgresoTexto();
     }
 
@@ -98,48 +93,14 @@ public class Tasks : MonoBehaviour
             ActualizarProgresoTexto();
     }
 
-    /*
-    // Comentamos todo lo de la colisión y fade
-    void OnCollisionEnter(Collision collision)
+    public void SumarForm(int cantidad = 1)   // ← Nueva función para forms
     {
-        // MostrarTextoYProgreso();
+        guardadosTask4 += cantidad;
+        if (guardadosTask4 > totalTask4) guardadosTask4 = totalTask4;
+
+        if (pasoActual == PasoTask.task4Forms)
+            ActualizarProgresoTexto();
     }
-
-    void MostrarTextoYProgreso()
-    {
-        ActualizarTexto2D();
-        ActualizarProgresoTexto();
-
-        texto2D.gameObject.SetActive(true);
-        progresoTexto2D.gameObject.SetActive(true);
-
-        SetAlphaTexto(texto2D, 1f);
-        SetAlphaTexto(progresoTexto2D, 1f);
-
-        if (fadeCoroutineTexto != null) StopCoroutine(fadeCoroutineTexto);
-        if (fadeCoroutineProgreso != null) StopCoroutine(fadeCoroutineProgreso);
-
-        fadeCoroutineTexto = StartCoroutine(MostrarYDesvanecer(texto2D, 5f, 5f));
-        fadeCoroutineProgreso = StartCoroutine(MostrarYDesvanecer(progresoTexto2D, 5f, 5f));
-    }
-
-    IEnumerator MostrarYDesvanecer(TextMeshPro texto, float tiempoVisible, float tiempoFade)
-    {
-        yield return new WaitForSeconds(tiempoVisible);
-
-        float tiempo = 0f;
-        while (tiempo < tiempoFade)
-        {
-            tiempo += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, tiempo / tiempoFade);
-            SetAlphaTexto(texto, alpha);
-            yield return null;
-        }
-
-        SetAlphaTexto(texto, 0f);
-        texto.gameObject.SetActive(false);
-    }
-    */
 
     void ActualizarTexto2D()
     {
@@ -153,6 +114,9 @@ public class Tasks : MonoBehaviour
                 break;
             case PasoTask.task3GuardarCompus:
                 texto2D.text = "Guarda las computadoras";
+                break;
+            case PasoTask.task4Forms:
+                texto2D.text = "Completa el formulario";   // ← Texto para el nuevo paso
                 break;
             case PasoTask.completado:
                 texto2D.text = "¡Tareas completadas!";
@@ -172,6 +136,9 @@ public class Tasks : MonoBehaviour
                 break;
             case PasoTask.task3GuardarCompus:
                 progresoTexto2D.text = guardadosTask3 + " / " + totalTask3;
+                break;
+            case PasoTask.task4Forms:
+                progresoTexto2D.text = guardadosTask4 + " / " + totalTask4;   // ← Progreso forms
                 break;
             case PasoTask.completado:
                 progresoTexto2D.text = "";
