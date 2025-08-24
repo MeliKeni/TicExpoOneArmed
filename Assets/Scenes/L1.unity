@@ -10911,7 +10911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62281489}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.808384, y: 0.73304653, z: -4.059532}
+  m_LocalPosition: {x: -23.291, y: 0.73304653, z: -2.05}
   m_LocalScale: {x: 0.16372569, y: 0.013010709, z: 0.11647207}
   m_Children: []
   m_Father: {fileID: 182314117}
@@ -10939,7 +10939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62281493}
   m_LocalRotation: {x: -8.658323e-17, y: 0.7189596, z: 8.658323e-17, w: 0.69505185}
-  m_LocalPosition: {x: -16.047, y: 1.164, z: -2.164}
+  m_LocalPosition: {x: -15.857, y: 1.04, z: -1.93}
   m_LocalScale: {x: 0.16372572, y: 0.013010709, z: 0.116472095}
   m_Children: []
   m_Father: {fileID: 182314117}
@@ -45187,10 +45187,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntajeScript: {fileID: 1177123187}
+  tareas: {fileID: 118340616}
+  pros: {fileID: 204942163}
   CantidadTotalComputadoras: 5
   ComputadorasGuardadas: []
-  pros: {fileID: 204942163}
-  tareas: {fileID: 118340616}
 --- !u!1 &1576784932
 GameObject:
   m_ObjectHideFlags: 0

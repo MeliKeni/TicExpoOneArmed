@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class JuntarComputadorasCrotas : MonoBehaviour
 {
+    [Header("Puntaje y tareas")]
     public PuntajeScript puntajeScript;
+    public Tasks tareas;
+    public JuntarComputadoras pros; // referencia al otro script
     public int CantidadTotalComputadoras = 5;
     public List<GameObject> ComputadorasGuardadas = new List<GameObject>();
 
-    public JuntarComputadoras pros; // referencia al otro script
-    public Tasks tareas;
-
+    [Header("Posiciones originales")]
     private Dictionary<GameObject, Vector3> posicionesOriginales = new Dictionary<GameObject, Vector3>();
     private bool tareaListo = false;
 
-    // Mantener la computadora actual en contacto con un carrito
-    private GameObject computadoraEnContacto = null;
-
     private void Start()
     {
+        // Guardar posiciones originales de todas las computadoras
         GameObject[] todas = FindObjectsOfType<GameObject>();
         foreach (var obj in todas)
         {
@@ -31,74 +30,61 @@ public class JuntarComputadorasCrotas : MonoBehaviour
 
     private void Update()
     {
-        // Avanzar de paso automáticamente si estamos en el paso correcto y tareaListo es true
+        // Avanzar de paso automáticamente si se cumplieron las condiciones
         if (tareas != null &&
             tareas.pasoActual == Tasks.PasoTask.task3GuardarCompus &&
             tareaListo &&
             pros.TareaListaPro)
         {
-            Debug.Log("¡Todas las computadoras guardadas y paso correcto! Avanzando...");
             tareas.AvanzarPaso();
             tareaListo = false;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    // Apagar renderer y agregar automáticamente al contacto con el carrito correcto
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name.StartsWith("computadora crota"))
+        if (!other.gameObject.name.StartsWith("computadora crota")) return;
+
+        if (gameObject.name == "CarritoCorrecto")
         {
-            computadoraEnContacto = other.gameObject;
+            Renderer rend = other.gameObject.GetComponent<Renderer>();
+            if (rend != null && rend.enabled)
+            {
+                rend.enabled = false; // Apagar renderer al entrar
+                AgregarComputadora(other.gameObject);
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (computadoraEnContacto != null && other.gameObject == computadoraEnContacto)
-        {
-            // Verificar si el carrito es correcto
-            if (gameObject.name == "CarritoCorrecto") // cambiar según tu carrito correcto
-            {
-                // Correcto → apagar renderer y agregar
-                Renderer rend = computadoraEnContacto.GetComponent<Renderer>();
-                if (rend != null) rend.enabled = false;
-
-                AgregarComputadora(computadoraEnContacto);
-            }
-            else
-            {
-                // Incorrecto → desaparecer
-                computadoraEnContacto.SetActive(false);
-            }
-
-            computadoraEnContacto = null;
-        }
-    }
-
+    // 🔹 Agregar computadora al conteo y puntaje
     public void AgregarComputadora(GameObject computadora)
     {
         if (!ComputadorasGuardadas.Contains(computadora))
         {
             ComputadorasGuardadas.Add(computadora);
-            puntajeScript.SumarPuntaje(5);
-            tareas.SumarComputadoraGuardada(1);
+            if (puntajeScript != null) puntajeScript.SumarPuntaje(5);
+            if (tareas != null) tareas.SumarComputadoraGuardada(1);
 
             if (ComputadorasGuardadas.Count == CantidadTotalComputadoras)
-            {
                 tareaListo = true;
-            }
 
             ActualizarConteo();
         }
     }
 
+    // 🔹 Quitar computadora (reactivar renderer y restar puntaje)
     public void QuitarComputadora(GameObject computadora)
     {
         if (ComputadorasGuardadas.Contains(computadora))
         {
             ComputadorasGuardadas.Remove(computadora);
+
             Renderer rend = computadora.GetComponent<Renderer>();
             if (rend != null) rend.enabled = true;
-            puntajeScript.SumarPuntaje(-5);
+
+            if (puntajeScript != null) puntajeScript.SumarPuntaje(-5);
+            if (tareas != null) tareas.SumarComputadoraGuardada(-1);
 
             if (ComputadorasGuardadas.Count < CantidadTotalComputadoras)
                 tareaListo = false;
@@ -107,6 +93,7 @@ public class JuntarComputadorasCrotas : MonoBehaviour
         }
     }
 
+    // 🔹 Devolver todas las computadoras a su posición original
     public void DevolverTodas()
     {
         foreach (var compu in ComputadorasGuardadas)

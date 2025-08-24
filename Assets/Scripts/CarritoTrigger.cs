@@ -3,15 +3,22 @@
 public class CarritoTrigger : MonoBehaviour
 {
     public JuntarComputadoras manager;
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
         string nombre = other.gameObject.name;
 
-        if (nombre.StartsWith("compu god"))
+          if (nombre.StartsWith("compu god") && Input.GetMouseButtonUp(0))
         {
+            // Apagar el renderer
+            Renderer rend = other.gameObject.GetComponent<Renderer>();
+            if (rend != null)
+                rend.enabled = false;
+
+            // Agregar al manager
             manager.AgregarComputadora(other.gameObject);
         }
-        else if (nombre.StartsWith("computadora crota"))
+        else if (nombre.StartsWith("computadora crota") && Input.GetMouseButtonUp(0))
         {
             DevolverComputadorasIncorrectas();
         }
