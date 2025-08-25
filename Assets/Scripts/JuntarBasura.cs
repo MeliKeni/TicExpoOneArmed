@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class JuntarBasura : MonoBehaviour
 {
-    public int CantidadTotalBasura = 10;
     public List<GameObject> BasuraTirada = new List<GameObject>();
     public Tasks tareas; // Referencia al script Tasks
     public PuntajeScript puntajeScript;
+    private bool listo = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,19 +19,17 @@ public class JuntarBasura : MonoBehaviour
             Renderer rend = other.gameObject.GetComponent<Renderer>();
             if (rend != null) rend.enabled = false;
 
-            // **Sumar 1 a la cantidad guardada en la task**
+            // Sumar a la tarea y al puntaje
             if (tareas != null)
             {
-        tareas.SumarBasura(1);
+                tareas.SumarBasura(1); // ✅ Puede seguir sumando aunque ya esté completa
             }
 
-            ActualizarConteo();
             puntajeScript.SumarPuntaje(10);
+            ActualizarConteo();
         }
     }
 
-/*************  ✨ Windsurf Command ⭐  *************/
-/*******  50973e8a-524f-4ad8-8a32-854b0e68777c  *******/
     private void OnTriggerExit(Collider other)
     {
         if (BasuraTirada.Contains(other.gameObject))
@@ -42,25 +40,31 @@ public class JuntarBasura : MonoBehaviour
             Renderer rend = other.gameObject.GetComponent<Renderer>();
             if (rend != null) rend.enabled = true;
 
-             if (tareas != null)
+            if (tareas != null)
             {
-        tareas.SumarBasura(-1);
+                tareas.SumarBasura(-1); // ✅ Opcional: si quieres que quitar basura reste progreso
             }
 
+            puntajeScript.SumarPuntaje(-10);
             ActualizarConteo();
-            puntajeScript.SumarPuntaje(-10); // **Restar 1 a la cantidad guardada si sacan la basura**
-          
         }
     }
 
     private void ActualizarConteo()
     {
-        int CantidadBasuraTirada = BasuraTirada.Count;
-        Debug.Log("Objetos en lista: " + CantidadBasuraTirada);
-
-        if (CantidadBasuraTirada == CantidadTotalBasura)
+        if (!listo && tareas.EstaCompletaBasura() && tareas.pasoActual == Tasks.PasoTask.task1TirarBasura)
         {
-            Debug.Log("¡Todos los objetos están dentro! Mostrando texto.");
+            listo = true;
+            Debug.Log("¡Tarea de basura completada!");
+        }
+
+        Debug.Log("Objetos en lista: " + BasuraTirada.Count);
+    }
+
+    private void Update()
+    {
+        if (listo && tareas.pasoActual == Tasks.PasoTask.task1TirarBasura)
+        {
             tareas.AvanzarPaso();
         }
     }

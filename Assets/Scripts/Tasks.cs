@@ -5,19 +5,19 @@ public class Tasks : MonoBehaviour
 {
     public enum PasoTask
     {
-        task1TirarBasura,
         task2ArreglarCompu,
+        task1TirarBasura,
         task3GuardarCompus,
         task4JuntarMouses,
         completado
     }
 
-    public PasoTask pasoActual = PasoTask.task1TirarBasura;
+    public PasoTask pasoActual = PasoTask.task3GuardarCompus;
 
     [Header("Configuración de tareas")]
-    public int totalTask1 = 10;
+    public int totalTask1 = 5;
     public int totalTask2 = 1;
-    public int totalTask3 = 10;
+    public int totalTask3 = 6;
     public int totalTask4 = 10;
 
     // Contadores independientes
@@ -86,7 +86,8 @@ public class Tasks : MonoBehaviour
         if (pasoActual == PasoTask.task3GuardarCompus)
             ActualizarProgresoTexto();
     }
- public void sumarMouses(int cantidad = 1)
+
+    public void sumarMouses(int cantidad = 1)
     {
         guardadosTask4 += cantidad;
         if (guardadosTask4 > totalTask4) guardadosTask4 = totalTask4;
@@ -94,6 +95,7 @@ public class Tasks : MonoBehaviour
         if (pasoActual == PasoTask.task4JuntarMouses)
             ActualizarProgresoTexto();
     }
+
     void ActualizarImagenes()
     {
         for (int i = 0; i < imagenesPasos.Length; i++)
@@ -120,9 +122,18 @@ public class Tasks : MonoBehaviour
             case PasoTask.task3GuardarCompus:
                 progresoTexto2D.text = guardadosTask3 + " / " + totalTask3;
                 break;
+            case PasoTask.task4JuntarMouses:
+                progresoTexto2D.text = guardadosTask4 + " / " + totalTask4;
+                break;
             case PasoTask.completado:
                 progresoTexto2D.text = "";
                 break;
         }
+    }
+
+    // ✅ NUEVO: método público para verificar si ya se juntó toda la basura
+    public bool EstaCompletaBasura()
+    {
+        return guardadosTask1 >= totalTask1;
     }
 }
