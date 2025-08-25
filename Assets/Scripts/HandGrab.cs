@@ -35,6 +35,11 @@ public class HandGrab : MonoBehaviour
                     // Hacer hijo del punto para seguir la mano
                     objetoAgarrado.transform.SetParent(puntoAgarrar);
 
+                    // ✅ NUEVO: Cambiar layer a FPS
+                    int fpsLayer = LayerMask.NameToLayer("FPS");
+                    if (fpsLayer != -1)
+                        SetLayerRecursively(objetoAgarrado, fpsLayer);
+
                     // ✅ Si es el extintor, aplicar rotación especial
                     if (objetoAgarrado.name.ToLower().Contains("extintor"))
                     {
@@ -58,6 +63,9 @@ public class HandGrab : MonoBehaviour
                     rb.isKinematic = false;
                     rb.useGravity = true;
                     rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+                    // ✅ NUEVO: Restaurar layer a 0 (Default)
+                    SetLayerRecursively(objetoAgarrado, 0);
 
                     StartCoroutine(ActivarFisicaDespues(rb));
 
@@ -90,5 +98,21 @@ public class HandGrab : MonoBehaviour
     {
         yield return null; // Espera un frame
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+    }
+
+    // ✅ NUEVO: Método para cambiar layer recursivamente (objeto y sus hijos)
+    private void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        if (obj == null) return;
+
+        obj.layer = newLayer;
+
+        foreach (Transform child in obj.transform)
+        {
+            if (child != null)
+            {
+                SetLayerRecursively(child.gameObject, newLayer);
+            }
+        }
     }
 }
