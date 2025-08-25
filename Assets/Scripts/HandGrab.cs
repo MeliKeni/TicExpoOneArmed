@@ -7,8 +7,8 @@ public class HandGrab : MonoBehaviour
     private GameObject objetoAgarrable = null;
     private GameObject objetoAgarrado = null;
 
-    [Header("Rotación para Extintor")]
-    public float rotacionYExtintor = 0f; // Ajusta en el Inspector si querés
+    [Header("Rotación Extintor")]
+    public Vector3 rotacionExtintor = new Vector3(30f, 0f, 15f); // Ajustable en el Inspector
 
     [Header("Anclaje para objetos")]
     public Transform puntoAgarrar; // Empty en la mano como punto central
@@ -32,18 +32,19 @@ public class HandGrab : MonoBehaviour
                     objetoAgarrado.transform.position = puntoAgarrar.position;
                     objetoAgarrado.transform.rotation = puntoAgarrar.rotation;
 
-                    // Rotar 180° en el eje Y
-
                     // Hacer hijo del punto para seguir la mano
                     objetoAgarrado.transform.SetParent(puntoAgarrar);
 
-                    // Si es extintor, aplicar rotación extra
-                    if (objetoAgarrado.name == "extintor")
+                    // ✅ Si es el extintor, aplicar rotación especial
+                    if (objetoAgarrado.name.ToLower().Contains("extintor"))
                     {
-                        objetoAgarrado.transform.localRotation = Quaternion.Euler(0f, rotacionYExtintor, 0f);
+                        objetoAgarrado.transform.localRotation = Quaternion.Euler(rotacionExtintor);
                     }
-                    else                     objetoAgarrado.transform.Rotate(0f, 180f, 0f, Space.Self);
-
+                    else
+                    {
+                        // ✅ Para otros objetos, rotación estándar
+                        objetoAgarrado.transform.Rotate(0f, 180f, 0f, Space.Self);
+                    }
                 }
             }
             else

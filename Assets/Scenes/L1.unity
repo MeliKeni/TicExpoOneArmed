@@ -4956,7 +4956,7 @@ Transform:
   m_LocalScale: {x: 0.00899842, y: 0.14887358, z: 1}
   m_Children: []
   m_Father: {fileID: 1106413007}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &61544418
 SpriteRenderer:
@@ -4994,7 +4994,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b8ff1a4859130fb4296d5599149e3993, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5857,7 +5857,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62281437}
   m_LocalRotation: {x: 0.3038803, y: 0.6895096, z: -0.6384801, w: 0.15676872}
-  m_LocalPosition: {x: -23.366776, y: 0.673831, z: -0.038009644}
+  m_LocalPosition: {x: -22.575, y: 0.673831, z: -0.038009644}
   m_LocalScale: {x: 0.018662112, y: 0.002614956, z: 0.012334785}
   m_Children: []
   m_Father: {fileID: 1488481477}
@@ -19027,7 +19027,7 @@ Transform:
   m_LocalScale: {x: 0.00899842, y: 0.14887358, z: 1}
   m_Children: []
   m_Father: {fileID: 1106413007}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &695298833
 SpriteRenderer:
@@ -19065,7 +19065,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5fdf13c9db36bb947a0f0c3c9de2e8eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -20648,7 +20648,7 @@ Transform:
   m_LocalScale: {x: 0.00899842, y: 0.14887358, z: 1}
   m_Children: []
   m_Father: {fileID: 1106413007}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &837590191
 SpriteRenderer:
@@ -20686,7 +20686,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b870b7a535eaf194187f7f6f9d3425a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -22331,11 +22331,11 @@ Transform:
   m_LocalPosition: {x: 49.98, y: 14.35, z: -10.023}
   m_LocalScale: {x: 18.164, y: 1, z: 58.33}
   m_Children:
+  - {fileID: 1698450281}
   - {fileID: 1295759233}
   - {fileID: 837590190}
   - {fileID: 61544417}
   - {fileID: 695298832}
-  - {fileID: 1698450281}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29034,7 +29034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1295759233
 Transform:
   m_ObjectHideFlags: 0
@@ -29047,7 +29047,7 @@ Transform:
   m_LocalScale: {x: 0.00899842, y: 0.14887358, z: 1}
   m_Children: []
   m_Father: {fileID: 1106413007}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1295759234
 SpriteRenderer:
@@ -29085,7 +29085,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ee1daeb371b07004496bc09ea88c3827, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -32551,12 +32551,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698450280}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05087, y: -0.0116, z: -0.02661}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.050870053, y: -0.011599541, z: -0.026609998}
   m_LocalScale: {x: 0.009458239, y: 0.16326965, z: 1}
   m_Children: []
   m_Father: {fileID: 1106413007}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1698450282
 SpriteRenderer:
@@ -38573,7 +38573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f593306e4b2d8fb43942f077b0c64b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotacionYExtintor: 180
+  rotacionExtintor: {x: 30, y: 0, z: 15}
   puntoAgarrar: {fileID: 172560433}
 --- !u!114 &1870176751
 MonoBehaviour:
