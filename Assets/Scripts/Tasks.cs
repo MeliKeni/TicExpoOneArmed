@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using TMPro;
-using System.Collections;
 
 public class Tasks : MonoBehaviour
 {
@@ -9,45 +8,39 @@ public class Tasks : MonoBehaviour
         task1TirarBasura,
         task2ArreglarCompu,
         task3GuardarCompus,
-        task4Forms,       // ← Nuevo paso agregado
+        task4JuntarMouses,
         completado
     }
 
     public PasoTask pasoActual = PasoTask.task1TirarBasura;
 
-    public TextMeshPro texto2D;         
-    public TextMeshPro progresoTexto2D; 
-
     [Header("Configuración de tareas")]
-    public int totalTask1 = 10;  
-    public int totalTask2 = 1;   
-    public int totalTask3 = 10;  
-    public int totalTask4 = 3;   // ← Total de forms
+    public int totalTask1 = 10;
+    public int totalTask2 = 1;
+    public int totalTask3 = 10;
+    public int totalTask4 = 10;
 
     // Contadores independientes
     private int guardadosTask1 = 0;
     private int guardadosTask2 = 0;
     private int guardadosTask3 = 0;
-    public int guardadosTask4 = 0; // ← Contador forms
+    private int guardadosTask4 = 0;
+
+    [Header("Imágenes de instrucciones")]
+    public GameObject[] imagenesPasos; // Asigna las imágenes por inspector (en el mismo orden que el enum)
+
+    [Header("Texto de progreso (opcional)")]
+    public TextMeshPro progresoTexto2D; // Si quieres seguir mostrando el progreso en texto
 
     void Start()
     {
-        if (texto2D == null || progresoTexto2D == null)
-        {
-            Debug.LogError("No asignaste los textos 2D!");
-            return;
-        }
-
-        texto2D.gameObject.SetActive(true);
-        progresoTexto2D.gameObject.SetActive(true);
-
-        ActualizarTexto2D();
+        ActualizarImagenes();
         ActualizarProgresoTexto();
     }
 
     void Update()
     {
-        ActualizarTexto2D();
+        ActualizarImagenes();
         ActualizarProgresoTexto();
     }
 
@@ -55,13 +48,14 @@ public class Tasks : MonoBehaviour
     {
         if (pasoActual == PasoTask.completado)
         {
-            Debug.Log("Ya se hicieron todas las tasks");
+            Debug.Log("Todas las tareas completadas");
             return;
         }
 
         pasoActual++;
         Debug.Log("Avanzando al paso: " + pasoActual.ToString());
 
+        ActualizarImagenes();
         ActualizarProgresoTexto();
     }
 
@@ -92,40 +86,29 @@ public class Tasks : MonoBehaviour
         if (pasoActual == PasoTask.task3GuardarCompus)
             ActualizarProgresoTexto();
     }
-
-    public void SumarForm(int cantidad = 1)   // ← Nueva función para forms
+ public void sumarMouses(int cantidad = 1)
     {
         guardadosTask4 += cantidad;
         if (guardadosTask4 > totalTask4) guardadosTask4 = totalTask4;
 
-        if (pasoActual == PasoTask.task4Forms)
+        if (pasoActual == PasoTask.task4JuntarMouses)
             ActualizarProgresoTexto();
     }
-
-    void ActualizarTexto2D()
+    void ActualizarImagenes()
     {
-        switch (pasoActual)
+        for (int i = 0; i < imagenesPasos.Length; i++)
         {
-            case PasoTask.task1TirarBasura:
-                texto2D.text = "Tira la basura";
-                break;
-            case PasoTask.task2ArreglarCompu:
-                texto2D.text = "Arregla la computadora";
-                break;
-            case PasoTask.task3GuardarCompus:
-                texto2D.text = "Guarda las computadoras";
-                break;
-            case PasoTask.task4Forms:
-                texto2D.text = "Completa el formulario";   // ← Texto para el nuevo paso
-                break;
-            case PasoTask.completado:
-                texto2D.text = "¡Tareas completadas!";
-                break;
+            if (imagenesPasos[i] != null)
+            {
+                imagenesPasos[i].SetActive(i == (int)pasoActual);
+            }
         }
     }
 
     void ActualizarProgresoTexto()
     {
+        if (progresoTexto2D == null) return;
+
         switch (pasoActual)
         {
             case PasoTask.task1TirarBasura:
@@ -137,22 +120,9 @@ public class Tasks : MonoBehaviour
             case PasoTask.task3GuardarCompus:
                 progresoTexto2D.text = guardadosTask3 + " / " + totalTask3;
                 break;
-            case PasoTask.task4Forms:
-                progresoTexto2D.text = guardadosTask4 + " / " + totalTask4;   // ← Progreso forms
-                break;
             case PasoTask.completado:
                 progresoTexto2D.text = "";
                 break;
-        }
-    }
-
-    void SetAlphaTexto(TextMeshPro texto, float alpha)
-    {
-        if (texto != null)
-        {
-            Color c = texto.color;
-            c.a = alpha;
-            texto.color = c;
         }
     }
 }

@@ -61,7 +61,7 @@ public class PuntajeScript : MonoBehaviour
     {
         if (textoPuntaje != null)
         {
-            textoPuntaje.text =  puntaje.ToString();
+            textoPuntaje.text =  "Puntaje: " + puntaje.ToString();
         }
     }
 

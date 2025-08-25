@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ApagarFuego : MonoBehaviour
 {
+  public PuntajeScript puntajeScript;
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.name.StartsWith("pc 3 TASK 1"))
@@ -16,6 +17,7 @@ public class ApagarFuego : MonoBehaviour
                 {
                     ps.Stop();
                     Debug.Log("Fuego apagado");
+                    puntajeScript.SumarPuntaje(15);
                 }
             }
         }

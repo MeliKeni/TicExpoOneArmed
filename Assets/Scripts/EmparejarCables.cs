@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // Necesario para manejar la imagen y el alpha
 
 public class EmparejarCables : MonoBehaviour
 {
@@ -19,7 +20,9 @@ public class EmparejarCables : MonoBehaviour
     public GameObject pantallaMonitort1;
     public GameObject mensajeError;
 
-    // Nuevo bool para marcar si la tarea ya fue completada
+    // ✅ Imagen que se va a mostrar por inspector
+    public Image imagenError; 
+
     private bool tareaListo = false;
 
     void Start()
@@ -37,16 +40,17 @@ public class EmparejarCables : MonoBehaviour
         unionAzul.SetActive(false);
         unionVerde.SetActive(false);
         fuego.SetActive(false);
+
+        if (imagenError != null)
+            imagenError.gameObject.SetActive(false); // Ocultamos al inicio
     }
 
     private void Conecciones()
     {
-        // Teclas del lado izquierdo
         if (Input.GetKeyDown(KeyCode.A)) colorI = "azul";
         if (Input.GetKeyDown(KeyCode.B)) colorI = "rojo";
         if (Input.GetKeyDown(KeyCode.C)) colorI = "verde";
 
-        // Teclas del lado derecho
         if (Input.GetKeyDown(KeyCode.Alpha1)) colorD = "verde";
         if (Input.GetKeyDown(KeyCode.Alpha2)) colorD = "rojo";
         if (Input.GetKeyDown(KeyCode.Alpha3)) colorD = "azul";
@@ -56,22 +60,6 @@ public class EmparejarCables : MonoBehaviour
     {
         bool pasocorrecto = tareas.pasoActual == Tasks.PasoTask.task2ArreglarCompu;
 
-        // 🔹 Abrir o cerrar panel siempre que estés en el trigger
-        if (Input.GetMouseButtonDown(0) && brazo.dentroDelTriggerPc3)
-        {
-            brazo.panelCables.SetActive(!brazo.panelCables.activeSelf);
-            if (brazo.panelCables.activeSelf)
-            {
-                colorI = null;
-                colorD = null;
-            }
-            else
-            {
-                mensajeError.SetActive(false);
-            }
-        }
-
-        // 🔹 Procesar conexiones por teclas solo si el panel está abierto
         if (brazo.panelCables.activeInHierarchy)
         {
             Conecciones();
@@ -89,12 +77,15 @@ public class EmparejarCables : MonoBehaviour
                     fuego.SetActive(true);
                     puntajeScript.SumarPuntaje(-30);
                     brazo.panelCables.SetActive(false);
+
+                    // ✅ MOSTRAR IMAGEN 3 seg + FADE OUT en 3 seg
+                    if (imagenError != null)
+                        StartCoroutine(MostrarImagenError());
                 }
 
                 colorI = null;
                 colorD = null;
 
-                // 🔹 Marcar tarea completada si se conectaron los tres cables
                 if (unionRoja.activeInHierarchy && unionAzul.activeInHierarchy && unionVerde.activeInHierarchy && !tareaListo)
                 {
                     tareaListo = true;
@@ -107,14 +98,12 @@ public class EmparejarCables : MonoBehaviour
             }
         }
 
-        // 🔹 Avanzar de paso automáticamente si estás en el paso correcto y la tarea ya se completó
         if (pasocorrecto && tareaListo)
         {
             tareas.AvanzarPaso();
-            tareaListo = false; // Reseteamos para que no avance varias veces
+            tareaListo = false; 
         }
 
-        // 🔹 Mostrar pantalla del monitor
         if (Input.GetMouseButtonDown(0) && brazo.dentroDelTriggerMonitorT1)
         {
             if (brazo.Task1Hecha)
@@ -127,5 +116,31 @@ public class EmparejarCables : MonoBehaviour
                 mensajeError.SetActive(!mensajeError.activeSelf);
             }
         }
+    }
+
+    // ✅ Corutina para mostrar imagen y luego desvanecerla
+    private IEnumerator MostrarImagenError()
+    {
+        imagenError.gameObject.SetActive(true);
+
+        // Alpha al 100%
+        Color color = imagenError.color;
+        color.a = 1f;
+        imagenError.color = color;
+
+        // Espera 3 segundos
+        yield return new WaitForSeconds(3f);
+
+        // Desvanece en 3 segundos
+        float tiempo = 0f;
+        while (tiempo < 3f)
+        {
+            tiempo += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, tiempo / 3f);
+            imagenError.color = color;
+            yield return null;
+        }
+
+        imagenError.gameObject.SetActive(false);
     }
 }

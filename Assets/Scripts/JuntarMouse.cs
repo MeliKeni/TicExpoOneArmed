@@ -7,8 +7,15 @@ public class JuntarMouse : MonoBehaviour
     public int CantidadTotalMouses = 10;
     public List<GameObject> MousesTiradas = new List<GameObject>();
     public Tasks tareas;
+    private bool pasocorrecto=false;
+    public PuntajeScript puntajeScript;
 
-
+    void Update(){
+        if(pasocorrecto == true && tareas.pasoActual == Tasks.PasoTask.task4JuntarMouses){
+                       tareas.AvanzarPaso();
+               pasocorrecto = false;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.StartsWith("mouse") && !MousesTiradas.Contains(other.gameObject))
@@ -20,6 +27,8 @@ public class JuntarMouse : MonoBehaviour
             if (rend != null) rend.enabled = false;
 
             ActualizarConteo();
+            puntajeScript.SumarPuntaje(5);
+            tareas.sumarMouses(1);
         }
     }
 
@@ -45,7 +54,7 @@ public class JuntarMouse : MonoBehaviour
         if (CantidadMousesTirada == CantidadTotalMouses)
         {
             Debug.Log("¡Todos los objetos están dentro! Mostrando texto.");
-            tareas.AvanzarPaso();
+            pasocorrecto = true;
         }
     }
 }

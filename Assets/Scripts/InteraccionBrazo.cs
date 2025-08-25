@@ -135,23 +135,14 @@ public class InteraccionBrazo : MonoBehaviour
             // 🔹 PC3: abrir panel solo si estamos en el paso correcto
             if (dentroDelTriggerPc3)
             {
-                if(tablero.tareas != null && tablero.tareas.pasoActual == Tasks.PasoTask.task2ArreglarCompu)
-                {
+                
                     panelCables.SetActive(!panelCables.activeSelf);
                     if (panelCables.activeSelf)
                     {
                         tablero.colorI = null;
                         tablero.colorD = null;
                     }
-                    else
-                    {
-                        tablero.mensajeError.SetActive(false);
-                    }
-                }
-                else
-                {
-                    tablero.mensajeError.SetActive(!tablero.mensajeError.activeSelf);
-                }
+                   
             }
 
             // Monitores
