@@ -5,6 +5,7 @@ using UnityEngine;
 public class CarritoCrotoTrigger : MonoBehaviour
 {
     public JuntarComputadorasCrotas manager;
+    
 
     private void OnTriggerStay(Collider other)
     {
@@ -26,6 +27,7 @@ public class CarritoCrotoTrigger : MonoBehaviour
         {
             manager.DevolverTodas();
             Destroy(gameObject);
+           manager.carritosMuertos++;  
         }
     }
 

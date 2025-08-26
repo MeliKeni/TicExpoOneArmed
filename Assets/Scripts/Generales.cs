@@ -9,17 +9,22 @@ public class Generales : MonoBehaviour
     private float tiempoActual;
 
     [Header("UI")]
-    public Text textoTimer;            
-    public GameObject panelInicio1;    
-    public GameObject panelInicio2;    
-    public GameObject panelInicio3;    // NUEVO PANEL
-    public GameObject panelFinJuego;   
+    public Text textoTimer;
+    public GameObject panelInicio1;
+    public GameObject panelInicio2;
+    public GameObject panelInicio3;
+    public GameObject panelFinJuego;
+
+    [Header("UI Extras a mostrar después del 3er panel")]
+    public GameObject extraUI1;
+    public GameObject extraUI2;
 
     private enum UIState { Inicio1, Inicio2, Inicio3, Jugando, Fin }
     private UIState estado = UIState.Inicio1;
 
     private bool modoSinTiempo = false;
     private bool timerTerminado = false;
+    public Tasks tareas;
 
     void Start()
     {
@@ -29,7 +34,6 @@ public class Generales : MonoBehaviour
 
     void Update()
     {
-        // Atajo global para reiniciar
         if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9))
         {
             SceneManager.LoadScene("L1");
@@ -37,7 +41,6 @@ public class Generales : MonoBehaviour
             return;
         }
 
-        // Enter: avanzar por pantallas
         if (Input.GetKeyDown(KeyCode.Return))
         {
             switch (estado)
@@ -57,7 +60,6 @@ public class Generales : MonoBehaviour
             }
         }
 
-        // Tecla 0: modo sin tiempo
         if (estado == UIState.Inicio3 && (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0)))
         {
             IniciarJuegoSinTiempo();
@@ -68,7 +70,6 @@ public class Generales : MonoBehaviour
             TerminarJuego();
         }
 
-        // Timer con tiempo
         if (estado == UIState.Jugando && !modoSinTiempo && !timerTerminado)
         {
             tiempoActual -= Time.deltaTime;
@@ -92,6 +93,9 @@ public class Generales : MonoBehaviour
         panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
 
+        extraUI1?.SetActive(false);
+        extraUI2?.SetActive(false);
+
         modoSinTiempo = false;
         timerTerminado = false;
         tiempoActual = tiempoMaximo;
@@ -110,6 +114,9 @@ public class Generales : MonoBehaviour
         panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
 
+        extraUI1?.SetActive(false);
+        extraUI2?.SetActive(false);
+
         if (textoTimer) textoTimer.gameObject.SetActive(false);
         Time.timeScale = 1f;
     }
@@ -122,6 +129,9 @@ public class Generales : MonoBehaviour
         panelInicio3.SetActive(true);
         panelFinJuego.SetActive(false);
 
+        extraUI1?.SetActive(false);
+        extraUI2?.SetActive(false);
+
         if (textoTimer) textoTimer.gameObject.SetActive(false);
         Time.timeScale = 1f;
     }
@@ -133,6 +143,10 @@ public class Generales : MonoBehaviour
         panelInicio2.SetActive(false);
         panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
+
+        // Aquí activamos los extras porque ya pasó el 3er panel
+        extraUI1?.SetActive(true);
+        extraUI2?.SetActive(true);
 
         modoSinTiempo = false;
         timerTerminado = false;
@@ -151,6 +165,9 @@ public class Generales : MonoBehaviour
         panelInicio2.SetActive(false);
         panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
+
+        extraUI1?.SetActive(true);
+        extraUI2?.SetActive(true);
 
         modoSinTiempo = true;
         timerTerminado = false;
@@ -171,11 +188,14 @@ public class Generales : MonoBehaviour
         panelInicio1.SetActive(false);
         panelInicio2.SetActive(false);
         panelInicio3.SetActive(false);
+        tareas.ApagarTextos();
+
+        extraUI1?.SetActive(false);
+        extraUI2?.SetActive(false);
 
         if (textoTimer) textoTimer.gameObject.SetActive(false);
     }
 
-    // ===== UI =====
     void ActualizarUI()
     {
         if (textoTimer && !modoSinTiempo)
@@ -183,4 +203,11 @@ public class Generales : MonoBehaviour
             textoTimer.text = Mathf.CeilToInt(tiempoActual).ToString();
         }
     }
+
+    // ===== MÉTODO PÚBLICO PARA OTROS SCRIPTS =====
+    public bool EstaJugando()
+    {
+        return estado == UIState.Jugando;
+    }
 }
+

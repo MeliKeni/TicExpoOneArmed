@@ -20,28 +20,39 @@ public class Tasks : MonoBehaviour
     public int totalTask3 = 10;
     public int totalTask4 = 5;
 
-    // Contadores independientes
     private int guardadosTask1 = 0;
     private int guardadosTask2 = 0;
     private int guardadosTask3 = 0;
     private int guardadosTask4 = 0;
 
     [Header("Imágenes de instrucciones")]
-    public GameObject[] imagenesPasos; // Asigna las imágenes por inspector (en el mismo orden que el enum)
+    public GameObject[] imagenesPasos;
+
+    [Header("Textos de descripción por tarea")]
+    public GameObject[] textosPasos;
 
     [Header("Texto de progreso (opcional)")]
-    public TextMeshPro progresoTexto2D; // Si quieres seguir mostrando el progreso en texto
+    public TextMeshPro progresoTexto2D;
+
+    [Header("Referencias de UI extras a mostrar después del tercer panel")]
+    public GameObject extraUI1;
+    public GameObject extraUI2;
+
+    [Header("Referencia a Generales (estado del juego)")]
+    public Generales scriptGenerales;
 
     void Start()
     {
-        ActualizarImagenes();
-        ActualizarProgresoTexto();
+        OcultarTodo();
     }
 
     void Update()
     {
-        ActualizarImagenes();
-        ActualizarProgresoTexto();
+        if (JuegoEmpezado())
+        {
+            ActualizarImagenes();
+            ActualizarProgresoTexto();
+        }
     }
 
     public void AvanzarPaso()
@@ -55,17 +66,19 @@ public class Tasks : MonoBehaviour
         pasoActual++;
         Debug.Log("Avanzando al paso: " + pasoActual.ToString());
 
-        ActualizarImagenes();
-        ActualizarProgresoTexto();
+        if (JuegoEmpezado())
+        {
+            ActualizarImagenes();
+            ActualizarProgresoTexto();
+        }
     }
 
-    // 🔹 Funciones independientes para cada tarea
     public void SumarBasura(int cantidad = 1)
     {
         guardadosTask1 += cantidad;
         if (guardadosTask1 > totalTask1) guardadosTask1 = totalTask1;
 
-        if (pasoActual == PasoTask.task1TirarBasura)
+        if (pasoActual == PasoTask.task1TirarBasura && JuegoEmpezado())
             ActualizarProgresoTexto();
     }
 
@@ -74,7 +87,7 @@ public class Tasks : MonoBehaviour
         guardadosTask2 += cantidad;
         if (guardadosTask2 > totalTask2) guardadosTask2 = totalTask2;
 
-        if (pasoActual == PasoTask.task2ArreglarCompu)
+        if (pasoActual == PasoTask.task2ArreglarCompu && JuegoEmpezado())
             ActualizarProgresoTexto();
     }
 
@@ -83,7 +96,7 @@ public class Tasks : MonoBehaviour
         guardadosTask3 += cantidad;
         if (guardadosTask3 > totalTask3) guardadosTask3 = totalTask3;
 
-        if (pasoActual == PasoTask.task3GuardarCompus)
+        if (pasoActual == PasoTask.task3GuardarCompus && JuegoEmpezado())
             ActualizarProgresoTexto();
     }
 
@@ -92,7 +105,7 @@ public class Tasks : MonoBehaviour
         guardadosTask4 += cantidad;
         if (guardadosTask4 > totalTask4) guardadosTask4 = totalTask4;
 
-        if (pasoActual == PasoTask.task4JuntarMouses)
+        if (pasoActual == PasoTask.task4JuntarMouses && JuegoEmpezado())
             ActualizarProgresoTexto();
     }
 
@@ -101,10 +114,22 @@ public class Tasks : MonoBehaviour
         for (int i = 0; i < imagenesPasos.Length; i++)
         {
             if (imagenesPasos[i] != null)
-            {
                 imagenesPasos[i].SetActive(i == (int)pasoActual);
-            }
         }
+
+        for (int i = 0; i < textosPasos.Length; i++)
+        {
+            if (textosPasos[i] != null)
+                textosPasos[i].SetActive(i == (int)pasoActual);
+        }
+
+        bool mostrarExtras = ((int)pasoActual >= 2);
+
+        if (extraUI1 != null)
+            extraUI1.SetActive(mostrarExtras);
+
+        if (extraUI2 != null)
+            extraUI2.SetActive(mostrarExtras);
     }
 
     void ActualizarProgresoTexto()
@@ -131,9 +156,49 @@ public class Tasks : MonoBehaviour
         }
     }
 
-    // ✅ NUEVO: método público para verificar si ya se juntó toda la basura
     public bool EstaCompletaBasura()
     {
         return guardadosTask1 >= totalTask1;
+    }
+
+    void OcultarTodo()
+    {
+        foreach (var img in imagenesPasos)
+            if (img != null) img.SetActive(false);
+
+        foreach (var texto in textosPasos)
+            if (texto != null) texto.SetActive(false);
+
+        if (progresoTexto2D != null)
+            progresoTexto2D.text = "";
+
+        if (extraUI1 != null)
+            extraUI1.SetActive(false);
+
+        if (extraUI2 != null)
+            extraUI2.SetActive(false);
+    }
+
+    public void ApagarTextos()
+    {
+        foreach (var texto in textosPasos)
+        {
+            if (texto != null)
+                texto.SetActive(false);
+        }
+
+        if (extraUI1 != null)
+            extraUI1.SetActive(false);
+
+        if (extraUI2 != null)
+            extraUI2.SetActive(false);
+
+        if (progresoTexto2D != null)
+            progresoTexto2D.text = "";
+    }
+
+    bool JuegoEmpezado()
+    {
+        return scriptGenerales != null && scriptGenerales.EstaJugando();
     }
 }

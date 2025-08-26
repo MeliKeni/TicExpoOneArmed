@@ -36,5 +36,6 @@ public class CarritoTrigger : MonoBehaviour
     {
         manager.DevolverTodas();
         Destroy(gameObject);
+        manager.carritosMuertos++;
     }
 }
