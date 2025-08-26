@@ -62,7 +62,7 @@ public class InteraccionBrazo : MonoBehaviour
         if (other.gameObject.name == "monitor 4") dentroDelTriggerMonitor3 = true;
         if (other.gameObject.name == "monitor 5") dentroDelTriggerMonitor5 = true;
         if (other.gameObject.name == "monitor 6") dentroDelTriggerMonitor6 = true;
-        if (other.gameObject.name == "monitor 7") dentroDelTriggerMonitor7 = true;
+        if (other.gameObject.name == "monitor 7") dentroDelTriggerMonitor7 = true; 
         if (other.gameObject.name == "monitor 8") dentroDelTriggerMonitor8 = true;
         if (other.gameObject.name == "monitor 9") dentroDelTriggerMonitor9 = true;
         if (other.gameObject.name == "monitor 10") dentroDelTriggerMonitor10 = true;
@@ -108,7 +108,7 @@ public class InteraccionBrazo : MonoBehaviour
 
     void Start()
     {
-        pantallaMonitor1.SetActive(false);
+      pantallaMonitor1.SetActive(false); 
         pantallaMonitor2.SetActive(false);
         pantallaMonitor3.SetActive(false);
         pantallaMonitor5.SetActive(false);
@@ -146,7 +146,7 @@ public class InteraccionBrazo : MonoBehaviour
             }
 
             // Monitores
-            if (dentroDelTriggerMonitor1) pantallaMonitor1.SetActive(!pantallaMonitor1.activeSelf);
+          if (dentroDelTriggerMonitor1) pantallaMonitor1.SetActive(!pantallaMonitor1.activeSelf);
             if (dentroDelTriggerMonitor2) pantallaMonitor2.SetActive(!pantallaMonitor2.activeSelf);
             if (dentroDelTriggerMonitor3) pantallaMonitor3.SetActive(!pantallaMonitor3.activeSelf);
             if (dentroDelTriggerMonitor5) pantallaMonitor5.SetActive(!pantallaMonitor5.activeSelf);

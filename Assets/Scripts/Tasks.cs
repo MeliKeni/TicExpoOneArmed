@@ -7,8 +7,8 @@ public class Tasks : MonoBehaviour
     {
         task2ArreglarCompu,
         task1TirarBasura,
-        task3GuardarCompus,
         task4JuntarMouses,
+        task3GuardarCompus,
         completado
     }
 
@@ -17,8 +17,8 @@ public class Tasks : MonoBehaviour
     [Header("Configuración de tareas")]
     public int totalTask1 = 5;
     public int totalTask2 = 1;
-    public int totalTask3 = 6;
-    public int totalTask4 = 10;
+    public int totalTask3 = 10;
+    public int totalTask4 = 5;
 
     // Contadores independientes
     private int guardadosTask1 = 0;
