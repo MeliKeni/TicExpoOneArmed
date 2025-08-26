@@ -9,6 +9,7 @@ public class JuntarComputadoras : MonoBehaviour
     public List<GameObject> ComputadorasGuardadas = new List<GameObject>();
     public bool TareaListaPro = false;
     public Tasks tareas;
+    public int carritosMuertos;
 
     private Dictionary<GameObject, Vector3> posicionesOriginales = new Dictionary<GameObject, Vector3>();
     public string[] nombresComputadoras = { "compu god", "computadora crota" };
@@ -54,6 +55,7 @@ public class JuntarComputadoras : MonoBehaviour
                 }
 
                 computadoraActual = null;
+
             }
         }
     }

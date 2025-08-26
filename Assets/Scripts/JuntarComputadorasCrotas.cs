@@ -10,6 +10,8 @@ public class JuntarComputadorasCrotas : MonoBehaviour
     public JuntarComputadoras pros; // referencia al otro script
     public int CantidadTotalComputadoras = 5;
     public List<GameObject> ComputadorasGuardadas = new List<GameObject>();
+    public int carritosMuertos;
+
 
     [Header("Posiciones originales")]
     private Dictionary<GameObject, Vector3> posicionesOriginales = new Dictionary<GameObject, Vector3>();
@@ -68,7 +70,7 @@ public class JuntarComputadorasCrotas : MonoBehaviour
 
             if (ComputadorasGuardadas.Count == CantidadTotalComputadoras)
                 tareaListo = true;
-
+                
             ActualizarConteo();
         }
     }

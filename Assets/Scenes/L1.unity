@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11014,7 +11014,7 @@ Transform:
   m_LocalScale: {x: 18.164, y: 1, z: 58.33}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &182111484
 GameObject:
@@ -11318,6 +11318,7 @@ MonoBehaviour:
   ComputadorasGuardadas: []
   TareaListaPro: 0
   tareas: {fileID: 118340616}
+  carritosMuertos: 0
   nombresComputadoras:
   - compu god
   - computadora crota
@@ -20965,6 +20966,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919686358}
   m_CullTransparentMesh: 0
+--- !u!1 &932196492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932196494}
+  - component: {fileID: 932196493}
+  m_Layer: 0
+  m_Name: CarritoManger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &932196493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932196492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6339a76e0054642bb8e8630d299a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  god: {fileID: 204942163}
+  crotas: {fileID: 1575104301}
+  logro: {fileID: 2016991355}
+--- !u!4 &932196494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932196492}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 49.98, y: 16.02, z: -19.757706}
+  m_LocalScale: {x: 18.164, y: 1, z: 58.33}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &938810109
 GameObject:
   m_ObjectHideFlags: 0
@@ -31459,6 +31506,7 @@ MonoBehaviour:
   pros: {fileID: 204942163}
   CantidadTotalComputadoras: 5
   ComputadorasGuardadas: []
+  carritosMuertos: 0
 --- !u!1 &1576784932
 GameObject:
   m_ObjectHideFlags: 0
@@ -40163,7 +40211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2016991356
 RectTransform:
   m_ObjectHideFlags: 0
