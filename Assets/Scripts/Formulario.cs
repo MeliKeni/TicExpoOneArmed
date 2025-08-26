@@ -8,6 +8,10 @@ public class Formulario : MonoBehaviour
     public GameObject canvasPregunta1;
     public GameObject canvasPregunta2;
     public GameObject canvasPregunta3;
+    public GameObject panel1;
+    public GameObject panel2;
+    public GameObject panel3;
+    public GameObject panel4;
 
     public int cantidadRespondidasCorrectamente = 0;
     public InteraccionBrazo brazo;
@@ -35,8 +39,10 @@ public class Formulario : MonoBehaviour
     void Update()
     {
         // Contar tiempo jugado
-        tiempoJugado += Time.deltaTime;
-
+        if(!panel1.activeSelf && !panel2.activeSelf && !panel3.activeSelf && !panel4.activeSelf)
+        {
+            tiempoJugado += Time.deltaTime;
+        }
         // Mostrar formulario después de 100 segundos
         if (!formularioMostrado && tiempoJugado >= 100f)
         {

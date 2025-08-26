@@ -1,23 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro; // Necesario para TextMeshPro
+﻿using UnityEngine;
+using TMPro;
 
 public class PuntajeScript : MonoBehaviour
 {
-    // Singleton para acceder desde otros scripts
     public static PuntajeScript instance;
 
-    // Puntaje actual
     private int puntaje = 0;
 
-    // Texto en Canvas para mostrar el puntaje (TextMeshPro)
-    public TextMeshProUGUI textoPuntaje;
+    // Textos asignados por el Inspector
+    public TextMeshProUGUI textoPuntaje;   // Puntaje en juego
+    public TextMeshProUGUI textoPuntaje2;  // Puntaje final (panelFin)
 
-    // Panel de perder (asignar en Inspector)
-    public GameObject panelInicio;
+    // Paneles asignados por el Inspector
+    public GameObject panelInicio;  // (opcional, si lo usás)
+    public GameObject panelFin;     // Este es el importante
 
-  
+    private bool puntajeMostradoEnFin = false;
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     void Start()
     {
@@ -26,22 +32,35 @@ public class PuntajeScript : MonoBehaviour
 
     void Update()
     {
-        // Reiniciar puntaje si el panel de perder está activo
-        if (panelInicio != null && panelInicio.activeSelf)
+        // Ejemplo: sumar 1 punto al presionar espacio
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            ReiniciarPuntaje();
+            SumarPuntaje(1);
         }
 
+        // Si el panel de fin está activo y aún no mostramos el puntaje final
+        if (panelFin != null && panelFin.activeSelf && !puntajeMostradoEnFin)
+        {
+            if (textoPuntaje2 != null)
+                textoPuntaje2.text = puntaje.ToString();
+
+            puntajeMostradoEnFin = true;
+        }
+
+        // Si el panel de fin ya no está activo, reiniciar puntaje y bandera
+        if (panelFin != null && !panelFin.activeSelf && puntajeMostradoEnFin)
+        {
+            ReiniciarPuntaje();
+            puntajeMostradoEnFin = false;
+        }
     }
 
-    // Método público para sumar puntaje
     public void SumarPuntaje(int cantidad)
     {
         puntaje += cantidad;
         ActualizarTexto();
     }
 
-    // Método público para restar puntaje
     public void RestarPuntaje(int cantidad)
     {
         puntaje -= cantidad;
@@ -49,23 +68,18 @@ public class PuntajeScript : MonoBehaviour
         ActualizarTexto();
     }
 
-    // Reinicia puntaje a 0
     public void ReiniciarPuntaje()
     {
         puntaje = 0;
         ActualizarTexto();
     }
 
-    // Actualiza el texto en pantalla
     void ActualizarTexto()
     {
         if (textoPuntaje != null)
-        {
-            textoPuntaje.text =  "Puntaje: " + puntaje.ToString();
-        }
+            textoPuntaje.text = puntaje.ToString();
     }
 
-    // Obtener puntaje actual
     public int ObtenerPuntaje()
     {
         return puntaje;
