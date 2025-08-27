@@ -14,11 +14,9 @@ public class Generales : MonoBehaviour
     public GameObject panelInicio2;
     public GameObject panelInicio3;
     public GameObject panelFinJuego;
+    public GameObject player;
 
-    [Header("UI Extras a mostrar después del 3er panel")]
-    public GameObject extraUI1;
-    public GameObject extraUI2;
-
+ 
     private enum UIState { Inicio1, Inicio2, Inicio3, Jugando, Fin }
     private UIState estado = UIState.Inicio1;
 
@@ -40,7 +38,11 @@ public class Generales : MonoBehaviour
             CambiarAInicio1();
             return;
         }
-
+        if (Input.GetKeyDown(KeyCode.Alpha8) ||Input.GetKeyDown(KeyCode.Keypad8))
+        {
+            player.transform.position = new Vector3(52f, 13.89f, -14.47f);
+            return;    
+        }
         if (Input.GetKeyDown(KeyCode.Return))
         {
             switch (estado)
@@ -93,8 +95,7 @@ public class Generales : MonoBehaviour
         panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
 
-        extraUI1?.SetActive(false);
-        extraUI2?.SetActive(false);
+     
 
         modoSinTiempo = false;
         timerTerminado = false;
@@ -114,8 +115,7 @@ public class Generales : MonoBehaviour
         panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
 
-        extraUI1?.SetActive(false);
-        extraUI2?.SetActive(false);
+   
 
         if (textoTimer) textoTimer.gameObject.SetActive(false);
         Time.timeScale = 1f;
@@ -129,8 +129,6 @@ public class Generales : MonoBehaviour
         panelInicio3.SetActive(true);
         panelFinJuego.SetActive(false);
 
-        extraUI1?.SetActive(false);
-        extraUI2?.SetActive(false);
 
         if (textoTimer) textoTimer.gameObject.SetActive(false);
         Time.timeScale = 1f;
@@ -144,9 +142,7 @@ public class Generales : MonoBehaviour
         panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
 
-        // Aquí activamos los extras porque ya pasó el 3er panel
-        extraUI1?.SetActive(true);
-        extraUI2?.SetActive(true);
+       
 
         modoSinTiempo = false;
         timerTerminado = false;
@@ -165,9 +161,6 @@ public class Generales : MonoBehaviour
         panelInicio2.SetActive(false);
         panelInicio3.SetActive(false);
         panelFinJuego.SetActive(false);
-
-        extraUI1?.SetActive(true);
-        extraUI2?.SetActive(true);
 
         modoSinTiempo = true;
         timerTerminado = false;
@@ -190,8 +183,6 @@ public class Generales : MonoBehaviour
         panelInicio3.SetActive(false);
         tareas.ApagarTextos();
 
-        extraUI1?.SetActive(false);
-        extraUI2?.SetActive(false);
 
         if (textoTimer) textoTimer.gameObject.SetActive(false);
     }

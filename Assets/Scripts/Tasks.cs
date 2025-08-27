@@ -9,6 +9,7 @@ public class Tasks : MonoBehaviour
         task1TirarBasura,
         task4JuntarMouses,
         task3GuardarCompus,
+        task5TirarBasuraII,
         completado
     }
 
@@ -19,11 +20,13 @@ public class Tasks : MonoBehaviour
     public int totalTask2 = 1;
     public int totalTask3 = 10;
     public int totalTask4 = 5;
+    public int totalTask5 = 5;
 
     private int guardadosTask1 = 0;
     private int guardadosTask2 = 0;
     private int guardadosTask3 = 0;
     private int guardadosTask4 = 0;
+    private int guardadosTask5 = 0;
 
     [Header("Imágenes de instrucciones")]
     public GameObject[] imagenesPasos;
@@ -31,12 +34,8 @@ public class Tasks : MonoBehaviour
     [Header("Textos de descripción por tarea")]
     public GameObject[] textosPasos;
 
-    [Header("Texto de progreso (opcional)")]
-    public TextMeshPro progresoTexto2D;
-
-    [Header("Referencias de UI extras a mostrar después del tercer panel")]
-    public GameObject extraUI1;
-    public GameObject extraUI2;
+    [Header("Texto de progreso (UI - Canvas)")]
+    public TextMeshProUGUI progresoTextoUI;
 
     [Header("Referencia a Generales (estado del juego)")]
     public Generales scriptGenerales;
@@ -82,6 +81,15 @@ public class Tasks : MonoBehaviour
             ActualizarProgresoTexto();
     }
 
+    public void SumarBasuraII(int cantidad = 1)
+    {
+        guardadosTask5 += cantidad;
+        if (guardadosTask5 > totalTask5) guardadosTask5 = totalTask5;
+
+        if (pasoActual == PasoTask.task5TirarBasuraII && JuegoEmpezado())
+            ActualizarProgresoTexto();
+    }
+
     public void SumarComputadoraArreglada(int cantidad = 1)
     {
         guardadosTask2 += cantidad;
@@ -122,36 +130,31 @@ public class Tasks : MonoBehaviour
             if (textosPasos[i] != null)
                 textosPasos[i].SetActive(i == (int)pasoActual);
         }
-
-        bool mostrarExtras = ((int)pasoActual >= 2);
-
-        if (extraUI1 != null)
-            extraUI1.SetActive(mostrarExtras);
-
-        if (extraUI2 != null)
-            extraUI2.SetActive(mostrarExtras);
     }
 
     void ActualizarProgresoTexto()
     {
-        if (progresoTexto2D == null) return;
+        if (progresoTextoUI == null) return;
 
         switch (pasoActual)
         {
             case PasoTask.task1TirarBasura:
-                progresoTexto2D.text = guardadosTask1 + " / " + totalTask1;
+                progresoTextoUI.text = guardadosTask1 + " / " + totalTask1;
                 break;
             case PasoTask.task2ArreglarCompu:
-                progresoTexto2D.text = guardadosTask2 + " / " + totalTask2;
+                progresoTextoUI.text = guardadosTask2 + " / " + totalTask2;
                 break;
             case PasoTask.task3GuardarCompus:
-                progresoTexto2D.text = guardadosTask3 + " / " + totalTask3;
+                progresoTextoUI.text = guardadosTask3 + " / " + totalTask3;
                 break;
             case PasoTask.task4JuntarMouses:
-                progresoTexto2D.text = guardadosTask4 + " / " + totalTask4;
+                progresoTextoUI.text = guardadosTask4 + " / " + totalTask4;
+                break;
+            case PasoTask.task5TirarBasuraII:
+                progresoTextoUI.text = guardadosTask5 + " / " + totalTask5;
                 break;
             case PasoTask.completado:
-                progresoTexto2D.text = "";
+                progresoTextoUI.text = "";
                 break;
         }
     }
@@ -169,14 +172,8 @@ public class Tasks : MonoBehaviour
         foreach (var texto in textosPasos)
             if (texto != null) texto.SetActive(false);
 
-        if (progresoTexto2D != null)
-            progresoTexto2D.text = "";
-
-        if (extraUI1 != null)
-            extraUI1.SetActive(false);
-
-        if (extraUI2 != null)
-            extraUI2.SetActive(false);
+        if (progresoTextoUI != null)
+            progresoTextoUI.text = "";
     }
 
     public void ApagarTextos()
@@ -187,14 +184,8 @@ public class Tasks : MonoBehaviour
                 texto.SetActive(false);
         }
 
-        if (extraUI1 != null)
-            extraUI1.SetActive(false);
-
-        if (extraUI2 != null)
-            extraUI2.SetActive(false);
-
-        if (progresoTexto2D != null)
-            progresoTexto2D.text = "";
+        if (progresoTextoUI != null)
+            progresoTextoUI.text = "";
     }
 
     bool JuegoEmpezado()

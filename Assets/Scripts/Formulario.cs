@@ -8,6 +8,7 @@ public class Formulario : MonoBehaviour
     public GameObject canvasPregunta1;
     public GameObject canvasPregunta2;
     public GameObject canvasPregunta3;
+    public GameObject eacInstrucciones;
     public GameObject panel1;
     public GameObject panel2;
     public GameObject panel3;
@@ -31,6 +32,7 @@ public class Formulario : MonoBehaviour
         canvasPregunta1.SetActive(false);
         canvasPregunta2.SetActive(false);
         canvasPregunta3.SetActive(false);
+        eacInstrucciones.SetActive(false);
 
         if (imagenRecompensa != null)
             imagenRecompensa.gameObject.SetActive(false);
@@ -46,10 +48,16 @@ public class Formulario : MonoBehaviour
         // Mostrar formulario después de 100 segundos
         if (!formularioMostrado && tiempoJugado >= 100f)
         {
-            formularioMostrado = true;
+            eacInstrucciones.SetActive(true);
             canvasFormulario.SetActive(true);
+        }
+        if(!formularioMostrado &&tiempoJugado >= 103f)
+        {
+            eacInstrucciones.SetActive(false);
+            formularioMostrado = true;
             canvasPregunta1.SetActive(true);
         }
+
 
         // Procesar preguntas solo si el formulario ya fue mostrado
         if (formularioMostrado)
