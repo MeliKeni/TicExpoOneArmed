@@ -13,11 +13,11 @@ public class Generales : MonoBehaviour
     public GameObject panelInicio1;
     public GameObject panelInicio2;
     public GameObject panelInicio3;
-    public GameObject panelInicio4;   // <--- agregado
     public GameObject panelFinJuego;
     public GameObject player;
 
-    private enum UIState { Inicio1, Inicio2, Inicio3, Inicio4, Jugando, Fin }  // <--- agregado Inicio4
+ 
+    private enum UIState { Inicio1, Inicio2, Inicio3, Jugando, Fin }
     private UIState estado = UIState.Inicio1;
 
     private bool modoSinTiempo = false;
@@ -32,22 +32,17 @@ public class Generales : MonoBehaviour
 
     void Update()
     {
-        // Reiniciar escena con 9
         if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9))
         {
             SceneManager.LoadScene("L1");
             CambiarAInicio1();
             return;
         }
-
-        // Teletransportar player con 8 (debug)
-        if (Input.GetKeyDown(KeyCode.Alpha8) || Input.GetKeyDown(KeyCode.Keypad8))
+        if (Input.GetKeyDown(KeyCode.Alpha8) ||Input.GetKeyDown(KeyCode.Keypad8))
         {
             player.transform.position = new Vector3(52f, 13.89f, -14.47f);
-            return;
+            return;    
         }
-
-        // Navegación con Enter
         if (Input.GetKeyDown(KeyCode.Return))
         {
             switch (estado)
@@ -59,28 +54,14 @@ public class Generales : MonoBehaviour
                     CambiarAInicio3();
                     break;
                 case UIState.Inicio3:
-                    CambiarAInicio4();  // <--- ahora va al panel 4
+                    IniciarJuegoConTiempo();
                     break;
                 case UIState.Fin:
-                    SceneManager.LoadScene("Inicio");
+                    SceneManager.LoadScene("L1");
                     break;
             }
         }
 
-        // Selección en panel 4
-        if (estado == UIState.Inicio4)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
-            {
-                SceneManager.LoadScene("L1");
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
-            {
-                SceneManager.LoadScene("L2");
-            }
-        }
-
-        // Atajos para iniciar sin tiempo
         if (estado == UIState.Inicio3 && (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0)))
         {
             IniciarJuegoSinTiempo();
@@ -91,7 +72,6 @@ public class Generales : MonoBehaviour
             TerminarJuego();
         }
 
-        // Timer en modo con tiempo
         if (estado == UIState.Jugando && !modoSinTiempo && !timerTerminado)
         {
             tiempoActual -= Time.deltaTime;
@@ -113,8 +93,9 @@ public class Generales : MonoBehaviour
         panelInicio1.SetActive(true);
         panelInicio2.SetActive(false);
         panelInicio3.SetActive(false);
-        panelInicio4.SetActive(false);
         panelFinJuego.SetActive(false);
+
+     
 
         modoSinTiempo = false;
         timerTerminado = false;
@@ -132,8 +113,9 @@ public class Generales : MonoBehaviour
         panelInicio1.SetActive(false);
         panelInicio2.SetActive(true);
         panelInicio3.SetActive(false);
-        panelInicio4.SetActive(false);
         panelFinJuego.SetActive(false);
+
+   
 
         if (textoTimer) textoTimer.gameObject.SetActive(false);
         Time.timeScale = 1f;
@@ -145,21 +127,8 @@ public class Generales : MonoBehaviour
         panelInicio1.SetActive(false);
         panelInicio2.SetActive(false);
         panelInicio3.SetActive(true);
-        panelInicio4.SetActive(false);
         panelFinJuego.SetActive(false);
 
-        if (textoTimer) textoTimer.gameObject.SetActive(false);
-        Time.timeScale = 1f;
-    }
-
-    void CambiarAInicio4()
-    {
-        estado = UIState.Inicio4;
-        panelInicio1.SetActive(false);
-        panelInicio2.SetActive(false);
-        panelInicio3.SetActive(false);
-        panelInicio4.SetActive(true);
-        panelFinJuego.SetActive(false);
 
         if (textoTimer) textoTimer.gameObject.SetActive(false);
         Time.timeScale = 1f;
@@ -171,8 +140,9 @@ public class Generales : MonoBehaviour
         panelInicio1.SetActive(false);
         panelInicio2.SetActive(false);
         panelInicio3.SetActive(false);
-        panelInicio4.SetActive(false);
         panelFinJuego.SetActive(false);
+
+       
 
         modoSinTiempo = false;
         timerTerminado = false;
@@ -190,7 +160,6 @@ public class Generales : MonoBehaviour
         panelInicio1.SetActive(false);
         panelInicio2.SetActive(false);
         panelInicio3.SetActive(false);
-        panelInicio4.SetActive(false);
         panelFinJuego.SetActive(false);
 
         modoSinTiempo = true;
@@ -212,8 +181,8 @@ public class Generales : MonoBehaviour
         panelInicio1.SetActive(false);
         panelInicio2.SetActive(false);
         panelInicio3.SetActive(false);
-        panelInicio4.SetActive(false);
         tareas.ApagarTextos();
+
 
         if (textoTimer) textoTimer.gameObject.SetActive(false);
     }
@@ -232,3 +201,4 @@ public class Generales : MonoBehaviour
         return estado == UIState.Jugando;
     }
 }
+
