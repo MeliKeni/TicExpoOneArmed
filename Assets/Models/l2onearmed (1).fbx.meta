@@ -1,0 +1,349 @@
+fileFormatVersion: 2
+guid: 18abc8ff023c41e4d95d31b7b9920ef5
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: carrito croto 1.002
+    100002: carrito croto 2.001
+    100004: Cube
+    100006: Cube.001
+    100008: estructura.001
+    100010: estructura.002
+    100012: estructura.140
+    100014: //RootNode
+    100016: mesas 4.001
+    100018: mesas 4.002
+    100020: mesas 4.003
+    100022: mesas 4.004
+    100024: mesas 4.005
+    100026: mesas 4.006
+    100028: mesas 4.007
+    100030: mesas 4.008
+    100032: mesas 4.009
+    100034: mesas 4.010
+    100036: mesas 4.011
+    100038: mesas 4.012
+    100040: mesas 4.013
+    100042: mesas 4.014
+    100044: mesas 4.015
+    100046: mesas 4.016
+    100048: mesas 4.017
+    100050: monitor 15.001
+    100052: pared 2.002
+    100054: pared 2.003
+    100056: pared 2.004
+    100058: pared 2.005
+    100060: pared 3.002
+    100062: pared 3.003
+    100064: pared 4.002
+    100066: pared 4.003
+    100068: pc 15.001
+    100070: puertas.001
+    100072: puertas.002
+    100074: puertas.003
+    100076: tacho basura .001
+    100078: tacho basura interactivo.001
+    100080: techo
+    100082: ventanas.001
+    100084: ventanas.002
+    100086: ventanas.004
+    400000: carrito croto 1.002
+    400002: carrito croto 2.001
+    400004: Cube
+    400006: Cube.001
+    400008: estructura.001
+    400010: estructura.002
+    400012: estructura.140
+    400014: //RootNode
+    400016: mesas 4.001
+    400018: mesas 4.002
+    400020: mesas 4.003
+    400022: mesas 4.004
+    400024: mesas 4.005
+    400026: mesas 4.006
+    400028: mesas 4.007
+    400030: mesas 4.008
+    400032: mesas 4.009
+    400034: mesas 4.010
+    400036: mesas 4.011
+    400038: mesas 4.012
+    400040: mesas 4.013
+    400042: mesas 4.014
+    400044: mesas 4.015
+    400046: mesas 4.016
+    400048: mesas 4.017
+    400050: monitor 15.001
+    400052: pared 2.002
+    400054: pared 2.003
+    400056: pared 2.004
+    400058: pared 2.005
+    400060: pared 3.002
+    400062: pared 3.003
+    400064: pared 4.002
+    400066: pared 4.003
+    400068: pc 15.001
+    400070: puertas.001
+    400072: puertas.002
+    400074: puertas.003
+    400076: tacho basura .001
+    400078: tacho basura interactivo.001
+    400080: techo
+    400082: ventanas.001
+    400084: ventanas.002
+    400086: ventanas.004
+    2100000: piso
+    2100002: gris pared
+    2100004: carrito
+    2100006: gris pizarron
+    2100008: blanco
+    2100010: palo mesa
+    2100012: gris tacho
+    2100014: gris puerta
+    2100016: Material.028
+    2100018: Material.029
+    2100020: Material.014
+    2100022: gris metal pecers
+    2100024: verde agua tic
+    2100026: Material.035
+    2100028: Material.033
+    2100030: Material.037
+    2100032: celeste carrito
+    2100034: puertatas
+    2100036: vidrio
+    2100038: gris
+    2100040: ddl occo
+    2100042: Material.002
+    2100044: frutila occo
+    2100046: Material.015
+    2100048: Material.012
+    2100050: Material.008
+    2100052: Material.007
+    2100054: Material.006
+    2100056: Material.010
+    2100058: Material.011
+    2100060: Material.020
+    2100062: Material.021
+    2100064: Material.022
+    2100066: Material.026
+    2100068: Material.027
+    2100070: Material.031
+    2100072: matafuegos
+    2100074: negro
+    2100076: chocolate occo
+    2100078: pilar color_
+    2300000: carrito croto 1.002
+    2300002: carrito croto 2.001
+    2300004: Cube
+    2300006: Cube.001
+    2300008: estructura.001
+    2300010: estructura.002
+    2300012: estructura.140
+    2300014: mesas 4.001
+    2300016: mesas 4.002
+    2300018: mesas 4.003
+    2300020: mesas 4.004
+    2300022: mesas 4.005
+    2300024: mesas 4.006
+    2300026: mesas 4.007
+    2300028: mesas 4.008
+    2300030: mesas 4.009
+    2300032: mesas 4.010
+    2300034: mesas 4.011
+    2300036: mesas 4.012
+    2300038: mesas 4.013
+    2300040: mesas 4.014
+    2300042: mesas 4.015
+    2300044: mesas 4.016
+    2300046: mesas 4.017
+    2300048: monitor 15.001
+    2300050: pared 2.002
+    2300052: pared 2.003
+    2300054: pared 2.004
+    2300056: pared 2.005
+    2300058: pared 3.002
+    2300060: pared 3.003
+    2300062: pared 4.002
+    2300064: pared 4.003
+    2300066: pc 15.001
+    2300068: puertas.001
+    2300070: puertas.002
+    2300072: puertas.003
+    2300074: tacho basura .001
+    2300076: tacho basura interactivo.001
+    2300078: techo
+    2300080: ventanas.001
+    2300082: ventanas.002
+    2300084: ventanas.004
+    3300000: carrito croto 1.002
+    3300002: carrito croto 2.001
+    3300004: Cube
+    3300006: Cube.001
+    3300008: estructura.001
+    3300010: estructura.002
+    3300012: estructura.140
+    3300014: mesas 4.001
+    3300016: mesas 4.002
+    3300018: mesas 4.003
+    3300020: mesas 4.004
+    3300022: mesas 4.005
+    3300024: mesas 4.006
+    3300026: mesas 4.007
+    3300028: mesas 4.008
+    3300030: mesas 4.009
+    3300032: mesas 4.010
+    3300034: mesas 4.011
+    3300036: mesas 4.012
+    3300038: mesas 4.013
+    3300040: mesas 4.014
+    3300042: mesas 4.015
+    3300044: mesas 4.016
+    3300046: mesas 4.017
+    3300048: monitor 15.001
+    3300050: pared 2.002
+    3300052: pared 2.003
+    3300054: pared 2.004
+    3300056: pared 2.005
+    3300058: pared 3.002
+    3300060: pared 3.003
+    3300062: pared 4.002
+    3300064: pared 4.003
+    3300066: pc 15.001
+    3300068: puertas.001
+    3300070: puertas.002
+    3300072: puertas.003
+    3300074: tacho basura .001
+    3300076: tacho basura interactivo.001
+    3300078: techo
+    3300080: ventanas.001
+    3300082: ventanas.002
+    3300084: ventanas.004
+    4300000: Cube
+    4300002: Cube.001
+    4300004: carrito croto 1.002
+    4300006: carrito croto 2.001
+    4300008: estructura.001
+    4300010: estructura.002
+    4300012: estructura.140
+    4300014: mesas 4.001
+    4300016: mesas 4.002
+    4300018: mesas 4.003
+    4300020: mesas 4.004
+    4300022: mesas 4.005
+    4300024: mesas 4.006
+    4300026: mesas 4.007
+    4300028: mesas 4.008
+    4300030: mesas 4.009
+    4300032: mesas 4.010
+    4300034: mesas 4.011
+    4300036: mesas 4.012
+    4300038: mesas 4.013
+    4300040: mesas 4.014
+    4300042: mesas 4.015
+    4300044: mesas 4.016
+    4300046: mesas 4.017
+    4300048: monitor 15.001
+    4300050: pared 2.002
+    4300052: pared 2.003
+    4300054: pared 2.004
+    4300056: pared 2.005
+    4300058: pared 3.002
+    4300060: pared 3.003
+    4300062: pared 4.002
+    4300064: pared 4.003
+    4300066: pc 15.001
+    4300068: puertas.001
+    4300070: puertas.002
+    4300072: puertas.003
+    4300074: tacho basura .001
+    4300076: tacho basura interactivo.001
+    4300078: techo
+    4300080: ventanas.001
+    4300082: ventanas.002
+    4300084: ventanas.004
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
