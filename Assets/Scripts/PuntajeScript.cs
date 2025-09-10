@@ -32,11 +32,7 @@ public class PuntajeScript : MonoBehaviour
 
     void Update()
     {
-        // Ejemplo: sumar 1 punto al presionar espacio
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SumarPuntaje(1);
-        }
+      
 
         // Si el panel de fin está activo y aún no mostramos el puntaje final
         if (panelFin != null && panelFin.activeSelf && !puntajeMostradoEnFin)

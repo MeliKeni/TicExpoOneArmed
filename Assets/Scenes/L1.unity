@@ -6708,6 +6708,9 @@ GameObject:
   - component: {fileID: 59083409}
   - component: {fileID: 60082385}
   - component: {fileID: 62281364}
+  - component: {fileID: 62281370}
+  - component: {fileID: 62281368}
+  - component: {fileID: 62281366}
   m_Layer: 0
   m_Name: pecera
   m_TagString: Untagged
@@ -6748,6 +6751,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &62281366
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62281363}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9782908, y: 0.16741195, z: 17.69701}
+  m_Center: {x: -4.5371876, y: 0.61229616, z: -15.555509}
 --- !u!1 &62281367
 GameObject:
   m_ObjectHideFlags: 0
@@ -6766,6 +6782,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &62281368
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62281363}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 25.43321, y: 2.0434783, z: 2.7304227}
+  m_Center: {x: 7.190282, y: -0.32573673, z: -23.038801}
 --- !u!1 &62281369
 GameObject:
   m_ObjectHideFlags: 0
@@ -6784,6 +6813,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &62281370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62281363}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.2359214, y: 2.0434783, z: 56.09873}
+  m_Center: {x: -4.408375, y: -0.32573673, z: 20.702253}
 --- !u!1 &62281371
 GameObject:
   m_ObjectHideFlags: 0
@@ -9617,8 +9659,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 168.4241, y: 46.6697, z: 53.42507}
-  m_Center: {x: -19.409216, y: -11.946885, z: 0.0036077974}
+  m_Size: {x: 649.65533, y: 46.6697, z: 53.425068}
+  m_Center: {x: 221.20639, y: -11.946886, z: 0.0036092687}
 --- !u!65 &62281605
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9630,8 +9672,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 168.4241, y: 46.669685, z: 53.425064}
-  m_Center: {x: -19.40946, y: -11.946149, z: 0.0034856796}
+  m_Size: {x: 655.512, y: 46.669697, z: 53.425064}
+  m_Center: {x: 224.13487, y: -11.946155, z: 0.0034869015}
 --- !u!114 &62281606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9656,8 +9698,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 168.42416, y: 46.669704, z: 53.425064}
-  m_Center: {x: -19.409222, y: -11.946153, z: 0.0033634866}
+  m_Size: {x: 691.71405, y: 46.669704, z: 53.425064}
+  m_Center: {x: 242.23563, y: -11.946153, z: 0.0033642186}
 --- !u!114 &62281608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24852,8 +24894,7 @@ MonoBehaviour:
   panelInicio2: {fileID: 34559362}
   panelInicio3: {fileID: 2143845486}
   panelFinJuego: {fileID: 919686358}
-  extraUI1: {fileID: 0}
-  extraUI2: {fileID: 0}
+  player: {fileID: 0}
   tareas: {fileID: 0}
 --- !u!114 &1177123187
 MonoBehaviour:
